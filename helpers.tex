@@ -1,0 +1,46 @@
+% Language and input related stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% Font
+\renewcommand{\familydefault}{\rmdefault}
+\addtokomafont{sectioning}{\rmfamily}
+
+\usepackage{lmodern}
+
+% Math packages
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\usepackage{enumitem}
+\usepackage[babel,german=quotes]{csquotes}
+\usepackage{color}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Satz}
+
+\theoremstyle{definition}
+\newtheorem*{mydef}{Definition}
+\newtheorem*{notation}{Bezeichnung}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Bemerkung}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\dotp{\langle}{\rangle} % dot product
+
+\newcommand{\defeq}{\coloneqq} % define sign
+\newcommand{\R}{\mathbb{R}} % define sign
+\newcommand{\Rn}{\R^n} % define sign
+\newcommand{\emptynorm}{\norm{\quad}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Be}{B_\eps}
