@@ -1,0 +1,57 @@
+\chapter{Grundlagen aus der linearen Algebra}
+\section{Norm und Kondition}
+
+Betrachte ein lineares Gleichungssystem der Form
+$Ax = b$ mit invertierbarer Matrix
+$A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
+und gesuchten Vektor $x \in \Cn$.
+
+Weiter sei nur ein verfälschter Eingangsvektor $\tilde{b} = b + \Delta b$
+mit relativem Fehler
+\[
+    \frac{\norm{\tilde{b} - b}}{\norm{b}} = \frac{\norm{\Delta b}}{\norm{b}} \leq \delta
+\]
+gegeben.
+
+Bezeichne mit $\tilde{x}$ die Lösung des verfälschten Gleichungssystems
+$A \tilde{x} = \tilde{b}$.
+Wegen der Linearität von $A^{-1}$ erhält man
+\[
+    \tilde{x} = A^{-1} \tilde{b} = A^{-1} b + A^{-1} \Delta b = x + \Delta x,
+\]
+wobei $\Delta x \defeq A^{-1} \Delta b$.
+
+Gesucht ist nun ein Maß des relativen Fehlers der verfälschten Lösung
+$\tilde{x}$ in Abhängigkeit vom Eingangsfehler $\delta$.
+
+Wegen $ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
+und $ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
+folgt für den relativen Fehler:
+\[
+    \frac{\norm{\Delta x}}{\norm{x}} \leq \norm{A} \norm{A^{-1}} \frac{\norm{\Delta b}}{\norm{b}} \leq \norm{A} \norm{A^{-1}} \delta.
+\]
+
+Dies motiviert die folgende
+\begin{mydef}[Kondition einer Matrix]
+    Sei $A \in \C^{n \times n}$.
+    Definiere die \emph{Kondition von $A$} als $\cond(A) \defeq \norm{A}
+    \norm{A^{-1}}$.
+\end{mydef}
+
+\section{Vandermonde Matrizen}
+\begin{mydef}[Vandermonde Matrix]
+    Für $n \in \N$ sei ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.
+    Definiere die \emph{Vandermonde Matrix von $z$} als
+    \[
+        \Vand{z} \defeq \begin{pmatrix}
+            1         & 1         & \dots & 1 \\
+            z_0       & z_1       & \dots & z_{n-1} \\
+            z_0^2     & z_1^2     & \dots & z_{n-1}^2 \\
+            \vdots    & \vdots    & \dots & \vdots \\
+            z_0^{n-1} & z_1^{n-1} & \dots & z_{n-1}^{n-1}
+        \end{pmatrix}.
+    \]
+    Bezeichnet man die Komponenten der Vandermonde Matrix mit
+    $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich:
+    $ v_{kj} = z_j^k $ für $k, j = 0 \dots n-1$.
+\end{mydef}
