@@ -1,0 +1,50 @@
+\chapter{Eine Ungleichung für die Kondition von Vandermonde Matrizen}
+In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.
+Die zugehörige Vandermonde-Matrix sei mit $V \defeq \Vand{z}$ bezeichnet.
+Ziel ist es, eine Abschätzung für die Norm der Inversen $\norm{V^{-1}}$
+und damit für die Kondition $\cond{V}$
+zu finden.
+
+\begin{mydef}[Lagrange-Polynome]
+    Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
+    \emph{Lagrange-Polynome} als
+    \[
+        l_j(z) = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}, \; j = 0, \dots, n-1.
+    \]
+\end{mydef}
+
+\begin{remark}
+    Es gilt $l_j \in \Pi_{n-1}$, wobei $\Pi_{n-1}$ den Polynom-Raum vom Grad $n-1$ bezeichne.
+    Einfaches Nachrechnen liefert $l_j(z_r) = \delta_{jr}$,
+    wobei $\delta_{jr}$ das Kronecker-Delta bezeichne.
+\end{remark}
+
+Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
+\[
+    l_j(z) = \sum_{r = 0}^{n-1} u_{jr} z^{r}
+\]
+mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
+Es zeigt sich nun
+\begin{lemma}
+    Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
+    $l_j$, $j = 0, \dots, n-1$ die zugehörigen Lagrange-Polynome
+    mit Koeffizienten $u_{jr}$ wie oben.
+    Dann ist die Koeffizienten-Matrix $U = (u_{jr})_{j,r = 0}^{n-1}$ die
+    Inverse der Vandermonde-Matrix $V = \Vand{z} = (z_{j}^{k})_{k,j = 0}^{n-1}$.
+\end{lemma}
+
+\begin{proof}
+    Betrachte das Gleichungssystem $V \alpha = y$ mit $\alpha = (\alpha_0,
+    \dots, \alpha_{n-1}) \in \Cn$ und $y = (y_0, \dots, y_{n-1}) \in \Cn$.
+    Zum Beweis muss die Gleichung $U y = \alpha$ gezeigt werden.
+    Es gilt für $j = 0, \dots, n-1$
+    \[
+        \begin{split}
+            \sum_{k=0}^{n-1} u_{jk} y_k &= \sum_{k=0}^{n-1} u_{jk} \sum_{r=0}^{n-1} z_r^k \alpha_r = \sum_{r=0}^{n-1} \alpha_r \sum_{k=0}^{n-1} u_{jk} z_r^k\\
+                                        &= \sum_{r=0}^{n-1} \alpha_r l_j(z_r) = \sum_{r=0}^{n-1} \alpha_r \delta_{jr} = \alpha_j,
+        \end{split}
+    \]
+    wie behauptet.
+\end{proof}
+
+\section{Vandermonde Matrizen mit reellen Stützstellen}
