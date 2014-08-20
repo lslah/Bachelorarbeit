@@ -34,9 +34,13 @@ folgt für den relativen Fehler:
 Dies motiviert die folgende
 \begin{mydef}[Kondition einer Matrix]
     Sei $A \in \C^{n \times n}$.
-    Definiere die \emph{Kondition von $A$} als $\cond(A) \defeq \norm{A}
+    Definiere die \emph{Kondition von $A$} als $\cond{A} \defeq \norm{A}
     \norm{A^{-1}}$.
 \end{mydef}
+
+\begin{remark}
+    Mit der vorherigen Definition gilt nun: $ \frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta $.
+\end{remark}
 
 \section{Vandermonde Matrizen}
 \begin{mydef}[Vandermonde Matrix]
