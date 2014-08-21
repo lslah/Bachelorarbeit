@@ -1,10 +1,17 @@
 \chapter{Eine Ungleichung für die Kondition von Vandermonde Matrizen}
-In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.
-Die zugehörige Vandermonde-Matrix sei mit $V \defeq \Vand{z}$ bezeichnet.
-Ziel ist es, eine Abschätzung für die Norm der Inversen $\norm{V^{-1}}$
-und damit für die Kondition $\cond{V}$
-zu finden.
+In diesem Abschnitt sei ein $n$-elementiger Vektor
+$z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.  Die zugehörige Vandermonde-Matrix
+sei mit $V \defeq \Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung für die
+Norm der Inversen $\norm{V^{-1}}$ und damit für die Kondition $\cond{V}$ zu
+finden.
 
+Zunächst gilt es, die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
+folgt ein Einschub über die \emph{elementarsymmetrischen Polynome}, mit deren
+Hilfe sich $\Vand{z}^{-1}$ explizit darstellen lässt. Es folgt der eigentliche
+Beweis der Ungleichung und einige Beispiele von Vandermonde-Matrizen mit
+reellen Stützstellen und deren Kondition.
+
+\section{Inversion der Vandermonde-Matrix}
 \begin{mydef}[Lagrange-Polynome]
     Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
     \emph{Lagrange-Polynome} als
@@ -102,6 +109,8 @@ angegeben werden.
     \begin{equation*}
         \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
     \end{equation*}
+    % TODO: Prove the following.
+    Gleicheit gilt, genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
 \end{lemma}
 
 \begin{proof}
@@ -145,10 +154,25 @@ angegeben werden.
 
 \begin{remark}
     %TODO: Fix this equation. Also, pi_j is not defined yet.
-    Mit der vorherigen Definition gilt:
+    Mit Hilfe der elementarsymmetrischen Polynome, können die Koeffizienten der
+    Inversen der Vandermonde-Matrix nun explizit angegeben werden:
     \begin{equation}
         u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}.
     \end{equation}
 \end{remark}
+
+\section{Beweis der Ungleichung}
+
+\begin{theorem}
+  Seien $z_0, \dots, c_{n-1} \in \C$ paarweise verschieden.
+  Es gilt:
+  \begin{equation*}
+    \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{\max(1, \abs{z_k})}{\abs{z_j - z_k}} \right)
+    < \norm{V^{-1}}_{\infty}
+    \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
+  \end{equation*}
+  Gleichheit für die obere Grenze gilt, genau dann, wenn $z_k = r_k \cdot e^{i \varphi}$
+  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$.
+\end{theorem}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
