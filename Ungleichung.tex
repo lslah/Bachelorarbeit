@@ -20,9 +20,10 @@ zu finden.
 \end{remark}
 
 Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
-\[
+\begin{equation}
+    \label{eq:lagrange}
     l_j(z) = \sum_{r = 0}^{n-1} u_{jr} z^{r}
-\]
+\end{equation}
 mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
 Es zeigt sich nun
 \begin{lemma}
@@ -46,5 +47,57 @@ Es zeigt sich nun
     \]
     wie behauptet.
 \end{proof}
+
+Mit Gleichung (\ref{eq:lagrange}) kann eine explizite Darstellung der $u_{jr}$
+angegeben werden.
+
+\section{Elementarsymmetrische Polynome}
+\begin{mydef}[Elementarsymmetrische Polynome]
+    Für $x_0, \dots, x_{n-1} \in \C$, definiere die
+    \emph{k-ten elementarsymmetrischen Polynome
+    $\sigma_{k}(x_0, \dots, x_{n-1})$, $k = 0, \dots, n$
+    in den $n$ Variablen $x_j$, $j = 0, \dots, n-1$} durch
+    \[
+        \prod_{k=0}^{n-1} (z + x_k)
+        = \sum_{k=0}^{n} \sigma_{k}(x_0, \dots, x_{n-1}) z^{n-k}.
+    \]
+\end{mydef}
+
+\begin{remark}
+    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefert:
+    \begin{equation*}
+        \sigma_{k}(x_0, \dots, x_{n-1})
+        = \sum_{0 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}
+        = \sum_{0 \leq j_1 < \dots < j_k \leq n-1} \left( \prod_{r=1}^k x_{j_r} \right).
+    \end{equation*}
+\end{remark}
+
+\begin{lemma}
+    Es gilt:
+    \begin{equation*}
+        \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=0}^{n-1} \left( 1 + \abs{x_k} \right)
+    \end{equation*}
+\end{lemma}
+
+\begin{proof}
+    %TODO
+\end{proof}
+
+\begin{notation}
+    Als abkürzende Schreibweise setze im Folgenden für gegebene $x_0, \dots, x_{n-1} \in \C$
+    \[
+        \sigma_{k}^{j} \defeq \sigma_{k}(x_0, \dots, x_{j-1}, x_{j+1}, \dots, x_{n-1}).
+    \]
+    Damit ist $\sigma_{k}^{j}$ das k-te elementarsymmetrische Polynom in den
+    $n-1$ Variablen $x_r$, $r \in \{ 0, \dots, n-1 \} \setminus \{ j \}$.
+\end{notation}
+
+\begin{remark}
+    %TODO: Fix this equation. Also, pi_j is not defined yet.
+    Mit der vorherigen Definition gilt:
+    \begin{equation}
+        u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}.
+    \end{equation}
+\end{remark}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
