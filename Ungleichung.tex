@@ -53,24 +53,47 @@ angegeben werden.
 
 \section{Elementarsymmetrische Polynome}
 \begin{mydef}[Elementarsymmetrische Polynome]
-    Für $x_0, \dots, x_{n-1} \in \C$, definiere die
+    Für $x = (x_1, \dots, x_{n}) \in \Cn$, definiere die
     \emph{k-ten elementarsymmetrischen Polynome
-    $\sigma_{k}(x_0, \dots, x_{n-1})$, $k = 0, \dots, n$
-    in den $n$ Variablen $x_j$, $j = 0, \dots, n-1$} durch
+    $\sigma_{k}(x) = \sigma_{k}(x_1, \dots, x_{n})$, $k = 0, \dots, n$
+    in den $n$ Variablen $x_j$, $j = 1, \dots, n$} durch
     \[
-        \prod_{k=0}^{n-1} (z + x_k)
-        = \sum_{k=0}^{n} \sigma_{k}(x_0, \dots, x_{n-1}) z^{n-k}.
+        \prod_{k=1}^{n} (z + x_k)
+        = \sum_{k=0}^{n} \sigma_{k}(x_1, \dots, x_{n}) z^{n-k}.
     \]
 \end{mydef}
 
 \begin{remark}
     Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefert:
-    \begin{equation*}
-        \sigma_{k}(x_0, \dots, x_{n-1})
-        = \sum_{0 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}
-        = \sum_{0 \leq j_1 < \dots < j_k \leq n-1} \left( \prod_{r=1}^k x_{j_r} \right).
-    \end{equation*}
+    \begin{equation}
+        \label{eq:explicit_elementary_symmetric_polynonimals}
+        \sigma_{k}(x_1, \dots, x_{n})
+        = \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
+        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \left( \prod_{r=1}^k x_{j_r} \right).
+    \end{equation}
 \end{remark}
+
+\begin{lemma}
+    Die elementarsymmetrischen Polynome erfüllen die Rekursionsformel:
+    \begin{equation*}
+        \sigma_k (x_1, \dots, x_{n}) = \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
+    \end{equation*}
+\end{lemma}
+
+\begin{proof}
+    Verwende Gleichung (\ref{eq:explicit_elementary_symmetric_polynonimals})
+    und teile die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
+    $x_n$ ein Faktor im Summand ist:
+    \begin{equation*}
+        \begin{split}
+            \sigma_k (x_1, \dots, x_{n})
+            &= \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}\\
+            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}
+            + \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_{j_1} \cdots x_{j_k} \cdot x_{n}\\
+            &= \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
+        \end{split}
+    \end{equation*}
+\end{proof}
 
 \begin{lemma}
     Es gilt:
@@ -84,12 +107,12 @@ angegeben werden.
 \end{proof}
 
 \begin{notation}
-    Als abkürzende Schreibweise setze im Folgenden für gegebene $x_0, \dots, x_{n-1} \in \C$
+    Als abkürzende Schreibweise setze im Folgenden für gegebene $x_1, \dots, x_{n} \in \C$
     \[
-        \sigma_{k}^{j} \defeq \sigma_{k}(x_0, \dots, x_{j-1}, x_{j+1}, \dots, x_{n-1}).
+        \sigma_{k}^{j} \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
     \]
     Damit ist $\sigma_{k}^{j}$ das k-te elementarsymmetrische Polynom in den
-    $n-1$ Variablen $x_r$, $r \in \{ 0, \dots, n-1 \} \setminus \{ j \}$.
+    $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
 \end{notation}
 
 \begin{remark}
