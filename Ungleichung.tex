@@ -208,6 +208,20 @@ Es zeigt sich nun
 
 \section{Beweis der Ungleichung}
 
+Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
+
+\begin{lemma}
+    Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
+    $a_j \in \C$ für $j = 0, \dots, n$ und Nullstellen
+    $\zeta_r \in \C$, $r = 1, \dots, n$.
+    Dann gilt
+    \begin{equation}
+        \label{eq:polynom_coefficient_sum_inequality}
+        \sum_{j=0}^{n} \abs{a_j} \geq \abs{a_n} \prod_{r=1}^{n} \max \left(1, \abs{\zeta_r} \right).
+    \end{equation}
+    Gleichheit gilt genau dann, wenn $p(z) = a_n z^n$.
+\end{lemma}
+
 \begin{theorem}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
   Es gilt:
