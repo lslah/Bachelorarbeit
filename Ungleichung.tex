@@ -110,7 +110,7 @@ angegeben werden.
         \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
     \end{equation*}
     % TODO: Prove the following.
-    Gleicheit gilt, genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
+    Gleicheit gilt genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
 \end{lemma}
 
 \begin{proof}
@@ -119,7 +119,7 @@ angegeben werden.
     \textbf{Induktionsanfang ($n=1$):}
     Es ist $ (z+x_0) = \sigma_0(x_0) \cdot z^1 + \sigma_1(x_0) \cdot z^0$,
     also $\sigma_0(x_0) = 1$ und $\sigma_1(x_0) = x_0$.
-    Damit ergibt sich: $\sum_{k=0}^{1} \abs{\sigma_k(x_0)} = \abs{1 + x_0} \leq 1 + \abs{x_0}$.\\[0.5em]
+    Damit ergibt sich: $\sum_{k=0}^{1} \abs{\sigma_k(x_0)} = \abs{1} + \abs{x_0} = 1 + \abs{x_0}$.\\[0.5em]
 %
     \textbf{Induktionvoraussetzung:}
     Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
@@ -127,20 +127,52 @@ angegeben werden.
     \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
     Unter Verwendung von $\sigma_{0}(x_1, \dots, x_n) = 1$
     und $\sigma_{n}(x_1, \dots, x_n) = x_1 \cdots x_n$, folgt:
-    \begin{equation*}
-      \begin{split}
+    % TODO: Fix this.
+    %\begin{equation*}
+      \begin{align*}
         \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
         &= ( 1 + \abs{x_n} ) \cdot \prod_{k=1}^{n-1} \left( 1 + \abs{x_k} \right)\\
         &\overset{IV}{\geq}  ( 1 + \abs{x_n} ) \cdot \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}\\
         &= \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}
         + \sum_{k=1}^{n} \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
         &\geq \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})} + \abs{\sigma_{0}(x_1, \dots, x_{n-1})}\\
-        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})}\\
+        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})} \numberthis \label{eq:elementary_polynomials_inequality_proof}\\
         &\overset{(\ref{eq:recursion_elementary_symmetric_polynomials})}{=}
         \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n})} + \abs{\sigma_{0}(x_1, \dots, x_{n})} + \abs{\sigma_{n}(x_1, \dots, x_n)}\\
-        &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}
-      \end{split}
+        &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}.
+      \end{align*}
+    %\end{equation*}
+    Um den Spezialfall $x_k = r_k e^{i \varphi}$ der Behauptung zu beweisen,
+    führt man die Induktion analog, mit der neuen Induktionsbehauptung, dass
+    Gleichheit gelte.  Es bleibt nur zu zeigen, dass die Ungleichheit
+    (\ref{eq:elementary_polynomials_inequality_proof}) zur Gleichheit wird, d.h. dass
+    $\sigma_{k}(x_1, \dots, x_{n-1})$ und $x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})$
+    linear abhängig sind und die Dreiecksungleichung als Gleichung
+    \[
+        \abs{\sigma_{k}(x_1, \dots, x_{n-1})} + \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
+        = \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
+    \]
+    gilt.
+    Dazu verwende Gleichung
+    (\ref{eq:explicit_elementary_symmetric_polynonimals}) und stelle fest, dass
+    \begin{equation*}
+        \begin{split}
+            \sigma_{k}(x_1, \dots, x_{n-1})
+            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}\\
+            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
+            &= e^{k\cdot i\varphi} \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} \cdots r_{j_k}
+        \end{split}
     \end{equation*}
+    und
+    \begin{equation*}
+        \begin{split}
+            x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
+            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_n \cdot x_{j_1} \cdots x_{j_{k-1}}\\
+            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n e^{i\varphi} \cdot r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
+            &= e^{k\cdot i\varphi} \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n \cdot r_{j_1} \cdots r_{j_k}
+        \end{split}
+    \end{equation*}
+    in dieselbe Richtung $e^{k\cdot i\varphi}$ zeigen, also linear abhängig sind, wie behauptet.
 \end{proof}
 
 \begin{notation}
