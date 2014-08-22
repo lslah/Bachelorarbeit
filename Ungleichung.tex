@@ -224,24 +224,24 @@ Es zeigt sich nun
 \begin{proof}
     Der Beweis orientiert sich an der Beweisskizze aus
     \cite[S. 196-197]{gautschi1}.
-    Der Beweis der oberen Schranke von
-    (\ref{eq:inverse_vandermonde_inequality}) erfolgt unter Verwendung der
-    expliziten Darstellung von $V^{-1}$ aus
+    Die obere Schranke von (\ref{eq:inverse_vandermonde_inequality}) sieht man
+    unter Verwendung der expliziten Darstellung von $V^{-1}$ aus
     (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
-    elementarsymmetrische Polynome aus Lemma
-    (\ref{lemma:elementary_symmetric_polynomials_inequality}).
+    elementarsymmetrische Polynome
+    (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
+    (\ref{lemma:elementary_symmetric_polynomials_inequality}) ein.
     Es gilt:
     \begin{equation*}
         \begin{split}
             \norm{V^{-1}}_{\infty}
-            &= \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{u_{kj}}\\
+            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}\\
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
-              \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{(-1)^{r} \Pi_k \sigma_{j}^{k}}
-            = \max_{k=0, \dots, n-1} \abs{\Pi_k} \sum_{j=0}^{n-1} \abs{\sigma_{j}^{k}}\\
+              \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{(-1)^{r} \Pi_j \sigma_{r}^{j}}
+            = \max_{j=0, \dots, n-1} \abs{\Pi_j} \sum_{r=0}^{n-1} \abs{\sigma_{r}^{j}}\\
             &\overset{(\ref{eq:elementary_symmetric_polynomials_inequality})}{\leq}
-              \max_{k=0, \dots, n-1} \abs{\Pi_k} \prod_{\substack{r=0\\ r \neq k}}^{n-1} \left( 1 + \abs{z_r} \right)
+              \max_{j=0, \dots, n-1} \abs{\Pi_j} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( 1 + \abs{z_k} \right)
             \overset{(\ref{def:pi_j})}{=}
-              \max_{k=0, \dots, n-1} \prod_{\substack{r=0\\ r \neq k}}^{n-1} \frac{1 + \abs{z_r}}{\abs{z_k - z_r}}
+              \max_{j=0, \dots, n-1} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}}.
         \end{split}
     \end{equation*}
 \end{proof}
