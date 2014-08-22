@@ -211,6 +211,7 @@ Es zeigt sich nun
 Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
 
 \begin{lemma}
+    \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
     $a_j \in \C$ für $j = 0, \dots, n$ und Nullstellen
     $\zeta_r \in \C$, $r = 1, \dots, n$.
@@ -258,6 +259,40 @@ Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
               \max_{j=0, \dots, n-1} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}}.
         \end{split}
     \end{equation*}
+
+    \noindent Für die untere Schranke wähle nun ein festes
+    $j \in \{0, \dots, n-1\}$ und betrachte das Polynom
+    \[
+        p(z) = \sum_{k=0}^{n-1} a_k z^k
+        \defeq \Pi_j \cdot \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( z - z_k \right)
+        \overset{(\ref{eq:explicit_inverse_vandermonde})}{=} \sum_{k=0}^{n-1} (-1)^{n-1-k} \Pi_j \sigma_{n-1-k}^j z^k,
+    \]
+    d.h. $a_k = (-1)^{n-1-k} \cdot \Pi_j \cdot \sigma_{n-1-k}^j$, $k = 0, \dots, n-1$.
+    Offensichtlich hat $p$ die $n-1$ Nullstellen
+    $\zeta_r \defeq z_r$ für $r \in \{0,\dots,n-1\} \setminus \{j\}$.
+    Wegen $z_k \neq z_r$ für $k \neq r$, gilt $p(z) \neq a_{n-1} z^{n-1}$.
+    Damit können wir die strikte Ungleichung
+    (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
+    (\ref{lemma:polynom_coefficient_sum_inequality}) anwenden und es folgt
+    \[
+        \begin{split}
+            \sum_{r=0}^{n-1} \abs{u_{jr}}
+            &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
+                \sum_{r=0}^{n-1} \abs{(-1)^r \Pi_j \sigma_r^j}\\
+            &= \sum_{k=0}^{n-1} \abs{a_n}
+            \overset{(\ref{eq:polynom_coefficient_sum_inequality})}{>}
+                \abs{a_{n}} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \max \left(1, \abs{\zeta_r} \right)\\
+            &= \abs{\Pi_j} \underbrace{\abs{\sigma_0^j}}_{=1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \max \left(1, \abs{z_r} \right)
+            = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
+        \end{split}
+    \]
+
+    \noindent Da diese Ungleichung für alle $j \in \{0, \dots, n-1\}$ erfüllt ist, folgt
+    \[
+        \max_{j = 0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
+        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}},
+    \]
+    die Behauptung.
 \end{proof}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
