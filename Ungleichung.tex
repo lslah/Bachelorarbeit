@@ -206,15 +206,21 @@ Es zeigt sich nun
 \section{Beweis der Ungleichung}
 
 \begin{theorem}
-  Seien $z_0, \dots, c_{n-1} \in \C$ paarweise verschieden.
+  Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
   Es gilt:
   \begin{equation*}
     \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{\max(1, \abs{z_k})}{\abs{z_j - z_k}} \right)
     < \norm{V^{-1}}_{\infty}
     \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
   \end{equation*}
-  Gleichheit für die obere Grenze gilt, genau dann, wenn $z_k = r_k \cdot e^{i \varphi}$
-  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$.
+  Gleichheit für die obere Grenze gilt genau dann, wenn $z_k = r_k \cdot e^{i \varphi}$
+  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$, $k = 0, \dots, n-1$ gilt.
 \end{theorem}
+
+\begin{proof}
+    Der Beweis orientiert sich an der Beweisskizze aus
+    \cite[S. 196-197]{gautschi1}.
+
+\end{proof}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
