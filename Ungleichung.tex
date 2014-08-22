@@ -55,9 +55,6 @@ Es zeigt sich nun
     wie behauptet.
 \end{proof}
 
-Mit Gleichung (\ref{eq:lagrange}) kann eine explizite Darstellung der $u_{jr}$
-angegeben werden.
-
 \section{Elementarsymmetrische Polynome}
 \begin{mydef}[Elementarsymmetrische Polynome]
     Für $x = (x_1, \dots, x_{n}) \in \Cn$, definiere die
@@ -185,9 +182,22 @@ angegeben werden.
 \end{notation}
 
 \begin{remark}
-    %TODO: Fix this equation. Also, pi_j is not defined yet.
-    Mit Hilfe der elementarsymmetrischen Polynome, können die Koeffizienten der
-    Inversen der Vandermonde-Matrix nun explizit angegeben werden:
+    %TODO: Remark vs. lemma? More verbose proof?
+    Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
+    elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
+    Inversen der Vandermonde-Matrix angegeben werden.
+    Dazu schreibe für $j = 0, \dots, n-1$
+    \begin{equation*}
+        \sum_{r = 0}^{n-1} u_{jr} z^{r}
+        = l_j(z)
+        = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}
+        = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
+    \end{equation*}
+    mit
+    \[
+        \Pi_j = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
+    \]
+    Koeffizientenvergleich liefert dann für $j, r = 0, \dots, n-1$
     \begin{equation}
         u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}.
     \end{equation}
