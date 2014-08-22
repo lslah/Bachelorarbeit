@@ -102,10 +102,12 @@ Es zeigt sich nun
 \end{proof}
 
 \begin{lemma}
+    \label{lemma:elementary_symmetric_polynomials_inequality}
     Es gilt:
-    \begin{equation*}
+    \begin{equation}
+        \label{eq:elementary_symmetric_polynomials_inequality}
         \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
-    \end{equation*}
+    \end{equation}
     Gleicheit gilt genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
 \end{lemma}
 
@@ -156,7 +158,7 @@ Es zeigt sich nun
             \sigma_{k}(x_1, \dots, x_{n-1})
             &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}\\
             &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} \cdots r_{j_k}
+            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} \cdots r_{j_k} \right)
         \end{split}
     \end{equation*}
     und
@@ -164,8 +166,8 @@ Es zeigt sich nun
         \begin{split}
             x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
             &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_n \cdot x_{j_1} \cdots x_{j_{k-1}}\\
-            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n e^{i\varphi} \cdot r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n \cdot r_{j_1} \cdots r_{j_k}
+            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n e^{i\varphi} \cdot r_{j_1} e^{i\varphi} \cdots r_{j_{k-1}} e^{i\varphi}\\
+            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n \cdot r_{j_1} \cdots r_{j_{k-1}} \right)
         \end{split}
     \end{equation*}
     in dieselbe Richtung $e^{k\cdot i\varphi}$ zeigen, also linear abhängig sind, wie behauptet.
@@ -193,11 +195,13 @@ Es zeigt sich nun
         = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
     \end{equation*}
     mit
-    \[
+    \begin{equation}
+        \label{def:pi_j}
         \Pi_j = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
-    \]
+    \end{equation}
     Koeffizientenvergleich liefert dann für $j, r = 0, \dots, n-1$
     \begin{equation}
+        \label{eq:explicit_inverse_vandermonde}
         u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}.
     \end{equation}
 \end{remark}
@@ -207,11 +211,12 @@ Es zeigt sich nun
 \begin{theorem}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
   Es gilt:
-  \begin{equation*}
+  \begin{equation}
+    \label{eq:inverse_vandermonde_inequality}
     \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{\max(1, \abs{z_k})}{\abs{z_j - z_k}} \right)
     < \norm{V^{-1}}_{\infty}
     \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
-  \end{equation*}
+  \end{equation}
   Gleichheit für die obere Grenze gilt genau dann, wenn $z_k = r_k \cdot e^{i \varphi}$
   für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$, $k = 0, \dots, n-1$ gilt.
 \end{theorem}
@@ -219,7 +224,26 @@ Es zeigt sich nun
 \begin{proof}
     Der Beweis orientiert sich an der Beweisskizze aus
     \cite[S. 196-197]{gautschi1}.
-
+    Der Beweis der oberen Schranke von
+    (\ref{eq:inverse_vandermonde_inequality}) erfolgt unter Verwendung der
+    expliziten Darstellung von $V^{-1}$ aus
+    (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
+    elementarsymmetrische Polynome aus Lemma
+    (\ref{lemma:elementary_symmetric_polynomials_inequality}).
+    Es gilt:
+    \begin{equation*}
+        \begin{split}
+            \norm{V^{-1}}_{\infty}
+            &= \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{u_{kj}}\\
+            &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
+              \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{(-1)^{r} \Pi_k \sigma_{j}^{k}}
+            = \max_{k=0, \dots, n-1} \abs{\Pi_k} \sum_{j=0}^{n-1} \abs{\sigma_{j}^{k}}\\
+            &\overset{(\ref{eq:elementary_symmetric_polynomials_inequality})}{\leq}
+              \max_{k=0, \dots, n-1} \abs{\Pi_k} \prod_{\substack{r=0\\ r \neq k}}^{n-1} \left( 1 + \abs{z_r} \right)
+            \overset{(\ref{def:pi_j})}{=}
+              \max_{k=0, \dots, n-1} \prod_{\substack{r=0\\ r \neq k}}^{n-1} \frac{1 + \abs{z_r}}{\abs{z_k - z_r}}
+        \end{split}
+    \end{equation*}
 \end{proof}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
