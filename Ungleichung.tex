@@ -1,14 +1,14 @@
 \chapter{Eine Ungleichung für die Kondition von Vandermonde Matrizen}
-In diesem Abschnitt sei ein $n$-elementiger Vektor
-$z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.  Die zugehörige Vandermonde-Matrix
-sei mit $V \defeq \Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung für die
-Norm der Inversen $\norm{V^{-1}}$ und damit für die Kondition $\cond{V}$ zu
-finden.
+In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1})
+\in \Cn$ gegeben.  Die zugehörige Vandermonde-Matrix sei mit $V \defeq
+\Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung der Zeilensummennorm der
+inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung der
+Kondition $\cond{V}$ zu finden.
 
 Zunächst gilt es, die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
 folgt ein Einschub über die \emph{elementarsymmetrischen Polynome}, mit deren
 Hilfe sich $\Vand{z}^{-1}$ explizit darstellen lässt. Es folgt der eigentliche
-Beweis der Ungleichung und einige Beispiele von Vandermonde-Matrizen mit
+Beweis der Abschätzung und einige Beispiele von Vandermonde-Matrizen mit
 reellen Stützstellen und deren Kondition.
 
 \section{Inversion der Vandermonde-Matrix}
@@ -21,9 +21,10 @@ reellen Stützstellen und deren Kondition.
 \end{mydef}
 
 \begin{remark}
-    Es gilt $l_j \in \Pi_{n-1}$, wobei $\Pi_{n-1}$ den Polynom-Raum vom Grad $n-1$ bezeichne.
-    Einfaches Nachrechnen liefert $l_j(z_r) = \delta_{jr}$,
-    wobei $\delta_{jr}$ das Kronecker-Delta bezeichne.
+    Es gilt $l_j \in \Pi_{n-1}$, wobei $\Pi_{n-1}$ den Raum der Polynome vom
+    Grad $n-1$ bezeichne.  Einfaches Nachrechnen liefert
+    $l_j(z_r) = \delta_{jr}$, wobei $\delta_{jr}$ das Kronecker-Delta
+    sei.
 \end{remark}
 
 Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
@@ -208,7 +209,7 @@ Es zeigt sich nun
 
 \section{Beweis der Ungleichung}
 
-Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
+Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt:
 
 \begin{lemma}
     \label{lemma:polynom_coefficient_sum_inequality}
@@ -223,6 +224,12 @@ Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
     Gleichheit gilt genau dann, wenn $p(z) = a_n z^n$.
 \end{lemma}
 
+\begin{proof}
+    %TODO
+\end{proof}
+
+Nun kann eine Abschätzung der Zeilensummennorm der inversen Vandermonde-Matrix
+angegeben und bewiesen werden:
 \begin{theorem}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
   Es gilt:
@@ -267,13 +274,18 @@ Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt.
         \defeq \Pi_j \cdot \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( z - z_k \right)
         \overset{(\ref{eq:explicit_inverse_vandermonde})}{=} \sum_{k=0}^{n-1} (-1)^{n-1-k} \Pi_j \sigma_{n-1-k}^j z^k,
     \]
-    d.h. $a_k = (-1)^{n-1-k} \cdot \Pi_j \cdot \sigma_{n-1-k}^j$, $k = 0, \dots, n-1$.
+    d.h. die Koeffizienten von $p$ ergeben sich für $k = 0, \dots, n-1$ als
+    \[
+        a_k = (-1)^{n-1-k} \cdot \Pi_j \cdot \sigma_{n-1-k}^j.
+    \]
     Offensichtlich hat $p$ die $n-1$ Nullstellen
     $\zeta_r \defeq z_r$ für $r \in \{0,\dots,n-1\} \setminus \{j\}$.
-    Wegen $z_k \neq z_r$ für $k \neq r$, gilt $p(z) \neq a_{n-1} z^{n-1}$.
-    Damit können wir die strikte Ungleichung
+    Wegen $z_k \neq z_r$ für $k \neq r$, hat $p$ Nullstellen ungleich $0$ und
+    es kann nicht $p(z) \equiv a_{n-1} z^{n-1}$ gelten.
+    Damit kann die strikte Ungleichung
     (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
-    (\ref{lemma:polynom_coefficient_sum_inequality}) anwenden und es folgt
+    (\ref{lemma:polynom_coefficient_sum_inequality}) angewendet werden und es
+    folgt
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{jr}}
