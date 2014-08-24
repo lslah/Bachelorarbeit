@@ -78,7 +78,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{mydef}
 
 \begin{remark}
-    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefert:
+    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
     \begin{equation}
         \label{eq:explicit_elementary_symmetric_polynonimals}
         \sigma_{k}(x_1, \dots, x_{n})
@@ -212,7 +212,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     Koeffizientenvergleich liefert dann für $j, r = 0, \dots, n-1$
     \begin{equation}
         \label{eq:explicit_inverse_vandermonde}
-        u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}.
+        u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
     \end{equation}
 \end{remark}
 
@@ -261,7 +261,7 @@ angegeben und bewiesen werden:
     (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
     elementarsymmetrische Polynome
     (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
-    (\ref{lemma:elementary_symmetric_polynomials_inequality}) ein.
+    \ref{lemma:elementary_symmetric_polynomials_inequality} ein.
     Es gilt:
     \begin{equation*}
         \begin{split}
@@ -294,7 +294,7 @@ angegeben und bewiesen werden:
     es kann nicht $p(z) \equiv a_{n-1} z^{n-1}$ gelten.
     Damit kann die strikte Ungleichung
     (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
-    (\ref{lemma:polynom_coefficient_sum_inequality}) angewendet werden und es
+    \ref{lemma:polynom_coefficient_sum_inequality} angewendet werden und es
     folgt
     \[
         \begin{split}
@@ -414,7 +414,7 @@ Gleichheit gilt.
 \end{example}
 
 \begin{example}[Äquidistante Stützstellen]
-    Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}, \; k=1, \dots, n$ gegeben.
+    Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}, \; k=1, \dots, n$.
     Dann ist
     \[
         \begin{split}

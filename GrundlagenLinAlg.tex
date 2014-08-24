@@ -42,9 +42,9 @@ Dies motiviert die folgende
 \end{remark}
 
 \section{Vandermonde Matrizen}
-\begin{mydef}[Vandermonde Matrix]
-    Für $n \in \N$ sei ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ gegeben.
-    Definiere die \emph{Vandermonde Matrix von $z$} als
+\begin{mydef}[Vandermonde-Matrix]
+    Für $n \in \N$ und einen Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$
+    definiere die \emph{Vandermonde-Matrix von $z$} als
     \[
         \Vand{z} \defeq \begin{pmatrix}
             1         & 1         & \dots & 1 \\
@@ -54,7 +54,7 @@ Dies motiviert die folgende
             z_0^{n-1} & z_1^{n-1} & \dots & z_{n-1}^{n-1}
         \end{pmatrix}.
     \]
-    Bezeichnet man die Komponenten der Vandermonde Matrix mit
+    Bezeichnet man die Komponenten der Vandermonde-Matrix mit
     $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich:
     $ v_{kj} = z_j^k $ für $k, j = 0 \dots n-1$.
 \end{mydef}
@@ -69,7 +69,7 @@ Dies motiviert die folgende
 
 \begin{proof}
     Bezeichne mit $v_{kj} = z_j^k$ für $k,j \in \{0, \dots, n-1\}$ die Elemente von $\Vand{z}$.
-    Der Beweis erfolgt über vollständige Induktion über $n \in \N$.\\
+    Der Beweis erfolgt durch vollständige Induktion über $n \in \N$.\\
     \textbf{Induktionsanfang ($n=1$):}
     Da das leere Produkt $1$ ergibt, gilt
     $\det{\Vand{z}} = 1 = \prod_{0 \leq k < j \leq 0} (z_j - z_k)$. \\[0.5em]
@@ -80,7 +80,7 @@ Dies motiviert die folgende
     Ziehe daher in jeder Zeile das $z_0$-fache der vorherigen Zeile ab.
     \[
         \det{\Vand{z}}
-        \defeq \begin{vmatrix}
+        = \begin{vmatrix}
             1         & 1         & \dots & 1 \\
             z_0       & z_1       & \dots & z_{n-1} \\
             z_0^2     & z_1^2     & \dots & z_{n-1}^2 \\
