@@ -5,13 +5,16 @@ In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1})
 inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung der
 Kondition $\cond{V}$ zu finden.
 
-Zunächst gilt es, die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
+Zunächst gilt es die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
 folgt ein Einschub über die \emph{elementarsymmetrischen Polynome}, mit deren
 Hilfe sich $\Vand{z}^{-1}$ explizit darstellen lässt. Es folgt der eigentliche
 Beweis der Abschätzung und einige Beispiele von Vandermonde-Matrizen mit
 reellen Stützstellen und deren Kondition.
 
 \section{Inversion der Vandermonde-Matrix}
+Es werden zunächst die \emph{Lagrange-Polynome} eingeführt, dessen
+Koeffizienten die Einträge der Inversen der Vandermonde-Matrix sind.
+
 \begin{mydef}[Lagrange-Polynome]
     Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
     \emph{Lagrange-Polynome} als
@@ -34,6 +37,7 @@ Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
 \end{equation}
 mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
 Es zeigt sich nun
+
 \begin{lemma}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
     $l_j$, $j = 0, \dots, n-1$ die zugehörigen Lagrange-Polynome
@@ -57,6 +61,11 @@ Es zeigt sich nun
 \end{proof}
 
 \section{Elementarsymmetrische Polynome}
+Um eine explizite Darstellung der Element von $V^{-1}$ zu finden, werden die
+\emph{elementarsymmetrischen Polynome} eingeführt.
+Diese liefern ebenfalls die Grundlage der Abschätzung von
+$\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
+
 \begin{mydef}[Elementarsymmetrische Polynome]
     Für $x = (x_1, \dots, x_{n}) \in \Cn$, definiere die
     \emph{k-ten elementarsymmetrischen Polynome
@@ -198,7 +207,7 @@ Es zeigt sich nun
     mit
     \begin{equation}
         \label{def:pi_j}
-        \Pi_j = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
+        \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
     \end{equation}
     Koeffizientenvergleich liefert dann für $j, r = 0, \dots, n-1$
     \begin{equation}
@@ -209,7 +218,7 @@ Es zeigt sich nun
 
 \section{Beweis der Ungleichung}
 
-Für den Beweis der Ungleichung wird noch ein weiteres Hilfslemma benötigt:
+Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benötigt:
 
 \begin{lemma}
     \label{lemma:polynom_coefficient_sum_inequality}
