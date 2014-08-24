@@ -403,3 +403,15 @@ Gleichheit gilt.
         \cond{V} = \norm{V}_\infty \cdot \norm{V^{-1}}_\infty \geq n \cdot (n+1) \frac{n^n}{n+1} = n^{n+1}.
     \]
 \end{example}
+
+\subsection{Symmetrische reelle Stützstellen}
+Seien nun reelle Stützstellen gegeben, die symmetrisch um den Ursprung
+angeordnet sind.
+
+\begin{lemma}
+    Sei $x = (x_1, \dots, x_n) \in \Rn$ mit $x_j + x_{n+1-j} = 0$ für $j = 1, \dots, n$.
+    Dann gilt
+    \[
+        \norm{\Vand{x}^{-1}} = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} }.
+    \]
+\end{lemma}
