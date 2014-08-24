@@ -20,12 +20,13 @@
 \usepackage{color}
 
 \theoremstyle{plain}
-\newtheorem{theorem}{Satz}
-\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Satz}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
 
 \theoremstyle{definition}
 \newtheorem*{mydef}{Definition}
 \newtheorem*{notation}{Bezeichnung}
+\newtheorem{example}[theorem]{Beispiel}
 
 \theoremstyle{remark}
 \newtheorem*{remark}{Bemerkung}
@@ -35,11 +36,14 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 
-\DeclarePairedDelimiter\abs{\lvert}{\rvert}
-\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+%\DeclarePairedDelimiter\abs{ \big\lvert }{ \big\rvert }
+%\DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\dotp{\langle}{\rangle} % dot product
 
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
 
 \newcommand{\defeq}{\coloneqq}
 \newcommand{\N}{\mathbb{N}}
