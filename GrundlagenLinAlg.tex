@@ -61,10 +61,56 @@ Dies motiviert die folgende
 
 \begin{lemma}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$.
-    $\Vand{z}$ ist invertierbar, genau dann, wenn die $z_i$ paarweise
-    verschieden sind, d.h. wenn $z_i \neq z_j$ für $i \neq j$ gilt.
+    Es gilt
+    \[
+        \det \Vand{z} = \prod_{0 \leq k < j \leq n-1} \left( z_j - z_k \right).
+    \]
 \end{lemma}
 
 \begin{proof}
-    %TODO.
+    Bezeichne mit $v_{kj} = z_j^k$ für $k,j \in \{0, \dots, n-1\}$ die Elemente von $\Vand{z}$.
+    Der Beweis erfolgt über vollständige Induktion über $n \in \N$.\\
+    \textbf{Induktionsanfang ($n=1$):}
+    Da das leere Produkt $1$ ergibt, gilt
+    $\det{\Vand{z}} = 1 = \prod_{0 \leq k < j \leq 0} (z_j - z_k)$. \\[0.5em]
+    \textbf{Induktionvoraussetzung:}
+    Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
+    \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
+    Durch Zeilenoperationen ändert sich der Wert der Determinante nicht.
+    Ziehe daher in jeder Zeile das $z_0$-fache der vorherigen Zeile ab.
+    \[
+        \det{\Vand{z}}
+        \defeq \begin{vmatrix}
+            1         & 1         & \dots & 1 \\
+            z_0       & z_1       & \dots & z_{n-1} \\
+            z_0^2     & z_1^2     & \dots & z_{n-1}^2 \\
+            \vdots    & \vdots    & \dots & \vdots \\
+            z_0^{n-1} & z_1^{n-1} & \dots & z_{n-1}^{n-1}
+        \end{vmatrix}
+        = \begin{vmatrix}
+            1      & 1                  & \dots & 1 \\
+            0      & (z_1-z_0)          & \dots & (z_{n-1}-z_0) \\
+            0      & (z_1-z_0)z_1^1     & \dots & (z_{n-1}-z_0) z_{n-1}^1 \\
+            \vdots & \vdots             & \dots & \vdots \\
+            0      & (z_1-z_0)z_1^{n-2} & \dots & (z_{n-1}-z_0) z_{n-1}^{n-2}
+        \end{vmatrix}.
+    \]
+    Entwicklung der Determinante nach der ersten Spalte mit Hilfe des
+    Laplaceschen Entwicklungssatzes und Ausnutzung der Multilinearität der
+    Determinante, liefert nun die Behauptung:
+    \[
+        \begin{split}
+            \det{\Vand{z}}
+            &= \prod_{j=0}^{n-1} (z_j - z_0) \begin{vmatrix}
+                1         & \dots & 1 \\
+                z_1       & \dots & z_{n-1} \\
+                z_1^2     & \dots & z_{n-1}^2 \\
+                \vdots    & \dots & \vdots \\
+                z_1^{n-2} & \dots & z_{n-1}^{n-2}
+            \end{vmatrix}
+            = \prod_{j=0}^{n-1} (z_j - z_0) \det{\Vand{z_1, \dots, z_{n-1}}}\\
+            &\overset{IV}{=} \prod_{j=0}^{n-1} (z_j - z_0) \prod_{1 \leq k < r \leq n-1} (z_r - z_k)
+            = \prod_{0 \leq k < r \leq n-1} (z_r - z_k).
+        \end{split}
+    \]
 \end{proof}
