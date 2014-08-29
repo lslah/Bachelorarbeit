@@ -1,0 +1,54 @@
+\chapter{Stützstellen auf dem Einheitskreis}
+% FIXME: Bad section title.
+\section{Numerische Vorbetrachungen}
+
+\begin{lemma}
+    Sei $\emptynorm$ eine Matrix-Norm die invariant unter Multiplikation mit unitären
+    Matrizen ist, d.h. für jede Matrix $A \in \C^{n\times n}$ und jede
+    unitäre Matrix $U \in \C^{n\times n}$, gilt $\norm{UA} = \norm{AU} = \norm{A}$.
+    Weiter seien ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ und eine
+    komplexe Zahl $\alpha \in \C$ gegeben.
+    Dann gilt für die Kondition bezüglich der Norm $\emptynorm$:
+    \[
+        \cond{\Vand{\alpha z}} = \cond{\Vand{z}},
+    \]
+    d.h. die Kondition der Vandermonde-Matrix ist in diesem Fall invariant
+    unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$.
+\end{lemma}
+
+\begin{proof}
+    Wir setzen
+    \[
+        V = (v_{kj})_{k,j=0}^{n-1} \defeq \Vand{z}, \;
+        \tilde{V} = (\tilde{v}_{kj})_{k,j=0}^{n-1} \defeq \Vand{\alpha z}
+    \]
+    und zeigen $\norm{\tilde{V}} = \norm{V}$ und
+    $\norm{\tilde{V}^{-1}} = \norm{V^{-1}}$.
+    Es gilt für $j,k = 0,\dots,n-1$:
+    \[
+        \tilde{v}_{kj} = (\alpha z_j)^k = \alpha^k z_j^k = \alpha^k v_{kj},
+    \]
+    d.h. wir können
+    \[
+        \tilde{V} = V \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}
+    \]
+    schreiben.
+    Weiter können wir uns leicht davon überzeugen, dass $\diag{\alpha^0, \dots,
+    \alpha^{n-1}}$ eine unitäre Matrix ist, denn es gilt:
+    \[
+        \begin{split}
+            \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}^{H}
+            &= \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \overline{\diag{\alpha^0, \dots, \alpha^{n-1}}}\\
+            &= \diag{\alpha^0 \cdot \alpha^0, \dots, \alpha^{n-1} \cdot \alpha^{-n+1}}\\
+            &= \diag{1, \dots, 1}
+        \end{split}.
+    \]
+    Damit erhalten wir
+    \[
+        \norm{\tilde{V}} = \norm{V \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}} = \norm{V}.
+    \]
+    % TODO: End this proof.
+\end{proof}
+
+\section{Freie Wahl der Stützstellen}
+\section{Stützstellen auf dem Gitter der $N$-ten Einheitswurzeln}
