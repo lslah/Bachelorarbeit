@@ -6,14 +6,15 @@ inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung
 Kondition $\cond{V}$ zu finden.
 
 Zunächst gilt es die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
-folgt ein Einschub über die \emph{elementarsymmetrischen Polynome}, mit deren
+betrachten wir die \emph{elementarsymmetrischen Polynome}, mit deren
 Hilfe sich $\Vand{z}^{-1}$ explizit darstellen lässt. Es folgt der eigentliche
 Beweis der Abschätzung und einige Beispiele von Vandermonde-Matrizen mit
 reellen Stützstellen und deren Kondition.
 
 \section{Inversion der Vandermonde-Matrix}
-Es werden zunächst die \emph{Lagrange-Polynome} eingeführt, dessen
-Koeffizienten die Einträge der Inversen der Vandermonde-Matrix sind.
+Es werden zunächst die \emph{Lagrange-Polynome} zu den Knoten
+$z_0, \dots, z_{n-1}$ eingeführt, dessen Koeffizienten die Einträge der
+Inversen der Vandermonde-Matrix sind.
 
 \begin{mydef}[Lagrange-Polynome]
     Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
@@ -36,20 +37,23 @@ Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
     l_j(z) = \sum_{r = 0}^{n-1} u_{jr} z^{r}
 \end{equation}
 mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
-Es zeigt sich nun
+Wir finden nun den folgenden Zusammenhang zwischen $V^{-1}$ und den
+Koeffizienten der Lagrange-Polynome:
 
 \begin{lemma}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
     $l_j$, $j = 0, \dots, n-1$ die zugehörigen Lagrange-Polynome
-    mit Koeffizienten $u_{jr}$ wie oben.
+    mit Koeffizienten $u_{jr}$ wie in (\ref{eq:lagrange}).
     Dann ist die Koeffizienten-Matrix $U = (u_{jr})_{j,r = 0}^{n-1}$ die
     Inverse der Vandermonde-Matrix $V = \Vand{z} = (z_{j}^{k})_{k,j = 0}^{n-1}$.
 \end{lemma}
 
 \begin{proof}
-    Betrachte das Gleichungssystem $V \alpha = y$ mit $\alpha = (\alpha_0,
-    \dots, \alpha_{n-1}) \in \Cn$ und $y = (y_0, \dots, y_{n-1}) \in \Cn$.
-    Zum Beweis muss die Gleichung $U y = \alpha$ gezeigt werden.
+    Wir betrachten das Gleichungssystem $V \alpha = y$ mit
+    $\alpha = (\alpha_0, \dots, \alpha_{n-1}) \in \Cn$
+    und $y = (y_0, \dots, y_{n-1}) \in \Cn$.
+    Zum Beweis muss die Gleichung $U y = \alpha$ für alle $\alpha,  y \in \Cn$
+    gezeigt werden.
     Es gilt für $j = 0, \dots, n-1$
     \[
         \begin{split}
@@ -61,13 +65,13 @@ Es zeigt sich nun
 \end{proof}
 
 \section{Elementarsymmetrische Polynome}
-Um eine explizite Darstellung der Element von $V^{-1}$ zu finden, werden die
-\emph{elementarsymmetrischen Polynome} eingeführt.
+Um eine explizite Darstellung der Elemente von $V^{-1}$ zu finden, führen wir
+die \emph{elementarsymmetrischen Polynome} ein.
 Diese liefern ebenfalls die Grundlage der Abschätzung von
 $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 
 \begin{mydef}[Elementarsymmetrische Polynome]
-    Für $x = (x_1, \dots, x_{n}) \in \Cn$, definiere die
+    Für $x = (x_1, \dots, x_{n}) \in \Cn$, definieren wir die
     \emph{k-ten elementarsymmetrischen Polynome
     $\sigma_{k}(x) = \sigma_{k}(x_1, \dots, x_{n})$, $k = 0, \dots, n$
     in den $n$ Variablen $x_j$, $j = 1, \dots, n$} durch
@@ -97,8 +101,8 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{lemma}
 
 \begin{proof}
-    Verwende Gleichung (\ref{eq:explicit_elementary_symmetric_polynonimals})
-    und teile die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
+    Wir verwenden Gleichung (\ref{eq:explicit_elementary_symmetric_polynonimals})
+    und teilen die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
     $x_n$ ein Faktor im Summand ist:
     \begin{equation*}
         \begin{split}
@@ -118,7 +122,11 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
         \label{eq:elementary_symmetric_polynomials_inequality}
         \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
     \end{equation}
-    Gleicheit gilt genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
+    % FIXME: Just showed "<=".
+    Gleichheit gilt genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein
+    festes $\varphi \in \R$ und beliebige $r_k \in \R_+$,
+    d.h. genau dann, wenn alle $x_k$ auf einer Halbgeraden durch den Nullpunkt
+    in der komplexen Ebene liegen.
 \end{lemma}
 
 \begin{proof}
@@ -151,7 +159,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
       \end{align*}
     %\end{equation*}
     Um den Spezialfall $x_k = r_k e^{i \varphi}$ der Behauptung zu beweisen,
-    führt man die Induktion analog, mit der neuen Induktionsbehauptung, dass
+    führen wir die Induktion analog, mit der neuen Induktionsbehauptung, dass
     Gleichheit gelte.  Es bleibt nur zu zeigen, dass die Ungleichheit
     (\ref{eq:elementary_polynomials_inequality_proof}) zur Gleichheit wird, d.h. dass
     $\sigma_{k}(x_1, \dots, x_{n-1})$ und $x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})$
@@ -161,8 +169,8 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
         = \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
     \]
     gilt.
-    Dazu verwende Gleichung
-    (\ref{eq:explicit_elementary_symmetric_polynonimals}) und stelle fest, dass
+    Dazu verwenden wir Gleichung
+    (\ref{eq:explicit_elementary_symmetric_polynonimals}) und stellen fest, dass
     \begin{equation*}
         \begin{split}
             \sigma_{k}(x_1, \dots, x_{n-1})
@@ -184,7 +192,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{proof}
 
 \begin{notation}
-    Als abkürzende Schreibweise setze im Folgenden für gegebene $x_1, \dots, x_{n} \in \C$
+    Als abkürzende Schreibweise setzen wir im Folgenden für gegebene $x_1, \dots, x_{n} \in \C$
     \[
         \sigma_{k}^{j} \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
     \]
@@ -197,7 +205,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
     elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
     Inversen der Vandermonde-Matrix angegeben werden.
-    Dazu schreibe für $j = 0, \dots, n-1$
+    Dazu schreiben wir für $j = 0, \dots, n-1$
     \begin{equation*}
         \sum_{r = 0}^{n-1} u_{jr} z^{r}
         = l_j(z)
@@ -216,6 +224,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     \end{equation}
 \end{remark}
 
+% FIXME: Bad title for this section.
 \section{Beweis der Ungleichung}
 
 Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benötigt:
@@ -318,10 +327,10 @@ angegeben und bewiesen werden:
 \end{proof}
 
 \section{Vandermonde Matrizen mit reellen Stützstellen}
-Als Anwendung von Satz \ref{thm:inverse_vandermonde_inequality} werden nun
+Als Anwendung von Satz \ref{thm:inverse_vandermonde_inequality} werden wir nun
 einige ausgewählte Beispiele für Vandermonde-Matrizen mit reellen Stützstellen
-angegeben und deren Kondition berechnet.
-Die Beispiele wurden dabei \cite[S. 197-199]{gautschi1} entnommen.
+betrachten und deren Kondition berechnen.
+Die Beispiele wurden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
 
 Betrachtet man nur Stützstellen $z_j \in \C$ mit $\abs{z_j} \leq 1$,
 so gilt $\norm{\Vand{z}}_{\infty} = n$, wie das folgende Lemma zeigt.
