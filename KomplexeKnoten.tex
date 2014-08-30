@@ -67,3 +67,36 @@
 
 \section{Freie Wahl der Stützstellen}
 \section{Stützstellen auf dem Gitter der $N$-ten Einheitswurzeln}
+Seien $M, N \in \N$ mit $M < N$.
+In diesem Abschnitt untersuchen wir Anordnungen von $M$ Knoten auf dem Gitter
+der $N$-ten Einheitswurzeln und die Kondition der daraus resultierenden
+Vandermonde-Matrizen.
+Da in unserem Fall
+\footnote{Wir betrachten nur die Zeilensummennorm und unitär invariante Normen bzw. die Kondition bzgl. dieser Normen.}
+die Kondition einer Vandermonde-Matrix invariant unter
+Permutation der Spalten ist, kommt es nicht auf die Reihenfolge der Knoten an.
+Wir betrachten also genau die $M$-elementigen Teilmengen von
+$\{ \exp( \frac{2 \pi i k}{N} ) \; | \; k \leq N \}$.
+Diese können wir bekanntlich auf eindeutige Weise mit $M$-elementigen
+Teilmengen von $ \Z / N\Z$ identifizieren, indem wir die Abbildung
+\[
+    \left\{ \exp( \frac{2 \pi i k_j}{N} ) \; | \; j = 1,\dots, M \right\} \mapsto \left\{ k_j \in \Z/N\Z \; | \; j = 1, \dots, M \right\}
+\]
+verwenden.
+Diese motiviert die folgende Definition:
+
+\begin{mydef}[Knotenset]
+    Wir bezeichnen eine $M$-elementige Teilmenge von $\Z/N\Z$
+    als \emph{Knotenset der Ordnung $(M,N)$}.\\
+    Wir identifizieren ein Knotenset
+    $S = \{k_1, \dots, k_m\} \subset \Z/N\Z$
+    mit einer Menge von $M$ verschiedenen $N$-ten Einheitswurzeln durch
+    \[
+        S \mapsto e(S, N) \defeq \left\{ e^{\frac{2 \pi i k_1}{N}}, \dots, e^{\frac{2 \pi i k_n}{N}} \right\}.
+    \]
+    Da die Kondition einer Vandermonde-Matrix invariant unter Permutationen der
+    Knoten ist, definieren wir weiter die Kondition eines Knotensets $S$ durch
+    \[
+        \cond{S} \defeq \cond{\Vand{ e^{\frac{2 \pi i k_1}{N}}, \dots, e^{\frac{2 \pi i k_n}{N}} }}.
+    \]
+\end{mydef}
