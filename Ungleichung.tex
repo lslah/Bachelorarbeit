@@ -248,16 +248,37 @@ nützlich sein wird.
         = \alpha^k \sigma_{k}(x).
     \]
 \end{proof}
+
 \begin{lemma}
+    \label{lemma:inverse_vandermonde_const_multiplication}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und $\alpha \in \C$.
     Dann gilt:
-    \[
+    \begin{equation}
+        \label{eq:inverse_vandermonde_const_multiplication}
         \Vand{\alpha z}^{-1} = \Vand{z}^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}.
-    \]
+    \end{equation}
 \end{lemma}
 
 \begin{proof}
-    % TODO
+    Wir bezeichnen die Elemente von
+    $V \defeq \Vand{z}$ mit $u_{jr} \in \C$, $j,r = 0, \dots, n-1$,
+    und analog die Elemente von
+    $\tilde{V} \defeq \Vand{\alpha z}$ mit
+    $\tilde{u}_{jr} \in \C$, $j,r = 0, \dots, n-1$.
+    Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt:
+    \[
+        \begin{split}
+            \tilde{u}_{jr}
+            &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
+                (-1)^{r} \Pi_j \sigma_{r}^{j}(\alpha z_0, \dots, \alpha z_{j-1}, \alpha z_{j+1}, \dots, \alpha z_{n-1})\\
+            &\overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
+                \alpha^{r} (-1)^{r} \Pi_j \sigma_{r}^{j}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1})\\
+            &= u_{jr} \alpha^{r}.
+        \end{split}
+    \]
+    Wie behauptet, können wir also
+    $\tilde{V}^{-1} = V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}}$ schreiben.
+
 \end{proof}
 
 % FIXME: Bad title for this section.

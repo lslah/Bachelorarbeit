@@ -7,13 +7,14 @@
     Matrizen ist, d.h. für jede Matrix $A \in \C^{n\times n}$ und jede
     unitäre Matrix $U \in \C^{n\times n}$, gilt $\norm{UA} = \norm{AU} = \norm{A}$.
     Weiter seien ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ und eine
-    komplexe Zahl $\alpha \in \C$ gegeben.
+    komplexe Zahl $\alpha \in \C$ mit Betrag $\abs{\alpha} = 1$ gegeben.
     Dann gilt für die Kondition bezüglich der Norm $\emptynorm$:
     \[
         \cond{\Vand{\alpha z}} = \cond{\Vand{z}},
     \]
     d.h. die Kondition der Vandermonde-Matrix ist in diesem Fall invariant
-    unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$.
+    unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$ mit
+    Betrag $\abs{\alpha} = 1$.
 \end{lemma}
 
 \begin{proof}
@@ -30,24 +31,38 @@
     \]
     d.h. wir können
     \[
-        \tilde{V} = V \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}
+        \tilde{V} = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V
     \]
     schreiben.
-    Weiter können wir uns leicht davon überzeugen, dass $\diag{\alpha^0, \dots,
-    \alpha^{n-1}}$ eine unitäre Matrix ist, denn es gilt:
+    % TODO: End this proof.
+
+    \noindent Für die inverse Vandermonde-Matrix hatten wir bereits in
+    Lemma (\ref{lemma:inverse_vandermonde_const_multiplication})
+    gesehen, dass $ \tilde{V}^{-1} = V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}} $ gilt.
+
+    \noindent Weiter können wir uns leicht davon überzeugen, dass
+    $\diag{\alpha^0, \dots, \alpha^{n-1}}$
+    für $\alpha = e^{i\varphi}$, $\varphi \in \R$, d.h. für $\abs{\alpha} = 1$
+    eine unitäre Matrix ist, denn es gilt:
     \[
         \begin{split}
-            \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}^{H}
+               \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}^{H}
             &= \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \overline{\diag{\alpha^0, \dots, \alpha^{n-1}}}\\
-            &= \diag{\alpha^0 \cdot \alpha^0, \dots, \alpha^{n-1} \cdot \alpha^{-n+1}}\\
-            &= \diag{1, \dots, 1}
-        \end{split}.
+            &= \diag{1, e^{i\varphi} \cdot e^{-i\varphi}, \dots, e^{i\varphi (n-1)} \cdot e^{-i \varphi (-n+1)}}\\
+            &= \diag{1, \dots, 1}.
+        \end{split}
     \]
     Damit erhalten wir
     \[
-        \norm{\tilde{V}} = \norm{V \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}} = \norm{V}.
+        \begin{split}
+            \cond{\Vand{\alpha z}}
+            = \cond{\tilde{V}}
+            &= \norm{\tilde{V}} \norm{\tilde{V}^{-1}}\\
+            &= \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V} \norm{V^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}}\\
+            &= \norm{V} \norm{V^{-1}}
+            = \cond{V} = \cond{\Vand{z}}.
+        \end{split}
     \]
-    % TODO: End this proof.
 \end{proof}
 
 \section{Freie Wahl der Stützstellen}
