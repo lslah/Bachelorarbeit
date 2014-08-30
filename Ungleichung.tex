@@ -71,7 +71,7 @@ Diese liefern ebenfalls die Grundlage der Abschätzung von
 $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 
 \begin{mydef}[Elementarsymmetrische Polynome]
-    Für $x = (x_1, \dots, x_{n}) \in \Cn$, definieren wir die
+    Für $x = (x_1, \dots, x_{n}) \in \Cn$ definieren wir die
     \emph{k-ten elementarsymmetrischen Polynome
     $\sigma_{k}(x) = \sigma_{k}(x_1, \dots, x_{n})$, $k = 0, \dots, n$
     in den $n$ Variablen $x_j$, $j = 1, \dots, n$} durch
@@ -84,7 +84,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \begin{remark}
     Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
     \begin{equation}
-        \label{eq:explicit_elementary_symmetric_polynonimals}
+        \label{eq:explicit_elementary_symmetric_polynomials}
         \sigma_{k}(x_1, \dots, x_{n})
         = \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
         = \sum_{1 \leq j_1 < \dots < j_k \leq n} \left( \prod_{r=1}^k x_{j_r} \right).
@@ -101,7 +101,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{lemma}
 
 \begin{proof}
-    Wir verwenden Gleichung (\ref{eq:explicit_elementary_symmetric_polynonimals})
+    Wir verwenden Gleichung (\ref{eq:explicit_elementary_symmetric_polynomials})
     und teilen die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
     $x_n$ ein Faktor im Summand ist:
     \begin{equation*}
@@ -170,7 +170,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     \]
     gilt.
     Dazu verwenden wir Gleichung
-    (\ref{eq:explicit_elementary_symmetric_polynonimals}) und stellen fest, dass
+    (\ref{eq:explicit_elementary_symmetric_polynomials}) und stellen fest, dass
     \begin{equation*}
         \begin{split}
             \sigma_{k}(x_1, \dots, x_{n-1})
@@ -225,13 +225,34 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{remark}
 
 % FIXME: Bad description.
-Zum Abschluss dieses Abschnitts, beweisen wir noch ein Lemma, das später
+\noindent Zum Abschluss dieses Abschnitts, beweisen wir noch ein Lemma, das später
 nützlich sein wird.
+
+\begin{lemma}
+    Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt:
+    \begin{equation}
+        \label{eq:elementary_symmetric_polynomials_const_multiplication}
+        \sigma_{k}(\alpha x)
+        = \alpha^{k} \sigma_{k}(x)
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    Unter Verwendung von Gleichung
+    (\ref{eq:explicit_elementary_symmetric_polynomials})
+    erhalten wir:
+    \[
+        \sigma_{k}(\alpha x)
+        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \alpha x_{j_1} \cdots \alpha x_{j_k}
+        = \alpha^k \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
+        = \alpha^k \sigma_{k}(x).
+    \]
+\end{proof}
 \begin{lemma}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und $\alpha \in \C$.
     Dann gilt:
     \[
-        \Vand{\alpha z}^{-1} = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}^{-1}.
+        \Vand{\alpha z}^{-1} = \Vand{z}^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}.
     \]
 \end{lemma}
 
