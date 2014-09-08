@@ -2,6 +2,58 @@
 % FIXME: Bad section title.
 \section{Numerische Vorbetrachungen}
 
+Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
+gewöhnlicher Normen\footnote{}%TODO
+invariant unter Rotation und Spiegelung der Knoten ist.
+
+%TODO: Was bringt das?
+
+\begin{lemma}
+    Die Kondition der Vandermonde-Matrix bezüglich der Zeilensummennorm ist
+    invariant unter Multiplikation der Knoten mit einer komplexen Zahl
+    $\alpha = e^{i\varphi} \in \C$, $\varphi \in \R$.
+\end{lemma}
+
+\begin{proof}
+    Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$.
+    Wegen $\abs{e^{i\varphi}} = 1$ für alle $\varphi \in \R$ gilt
+    \[
+        \begin{split}
+            \norm{\Vand{\alpha z}}_\infty
+            &= \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{\left(e^{i\varphi} z_j\right)^k}
+            = \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{e^{ik\varphi}} \abs{z_j^k}\\
+            &= \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{z_j^k}
+            = \norm{\Vand{z}}_\infty.
+        \end{split}
+    \]
+
+    \noindent Für die Zeilensummennorm der inversen Vandermonde-Matrix erinnern wir uns an Gleichung
+    (\ref{eq:inverse_vandermonde_const_multiplication})
+    aus Lemma \ref{lemma:inverse_vandermonde_const_multiplication}:
+    $\tilde{u}_{jr} = u_{jr} \alpha^{-n+r+1}$.
+    Damit ist sofort ersichtlich
+    \[
+        \begin{split}
+            \norm{\Vand{\alpha z}^{-1}}_\infty
+            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{\tilde{u}_{jr}}
+            = \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}} \abs{\alpha^{-n+r+1}}\\
+            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
+            = \norm{\Vand{\alpha}^{-1}}_\infty.
+        \end{split}
+    \]
+
+    \noindent Wie behauptet, folgt insgesamt
+    \[
+        \begin{split}
+            \cond{\Vand{\alpha z}}_\infty
+            &= \norm{\Vand{\alpha z}}_\infty \norm{\Vand{\alpha z}^{-1}}_\infty\\
+            &= \norm{\Vand{z}}_\infty \norm{\Vand{z}^{-1}}_\infty
+            = \cond{\Vand{z}}_\infty.
+        \end{split}
+    \]
+
+\end{proof}
+
 \begin{lemma}
     Sei $\emptynorm$ eine Matrix-Norm die invariant unter Multiplikation mit unitären
     Matrizen ist, d.h. für jede Matrix $A \in \C^{n\times n}$ und jede
