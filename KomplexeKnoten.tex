@@ -57,7 +57,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
 \begin{lemma}
     Sei $\emptynorm$ eine Matrix-Norm die invariant unter Multiplikation mit unitären
     Matrizen ist, d.h. für jede Matrix $A \in \C^{n\times n}$ und jede
-    unitäre Matrix $U \in \C^{n\times n}$, gilt $\norm{UA} = \norm{AU} = \norm{A}$.
+    unitäre Matrix $U \in \C^{n\times n}$ gilt $\norm{UA} = \norm{AU} = \norm{A}$.
     Weiter seien ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ und eine
     komplexe Zahl $\alpha \in \C$ mit Betrag $\abs{\alpha} = 1$ gegeben.
     Dann gilt für die Kondition bezüglich der Norm $\emptynorm$:
@@ -65,7 +65,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
         \cond{\Vand{\alpha z}} = \cond{\Vand{z}},
     \]
     d.h. die Kondition der Vandermonde-Matrix ist in diesem Fall invariant
-    unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$ mit
+    unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$ vom
     Betrag $\abs{\alpha} = 1$.
 \end{lemma}
 
@@ -77,7 +77,8 @@ invariant unter Rotation und Spiegelung der Knoten ist.
     \]
     und zeigen $\norm{\tilde{V}} = \norm{V}$ und
     $\norm{\tilde{V}^{-1}} = \norm{V^{-1}}$.
-    Es gilt für $j,k = 0,\dots,n-1$:
+
+    \noindent Es gilt für $j,k = 0,\dots,n-1$:
     \[
         \tilde{v}_{kj} = (\alpha z_j)^k = \alpha^k z_j^k = \alpha^k v_{kj},
     \]
@@ -94,7 +95,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
 
     \noindent Weiter können wir uns leicht davon überzeugen, dass
     $\diag{\alpha^0, \dots, \alpha^{n-1}}$
-    für $\alpha = e^{i\varphi}$, $\varphi \in \R$, d.h. für $\abs{\alpha} = 1$
+    für $\alpha = e^{i\varphi}$, $\varphi \in \R$
     eine unitäre Matrix ist, denn es gilt:
     \[
         \begin{split}
