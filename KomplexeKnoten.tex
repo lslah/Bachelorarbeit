@@ -91,7 +91,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
 
     \noindent Für die inverse Vandermonde-Matrix hatten wir bereits in
     Lemma (\ref{lemma:inverse_vandermonde_const_multiplication})
-    gesehen, dass $ \tilde{V}^{-1} = V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}} $ gilt.
+    gesehen, dass $ \tilde{V}^{-1} = \alpha^{-n+1} \cdot V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}} $ gilt.
 
     \noindent Weiter können wir uns leicht davon überzeugen, dass
     $\diag{\alpha^0, \dots, \alpha^{n-1}}$
@@ -105,13 +105,14 @@ invariant unter Rotation und Spiegelung der Knoten ist.
             &= \diag{1, \dots, 1}.
         \end{split}
     \]
-    Damit erhalten wir
+
+    \noindent Damit erhalten wir
     \[
         \begin{split}
             \cond{\Vand{\alpha z}}
             = \cond{\tilde{V}}
             &= \norm{\tilde{V}} \norm{\tilde{V}^{-1}}\\
-            &= \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V} \norm{V^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}}\\
+            &= \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V} \norm{\alpha^{-n+1} \cdot V^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}}\\
             &= \norm{V} \norm{V^{-1}}
             = \cond{V} = \cond{\Vand{z}}.
         \end{split}

@@ -266,19 +266,29 @@ nützlich sein wird.
     und analog die Elemente von
     $\tilde{V} \defeq \Vand{\alpha z}$ mit
     $\tilde{u}_{jr} \in \C$, $j,r = 0, \dots, n-1$.
-    Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt:
+    Weiter sei
     \[
+        \tilde{\Pi}_j
+        = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( \alpha z_j - \alpha z_r \right)^{-1}
+        = \alpha^{-n+1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}
+        = \alpha^{-n+1} \Pi_j.
+    \]
+
+    \noindent Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt:
+    \begin{equation}
+        \label{eq:inverse_vandermonde_const_multiplication}
         \begin{split}
             \tilde{u}_{jr}
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
-                (-1)^{r} \Pi_j \sigma_{r}^{j}(\alpha z_0, \dots, \alpha z_{j-1}, \alpha z_{j+1}, \dots, \alpha z_{n-1})\\
+                (-1)^{r} \tilde{\Pi}_j \sigma_{r}^{j}(\alpha z_0, \dots, \alpha z_{j-1}, \alpha z_{j+1}, \dots, \alpha z_{n-1})\\
             &\overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
-                \alpha^{r} (-1)^{r} \Pi_j \sigma_{r}^{j}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1})\\
-            &= u_{jr} \alpha^{r}.
+                \alpha^{r} (-1)^{r} \alpha^{-n+1} \Pi_j \sigma_{r}^{j}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1})\\
+            &= u_{jr} \alpha^{-n+r+1}.
         \end{split}
-    \]
-    Wie behauptet, können wir also
-    $\tilde{V}^{-1} = V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}}$ schreiben.
+    \end{equation}
+
+    \noindent Wie behauptet, können wir also
+    $\tilde{V}^{-1} = \alpha^{-n+1} V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}}$ schreiben.
 
 \end{proof}
 
