@@ -122,10 +122,9 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
         \label{eq:elementary_symmetric_polynomials_inequality}
         \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
     \end{equation}
-    % FIXME: Just showed "<=".
-    Gleichheit gilt genau dann, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein
+    Gleichheit gilt, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein
     festes $\varphi \in \R$ und beliebige $r_k \in \R_+$,
-    d.h. genau dann, wenn alle $x_k$ auf einer Halbgeraden durch den Nullpunkt
+    d.h. wenn alle $x_k$ auf einer Halbgeraden durch den Nullpunkt
     in der komplexen Ebene liegen.
 \end{lemma}
 
@@ -158,20 +157,6 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
         &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}.
       \end{align*}
     %\end{equation*}
-
-    \noindent Es bleibt die Aussage über die Gleichheit von Gleichung
-    (\ref{eq:elementary_symmetric_polynomials_inequality}) zu beweisen.
-    Dazu stellen wir fest, dass Gleichheit genau dann gilt, wenn in der
-    Dreiecksungleichung (\ref{eq:elementary_polynomials_inequality_proof})
-    Gleichheit gilt, also genau dann, wenn für alle $k = 1, \dots, n$
-    \[
-            \sigma_{k}(x_1, \dots, x_{n-1})
-    \]
-    und
-    \[
-        x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
-    \]
-    linear abhängig sind.
 
     Um den Spezialfall $x_k = r_k e^{i \varphi}$ der Behauptung zu beweisen,
     führen wir die Induktion analog, mit der neuen Induktionsbehauptung, dass
@@ -340,7 +325,7 @@ Vandermonde-Matrix angegeben und beweisen:
     < \norm{V^{-1}}_{\infty}
     \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
   \end{equation}
-  Gleichheit für die obere Grenze gilt genau dann, wenn $z_k = r_k \cdot e^{i \varphi}$
+  Gleichheit für die obere Grenze gilt, wenn $z_k = r_k \cdot e^{i \varphi}$
   für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$, $k = 0, \dots, n-1$ gilt.
 \end{theorem}
 
