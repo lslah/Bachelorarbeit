@@ -137,7 +137,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
 \end{remark}
 
 \begin{proof}[Beweis von Lemma \ref{lemma:elementary_symmetric_polynomials_inequality}]
-    Zum Beweis, wende vollständige Induktion über $n \in \N$ und
+    Zum Beweis, wenden wir vollständige Induktion über $n \in \N$ und
     Lemma \ref{lemma:recursion_elementary_symmetric_polynomials} an.\\[0.5em]
     \textbf{Induktionsanfang ($n=1$):}
     Es ist $ (z+x_0) = \sigma_0(x_0) \cdot z^1 + \sigma_1(x_0) \cdot z^0$,
@@ -304,10 +304,10 @@ nützlich sein wird.
 
 Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benötigt:
 
-\begin{lemma}
+\begin{lemma}[\cite{gautschi2}]
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
-    $a_j \in \C$ für $j = 0, \dots, n$ und Nullstellen
+    $a_j \in \C$ für $j = 0, \dots, n$, $a_n \neq 0$ und Nullstellen
     $\zeta_r \in \C$, $r = 1, \dots, n$.
     Dann gilt
     \begin{equation}
@@ -318,7 +318,49 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
 \end{lemma}
 
 \begin{proof}
-    %TODO
+    Ohne Einschränkung können wir annehmen, dass die Nullstellen sortiert
+    vorliegen, so dass
+    \[
+        \zeta_1 \leq \dots \leq \zeta_r \leq 1 < \zeta_{r+1} \leq \dots \leq \zeta_n
+    \]
+    gilt.
+    Jensens Formel liefert dann
+    \[
+        \log \abs{a_0}
+        = \log \abs{p(0)}
+        = \sum_{k=1}^{r} \log \abs{\zeta_k} + \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi,
+    \]
+    oder äquivalent dazu
+    \[
+        \abs{a_0} \prod_{k=1}^{r} \abs{\zeta_k}^{-1}
+        = \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right).
+    \]
+    Über die Darstellung von $p$ als
+    \[
+        p(z) = \sum_{j = 0}^{n} a_j z^j = a_n \prod_{k=1}^n (1-\zeta_k),
+    \]
+    erhalten wir
+    \[
+        a_0 = p(0) = a_n (-1)^n \prod_{k=1}^n \zeta_k
+    \]
+    und damit
+    \[
+        \abs{a_0} \prod_{k=r+1}^{n} \abs{\zeta_k}
+        = \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right).
+    \]
+    Mit
+    \[
+        \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right)
+        \leq \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
+        = \max_{0 \leq \varphi \leq 2\pi} \abs{\sum_{j=0}^{n} a_j e^{i\varphi}}
+        \leq \sum_{j=0}^{n} \abs{a_j}.
+    \]
+    folgt nun wie behauptet
+    \[
+        \sum_{j=0}^n \abs{a_j} \geq \abs{a_n} \prod_{k=1}^n \max(1, \zeta_k).
+    \]
+
+
 \end{proof}
 
 Nun können wir eine Abschätzung der Zeilensummennorm der inversen
