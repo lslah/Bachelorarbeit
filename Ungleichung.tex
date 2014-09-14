@@ -331,34 +331,50 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
         = \sum_{k=1}^{r} \log \abs{\zeta_k} + \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi,
     \]
     oder äquivalent dazu
-    \[
+    \begin{equation}
+        \label{eq:jensen_polynom}
         \abs{a_0} \prod_{k=1}^{r} \abs{\zeta_k}^{-1}
         = \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right).
-    \]
-    Über die Darstellung von $p$ als
+    \end{equation}
+
+    \noindent Mit Hilfe der Nullstellen $\zeta_j$ können wir $p$ als Produkt
+    seiner Linearfaktoren darstellen
     \[
-        p(z) = \sum_{j = 0}^{n} a_j z^j = a_n \prod_{k=1}^n (1-\zeta_k),
+        p(z) = \sum_{j = 0}^{n} a_j z^j = a_n \prod_{k=1}^n (z-\zeta_k).
     \]
-    erhalten wir
+
+    \noindent Die Auswertung an $z=0$ liefert dann
     \[
-        a_0 = p(0) = a_n (-1)^n \prod_{k=1}^n \zeta_k
+        a_0 = p(0) = a_n (-1)^n \prod_{k=1}^n \zeta_k,
     \]
-    und damit
+    so dass wir (\ref{eq:jensen_polynom}) vereinfacht darstellen können
     \[
-        \abs{a_0} \prod_{k=r+1}^{n} \abs{\zeta_k}
+        \abs{a_n} \prod_{k=r+1}^{n} \abs{\zeta_k}
         = \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right).
     \]
-    Mit
+
+    \noindent Mit
     \[
         \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right)
         \leq \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
         = \max_{0 \leq \varphi \leq 2\pi} \abs{\sum_{j=0}^{n} a_j e^{i\varphi}}
-        \leq \sum_{j=0}^{n} \abs{a_j}.
+        \leq \sum_{j=0}^{n} \abs{a_j}
     \]
     folgt nun wie behauptet
     \[
         \sum_{j=0}^n \abs{a_j} \geq \abs{a_n} \prod_{k=1}^n \max(1, \zeta_k).
     \]
+
+    \noindent Im Fall, dass $p(z) = a_n x^n$ gilt, ist
+    $ \sum_{j=0}^{n} \abs{a_j}
+      = \abs{a_n} \prod_{r=1}^n \max(1, \abs{\zeta_r})
+      = \abs{a_n} $
+    trivialerweise erfüllt.
+
+    \noindent Sei umgekehrt  ein beliebiges Polynom
+    $p(z) = \sum_{j=0}^n a_j x^j$ gegeben, das
+    (\ref{eq:polynom_coefficient_sum_inequality}) mit
+    Gleichheit erfüllt.
 
 
 \end{proof}
