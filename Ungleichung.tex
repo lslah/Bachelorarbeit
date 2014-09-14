@@ -513,7 +513,8 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 
 \begin{lemma}
     Seien Stützstellen $z = (z_0, \dots, z_{n-1}) \in \Cn$
-    mit $\abs{z_j} \leq 1$ für alle $j = 0, \dots, n-1$ gegeben.
+    mit $\abs{z_j} \leq 1$ für alle\linebreak
+    $j=0,\dots,n-1$ gegeben.
     Dann gilt
     \[
         \norm{V(z)}_{\infty} = n.
@@ -521,7 +522,7 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 \end{lemma}
 
 \begin{proof}
-    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für alle $j = 0, \dots, n-1$ und $k > r$, folgt
+    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$, folgt
     \[
         \norm{V(z)}_{\infty} = \max_{k=0,\dots,n-1} \left( \sum_{j=0}^{n-1} \abs{z_j^k} \right) = \sum_{j=0}^{n-1} \abs{z_j^0} = n.
     \]

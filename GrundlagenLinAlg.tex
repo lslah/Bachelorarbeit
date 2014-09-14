@@ -58,7 +58,7 @@ Dies motiviert die folgende
     definiert.
     Bezeichnet man die Komponenten der Vandermonde-Matrix mit
     $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich:
-    $ v_{kj} = z_j^k $ für $k, j = 0 \dots n-1$.
+    $ v_{kj} = z_j^k $ für $k, j = 0, \dots, n-1$.
 \end{mydef}
 
 \begin{lemma}
@@ -72,12 +72,12 @@ Dies motiviert die folgende
 \begin{proof}
     Bezeichne mit $v_{kj} = z_j^k$ für $k,j \in \{0, \dots, n-1\}$ die Elemente von $\Vand{z}$.
     Der Beweis erfolgt durch vollständige Induktion über $n \in \N$.\\
-    \textbf{Induktionsanfang ($n=1$):}
+    \textbf{Induktionsanfang (\boldmath $n=1$):}\\
     Da das leere Produkt $1$ ergibt, gilt
-    $\det{\Vand{z}} = 1 = \prod_{0 \leq k < j \leq 0} (z_j - z_k)$. \\[0.5em]
+    $\det{\Vand{z}}~=~1~=~\prod_{0 \leq k < j \leq 0} (z_j~-~z_k)$. \\[0.5em]
     \textbf{Induktionvoraussetzung:}
     Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
-    \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
+    \textbf{Induktionsschritt (\boldmath $n\!-\!1 \rightarrow n$):}
     Durch Zeilenoperationen ändert sich der Wert der Determinante nicht.
     Wir ziehen daher in jeder Zeile das $z_0$-fache der vorherigen Zeile ab.
     \[
