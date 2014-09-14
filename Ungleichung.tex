@@ -317,6 +317,7 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
     Gleichheit gilt genau dann, wenn $p(z) = a_n z^n$.
 \end{lemma}
 
+% TODO: Beautify this proof.
 \begin{proof}
     Ohne Einschränkung können wir annehmen, dass die Nullstellen sortiert
     vorliegen, so dass
@@ -354,12 +355,13 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
     \]
 
     \noindent Mit
-    \[
+    \begin{equation}
+        \label{eq:jensen_integral_estimation}
         \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right)
         \leq \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
         = \max_{0 \leq \varphi \leq 2\pi} \abs{\sum_{j=0}^{n} a_j e^{i\varphi}}
         \leq \sum_{j=0}^{n} \abs{a_j}
-    \]
+    \end{equation}
     folgt nun wie behauptet
     \[
         \sum_{j=0}^n \abs{a_j} \geq \abs{a_n} \prod_{k=1}^n \max(1, \zeta_k).
@@ -372,10 +374,44 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
     trivialerweise erfüllt.
 
     \noindent Sei umgekehrt  ein beliebiges Polynom
-    $p(z) = \sum_{j=0}^n a_j x^j$ gegeben, das
+    $p(z) = \sum_{j=0}^n a_j x^j$, $a_n \neq 0$ gegeben, das
     (\ref{eq:polynom_coefficient_sum_inequality}) mit
     Gleichheit erfüllt.
-
+    Dies impliziert wegen (\ref{eq:jensen_integral_estimation}) insbesondere
+    \[
+        \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right)
+        = \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
+        \eqqcolon M,
+    \]
+    und damit, dass für $0 \leq \varphi \leq 2 \pi$ der Betrag des Polynoms
+    $\abs{p\left( e^{i\varphi} \right)}$ konstant $M$ ist.
+    Wir betrachten das trigonometrische Polynom
+    \[
+        \abs{p\left( e^{i\varphi} \right)}^2
+        = \sum_{k,j=0}^n a_k \conj{a}_j e^{i(k-j)\varphi}
+        = \sum_{l=-n}^n c_l e^{i l \varphi}
+    \]
+    mit Koeffizienten\footnote{Hier sei $a_k = 0$ für $k<0$ und $k > n$.}
+    \[
+        c_l = \sum_{-\infty}^\infty a_k \conj{a}_{k-l}, \; c_{-l} = \conj{c_l}.
+    \]
+    Wegen $\abs{p\left( e^{i\varphi} \right)}^2 \equiv M^2$, muss $c_j = 0$ für
+    $j > 0$ und $c_0 = M^2$ gelten.
+    Wir erhalten die Bedingungen
+    \begin{equation*}
+        \begin{split}
+            0 &= c_n = a_n \conj{a}_0\\
+            0 &= c_{n-1} = a_n \conj{a}_1 + a_{n-1} \conj{a}_0\\
+              &\dots\\
+            0 &= c_1 = a_n \conj{a}_{n-1} + \dots + a_{1} \conj{a}_0\\
+            M^2 &= c_0 = a_n^2 + \dots + a_0^2.
+        \end{split}
+    \end{equation*}
+    Wegen $a_n \neq 0$ liefert die erste Bedingung $a_0 = 0$.
+    Einsetzen von $a_0 = 0$ in die zweite Bedingung liefert aus dem gleichen
+    Grund $a_1 = 0$ und induktiv folgen $a_j = 0$ für $j < n$.
+    Schließlich zeigt die letzte Gleichung $M^2 = a_n^2$, so dass $p$ wie
+    behauptet ein Polynom von der Form $p(z) = a_n z^n$ ist.
 
 \end{proof}
 
