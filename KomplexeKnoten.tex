@@ -9,6 +9,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
 %TODO: Was bringt das?
 
 \begin{lemma}
+    \label{lemma:vandermonde_rotation_invariance}
     Die Kondition der Vandermonde-Matrix bezüglich der Zeilensummennorm ist
     invariant unter Multiplikation der Knoten mit einer komplexen Zahl
     $\alpha = e^{i\varphi} \in \C$, $\varphi \in \R$.
@@ -118,7 +119,6 @@ invariant unter Rotation und Spiegelung der Knoten ist.
     \]
 \end{proof}
 
-\section{Freie Wahl der Stützstellen}
 \section{Stützstellen auf dem Gitter der $N$-ten Einheitswurzeln}
 Seien $M, N \in \N$ mit $M < N$.
 In diesem Abschnitt untersuchen wir Anordnungen von $M$ Knoten auf dem Gitter
@@ -153,3 +153,47 @@ Diese motiviert die folgende Definition:
         \cond{S} \defeq \cond{\Vand{ e^{\frac{2 \pi i k_1}{N}}, \dots, e^{\frac{2 \pi i k_n}{N}} }}.
     \]
 \end{mydef}
+
+\section{Vandermonde-Matrizen aus Einheitswurzeln mit einem Ausreißer}
+
+Da die Zeilensummennorm submultiplikativ ist, gilt für eine invertierbare Matrix ${A \in \C^{n \times n}}$:
+$1 = \norm{A A^{-1}}_\infty \leq \norm{A}_\infty \norm{A^{-1}}_\infty = \cond_\infty A$.
+Eine Matrix heißt \emph{perfekt konditioniert}, wenn ihre Kondition diese
+untere Schranke annimmt.
+Es zeigt sich nun, dass die Vandermonde-Matrix zu den $n$ Knoten der $n$-ten
+Einheitswurzeln perfekt konditioniert ist.
+
+\begin{lemma}
+    Es gilt
+    \[
+        \cond_\infty \Vand{1, e^{\frac{\pi i}{n}}, e^{\frac{2 \pi i}{n}}, \dots, e^{\frac{(n-1) \pi i}{n}}  }
+        = n.
+    \]
+\end{lemma}
+
+Im Folgenden untersuchen wir, wie stark die Kondition einer Vandermonde-Matrix
+ansteigt, wenn einer der Knoten von seiner ursprünglichen Position als $n$-te
+Einheitswurzel um einen Winkel
+$\delta \in \left(0,\frac{\pi}{n}\right)$
+auf dem Einheitskreis ausgelenkt wird.
+Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
+ändern Drehungen und Spiegelungen der Knoten nicht die Kondition der
+Vandermonde-Matrix.
+Daher können wir ohne das Problem zu beschränken stets den Knoten auslenken,
+welcher der $n$-ten Einheitswurzel $1$ zugeordnet ist.
+Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), \dots, z_{n-1}) \in \C^n$ mit
+$z_0(\delta) = e^{2 \pi i \delta / n}$
+und
+$z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$
+und die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
+mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
+
+\begin{theorem}
+    Es gilt
+    \begin{equation}
+        \cond_\infty \Vand{\delta}
+        = n^2 \prod_{j=1}^{n-1} \abs{ z_0(\delta) - z_j }^{-1}
+        = n^2 \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+    \end{equation}
+\end{theorem}
+
