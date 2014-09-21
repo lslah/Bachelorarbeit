@@ -119,7 +119,7 @@ invariant unter Rotation und Spiegelung der Knoten ist.
     \]
 \end{proof}
 
-\section{Stützstellen auf dem Gitter der $N$-ten Einheitswurzeln}
+\section{Stützstellen auf dem Gitter der \boldmath{$N$}-ten Einheitswurzeln}
 Seien $M, N \in \N$ mit $M < N$.
 In diesem Abschnitt untersuchen wir Anordnungen von $M$ Knoten auf dem Gitter
 der $N$-ten Einheitswurzeln und die Kondition der daraus resultierenden
@@ -154,39 +154,141 @@ Diese motiviert die folgende Definition:
     \]
 \end{mydef}
 
-\section{Vandermonde-Matrizen aus Einheitswurzeln mit einem Ausreißer}
+% SECTION:OUTLIER
+\section{Vandermonde-Matrizen aus \boldmath{$(n\!-\!1)$} Einheitswurzeln und einem Ausreißer}
 
-Da die Zeilensummennorm submultiplikativ ist, gilt für eine invertierbare Matrix ${A \in \C^{n \times n}}$:
-$1 = \norm{A A^{-1}}_\infty \leq \norm{A}_\infty \norm{A^{-1}}_\infty = \cond_\infty A$.
-Eine Matrix heißt \emph{perfekt konditioniert}, wenn ihre Kondition diese
-untere Schranke annimmt.
-Es zeigt sich nun, dass die Vandermonde-Matrix zu den $n$ Knoten der $n$-ten
-Einheitswurzeln perfekt konditioniert ist.
+Die Kondition bezüglich der Zeilensummennorm der Vandermonde-Matrix zu den $n$
+Knoten der $n$-ten Einheitswurzeln beträgt $n$.
 
-\begin{lemma}
-    Es gilt
-    \[
-        \cond_\infty \Vand{1, e^{\frac{\pi i}{n}}, e^{\frac{2 \pi i}{n}}, \dots, e^{\frac{(n-1) \pi i}{n}}  }
-        = n.
-    \]
-\end{lemma}
-
-Im Folgenden untersuchen wir, wie stark die Kondition einer Vandermonde-Matrix
-ansteigt, wenn einer der Knoten von seiner ursprünglichen Position als $n$-te
-Einheitswurzel um einen Winkel
-$\delta \in \left(0,\frac{\pi}{n}\right)$
-auf dem Einheitskreis ausgelenkt wird.
+Im Folgenden untersuchen wir die Kondition einer Vandermonde-Matrix, bei der
+einer der Knoten von seiner ursprünglichen Position als $n$-te Einheitswurzel
+um einen Winkel $\delta \in \left[0,\frac{\pi}{n}\right)$ auf dem Einheitskreis
+ausgelenkt wird.
 Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
 ändern Drehungen und Spiegelungen der Knoten nicht die Kondition der
 Vandermonde-Matrix.
 Daher können wir ohne das Problem zu beschränken stets den Knoten auslenken,
 welcher der $n$-ten Einheitswurzel $1$ zugeordnet ist.
-Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), \dots, z_{n-1}) \in \C^n$ mit
+Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \C^n$ mit
 $z_0(\delta) = e^{2 \pi i \delta / n}$
 und
 $z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$
 und die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
 mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
+
+
+% \begin{lemma}
+%     Es gilt
+%     \[
+%         \cond_\infty \Vand{1, e^{\frac{\pi i}{n}}, e^{\frac{2 \pi i}{n}}, \dots, e^{\frac{(n-1) \pi i}{n}}  }
+%         = n.
+%     \]
+% \end{lemma}
+
+Wir beweisen zunächst einige Hilfslemmata, die es uns schließlich ermöglichen
+eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
+
+\begin{lemma}
+    Es gilt
+    \[
+        \sum_{r=0}^{n-1} \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
+        = \sum_{r=0}^{n-1} \abs{\sigma_r(z_1, \dots, z_{n-1})}
+        = n.
+    \]
+\end{lemma}
+
+\begin{proof}
+    Nach Lemma \ref{lemma:elementary_symmetric_polynomials_const_multiplication}
+    gilt
+    \[
+        \abs{\sigma_r(-z_1, \dots, -z_{n-1})}
+        = \abs{(-1)^r \sigma_r(z_1, \dots, z_{n-1})}
+        = \abs{\sigma_r(z_1, \dots, z_{n-1})}.
+    \]
+    Nach Definition der elementarsymmetrischen Polynome ist $\sigma_r({-z_1,
+    \dots, -z_{n-1}})$ der ${n\!-\!r\!-\!1}$-te Koeffizient des Polynoms vom
+    Grad $n-1$, das eindeutig durch die $n-2$ Nullstellen $z_k$, $k=1, \dots,
+    n-1$ bestimmt ist.
+    Wir zeigen, dass dies das Polynom $p(z) = \sum_{r=0}^{n-1} z^r$ ist.
+
+    \noindent Tatsächlich ist $z_k = e^{2 \pi i k / n}$ für $k = 1, \dots, n-1$
+    eine Nullstelle von $p(z)$:
+    \[
+        \begin{split}
+            p(z_k)
+            &= \sum_{r=0}^{n-1} z_k^r
+            = \sum_{r=0}^{n-1} \left( e^{\frac{2 \pi i k}{n}} \right)^r
+            = \frac{1 - \left( e^{\frac{2 \pi i k}{n}} \right)^n}{1 - \left( e^{\frac{2 \pi i k}{n}} \right)}
+            = \frac{1 - \left( e^{\frac{2 \pi i n}{n}} \right)^k}{1 - \left( e^{\frac{2 \pi i k}{n}} \right)}
+            = 0.
+        \end{split}
+    \]
+    Damit ist gezeigt, dass für $r=0, \dots, n-1$
+    \[
+        \abs{\sigma_r(z_1, \dots, z_{n-1})}
+        = \abs{\sigma_r(-z_1, \dots, -z_{n-1})}
+        = 1
+    \]
+    gilt, was die Behauptung liefert.
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:inverse_outlier_vandermonde_first_row_abs_sum}
+    Sei $z(\delta) = (z_0(\delta), \dots, z_{n-1}) \in \C^n$ mit
+    $z_0(\delta) = e^{2 \pi i \delta / n}$
+    und
+    $z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$.
+    Weiter seien $u_{jr} \in \C$ für $j,r = 0,\dots,n-1$ die Elemente der
+    inversen Vandermonde-Matrix $\Vand{z(\delta)}^{-1}$.
+    Dann gilt
+    \[
+        \sum_{r=0}^{n-1} \abs{ u_{0r} }
+        = n \cdot \prod_{k=1}^{n-1} \abs{z_0 - z_k}^{-1}
+        = n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+    \]
+\end{lemma}
+
+\begin{proof}
+    Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt
+    \[
+        u_{0r} = (-1)^{r} \Pi_0 \sigma_{r}^{0}(z_1, \dots, z_{n-1}),
+    \]
+    mit
+    \[
+        \Pi_0 = \prod_{k=1}^{n-1} \abs{ z_0 - z_k }^{-1}.
+    \]
+
+    \noindent Für $k = 1,\dots,n-1$ gilt mit $\varphi \defeq \frac{\pi (k - \delta)}{n}$
+    \[
+        \begin{split}
+            \abs{z_0 - z_k}^2
+            &= (z_0 - z_k) (\conj{z}_0 - \conj{z}_k)
+            = \abs{z_0}^2 + \abs{z_k}^2 - z_0\conj{z}_k - z_k\conj{z}_0\\
+            &= 2 - (e^{2 \varphi i} + e^{-2 \varphi i})
+            = 2 - ((e^{\varphi i})^2 + (e^{-\varphi i})^2)\\
+            &= 2 - ( (e^{\varphi i} - e^{-\varphi i})^2 + 2 e^{(\varphi - \varphi) i})
+            = (e^{\varphi i} - e^{-\varphi i})^2\\
+            &= 4 \cdot \sin^2 (\varphi)
+            = 4 \cdot \sin^2 \left( \frac{\pi (k-\delta)}{n} \right),
+        \end{split}
+    \]
+    also
+    \[
+        \Pi_0
+        = \prod_{\substack{k = 1}}^{n-1} \abs{ z_0 - z_k }^{-1}
+        = \prod_{\substack{k = 1}}^{n-1} \frac{1}{2 \cdot \sin \left( \frac{\pi (k-\delta)}{n} \right)}.
+    \]
+
+    \noindent Zusammen mit der Aussage des vorherigen Lemmas folgt nun die Behauptung:
+    \[
+        \begin{split}
+            \sum_{r=0}^{n-1} \abs{ u_{0r} }
+            &= \sum_{r=0}^{n-1} \abs{ (-1)^{r} \Pi_0 \sigma_{r}(z_1, \dots, z_{n-1}) }\\
+            &= \left( \sum_{r=0}^{n-1} \abs{ \sigma_{r}(z_1, \dots, z_{n-1}) } \right) \cdot \abs{\Pi_0}\\
+            &= n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+        \end{split}
+    \]
+\end{proof}
 
 \begin{theorem}
     Es gilt
@@ -197,3 +299,65 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
     \end{equation}
 \end{theorem}
 
+\begin{proof}
+    Wir müssen zeigen, dass
+    \[
+        \norm{\Vand{\delta}^{-1}}_\infty
+        = n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+    \]
+    gilt.
+    Bezeichnen wir erneut mit $u_{jr}$ für $j,r = 0, \dots, n-1$ die Elemente von $\Vand{\delta}^{-1}$,
+    so bleibt zu zeigen, dass für $j = 1, \dots, n-1$
+    \[
+        \sum_{r=0}^{n-1} \abs{u_{jr}} \leq \sum_{r=0}^{n-1} \abs{u_{0r}}
+    \]
+    gilt.
+    Lemma \ref{lemma:inverse_outlier_vandermonde_first_row_abs_sum} liefert dann die Behauptung.
+
+    \noindent Eine Idee wäre, die beiden Faktoren $\Pi_j$ und
+    $\sum_{r=0}^{n-1} \abs{\sigma_r^j}$ einzeln abzuschätzen,
+    d.h. die Ungleichungen
+    \[
+        \Pi_j \leq \Pi_0
+    \]
+    und
+    \[
+        \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \sum_{r=0}^{n-1} \abs{\sigma_r^0}
+    \]
+    für alle $ j=1, \dots, n-1$ zu beweisen.
+    Dies ist jedoch im Allgemeinen nicht möglich, wie die Figuren
+    \ref{fig:pi_j} und \ref{fig:sigma_row_sum} für den Fall $n=5$ zeigen.
+    Die schwarzen Graphen, die den Fall $j=0$ darstellen, nehmen dort niemals
+    den Maximalwert unter allen Graphen von $j=0, \dots, n-1$ an.
+    Die Figur \ref{fig:row_j} legt jedoch nahe, dass die Behauptung des
+    Satzes tatsächlich wahr ist, denn der Graph des Produktes ist stets für
+    $j=0$ maximal.
+
+    \noindent Der Beweis kann also nur erbracht werden, wenn das gesamte Produkt
+    abgeschätzt werden kann:
+    \[
+        \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0}
+    \]
+    für $j=1, \dots, n-1$.
+\end{proof}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=350pt]{images/pi_j}
+    \caption{$ f_j(\delta) = \Pi_j(\delta) $}
+    \label{fig:pi_j}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=350pt]{images/sigma_row_sum}
+    \caption{$ g_j(\delta) = \sum_{r=0}^{n-1} \abs{ \sigma_r^j(z(\delta)) } $}
+    \label{fig:sigma_row_sum}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=350pt]{images/row_j}
+    \caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
+    \label{fig:row_j}
+\end{figure}
