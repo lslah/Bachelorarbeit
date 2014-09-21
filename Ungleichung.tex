@@ -6,10 +6,12 @@ inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung
 Kondition $\cond{V}$ zu finden.
 
 Zunächst gilt es die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
-betrachten wir die \emph{elementarsymmetrischen Polynome}, mit deren
-Hilfe sich $\Vand{z}^{-1}$ explizit darstellen lässt. Es folgt der eigentliche
-Beweis der Abschätzung und einige Beispiele von Vandermonde-Matrizen mit
-reellen Stützstellen und deren Kondition.
+betrachten wir die \emph{elementarsymmetrischen Polynome}, mit deren Hilfe sich
+$\Vand{z}^{-1}$ explizit darstellen lässt. Es folgen der eigentliche Beweis der
+Abschätzung und einige Beispiele von Vandermonde-Matrizen mit reellen
+Stützstellen und deren Kondition.
+
+% TODO: reference gautschi1
 
 \section{Inversion der Vandermonde-Matrix}
 Es werden zunächst die \emph{Lagrange-Polynome} zu den Knoten
@@ -40,7 +42,8 @@ mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
 Wir finden nun den folgenden Zusammenhang zwischen $V^{-1}$ und den
 Koeffizienten der Lagrange-Polynome:
 
-\begin{lemma}
+\begin{lemma}[\cite{gautschi3}]
+    \label{lemma:vandermonde-inversion}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
     $l_j$, $j = 0, \dots, n-1$ die zugehörigen Lagrange-Polynome
     mit Koeffizienten $u_{jr}$ wie in (\ref{eq:lagrange}).
@@ -115,7 +118,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     \end{equation*}
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}[\cite{gautschi4}]
     \label{lemma:elementary_symmetric_polynomials_inequality}
     Es gilt:
     \begin{equation}
@@ -208,34 +211,6 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
     $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
 \end{notation}
 
-\begin{remark}
-    %TODO: Remark vs. lemma? More verbose proof?
-    Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
-    elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
-    Inversen der Vandermonde-Matrix angegeben werden.
-    Dazu schreiben wir für $j = 0, \dots, n-1$
-    \begin{equation*}
-        \sum_{r = 0}^{n-1} u_{jr} z^{r}
-        = l_j(z)
-        = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}
-        = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
-    \end{equation*}
-    mit
-    \begin{equation}
-        \label{def:pi_j}
-        \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
-    \end{equation}
-    Koeffizientenvergleich liefert dann für $j, r = 0, \dots, n-1$
-    \begin{equation}
-        \label{eq:explicit_inverse_vandermonde}
-        u_{jr} = (-1)^{r} \Pi_j \sigma_{r}^{j}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
-    \end{equation}
-\end{remark}
-
-% FIXME: Bad description.
-\noindent Zum Abschluss dieses Abschnitts, beweisen wir noch ein Lemma, das später
-nützlich sein wird.
-
 \begin{lemma}
     \label{lemma:elementary_symmetric_polynomials_const_multiplication}
     Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt:
@@ -257,6 +232,40 @@ nützlich sein wird.
         = \alpha^k \sigma_{k}(x).
     \]
 \end{proof}
+
+\begin{remark}
+    %TODO: Remark vs. lemma? More verbose proof?
+    Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
+    elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
+    Inversen der Vandermonde-Matrix angegeben werden.
+    Dazu schreiben wir für $j = 0, \dots, n-1$
+    \begin{equation*}
+        \sum_{r = 0}^{n-1} u_{jr} z^{r}
+        = l_j(z)
+        = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}
+        = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
+    \end{equation*}
+    mit
+    \begin{equation}
+        \label{def:pi_j}
+        \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
+    \end{equation}
+
+    \noindent Mit Lemma
+    \ref{lemma:elementary_symmetric_polynomials_const_multiplication} erhalten
+    wir dann für $j, r = 0, \dots, n-1$
+    \begin{equation}
+        \label{eq:explicit_inverse_vandermonde}
+        u_{jr}
+        = \Pi_j \sigma_{r}^{j}(-z_0, \dots, -z_{n-1})
+        \overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
+          (-1)^r \Pi_j \sigma_{r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
+    \end{equation}
+\end{remark}
+
+% FIXME: Bad description.
+\noindent Zum Abschluss dieses Abschnitts, beweisen wir noch ein Lemma, das später
+nützlich sein wird.
 
 \begin{lemma}
     \label{lemma:inverse_vandermonde_const_multiplication}
@@ -370,11 +379,10 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
 
     \noindent Im Fall, dass $p(z) = a_n x^n$ gilt, ist
     $ \sum_{j=0}^{n} \abs{a_j}
-      = \abs{a_n} \prod_{r=1}^n \max(1, \abs{\zeta_r})
+      = \abs{a_n} \cdot \prod_{r=1}^n \max(1, \abs{\zeta_r})
       = \abs{a_n} $
     trivialerweise erfüllt.
-
-    \noindent Sei umgekehrt  ein beliebiges Polynom
+    Sei umgekehrt  ein beliebiges Polynom
     $p(z) = \sum_{j=0}^n a_j x^j$, $a_n \neq 0$ gegeben, das
     (\ref{eq:polynom_coefficient_sum_inequality}) mit
     Gleichheit erfüllt.
