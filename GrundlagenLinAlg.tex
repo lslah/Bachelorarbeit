@@ -4,14 +4,13 @@ Wir betrachten ein lineares Gleichungssystem der Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
 und gesuchten Vektor $x \in \Cn$.
-
+Dabei nehmen wir $x \neq 0$ und $b \neq 0$ an.
 Weiter sei nur ein verfälschter Eingangsvektor $\tilde{b} = b + \Delta b$
 mit relativem Fehler
 \[
     \frac{\norm{\tilde{b} - b}}{\norm{b}} = \frac{\norm{\Delta b}}{\norm{b}} \leq \delta
 \]
 gegeben.
-
 Wir bezeichnen mit $\tilde{x}$ die Lösung des verfälschten Gleichungssystems
 $A \tilde{x} = \tilde{b}$.
 Wegen der Linearität von $A^{-1}$ erhalten wir
@@ -20,9 +19,8 @@ Wegen der Linearität von $A^{-1}$ erhalten wir
 \]
 wobei $\Delta x \defeq A^{-1} \Delta b$.
 
-Gesucht ist nun ein Maß des relativen Fehlers der verfälschten Lösung
+\noindent Gesucht ist nun ein Maß des relativen Fehlers der verfälschten Lösung
 $\tilde{x}$ in Abhängigkeit vom Eingangsfehler $\delta$.
-
 Wegen $ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
 und $ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
 folgt für den relativen Fehler:
@@ -30,7 +28,7 @@ folgt für den relativen Fehler:
     \frac{\norm{\Delta x}}{\norm{x}} \leq \norm{A} \norm{A^{-1}} \frac{\norm{\Delta b}}{\norm{b}} \leq \norm{A} \norm{A^{-1}} \delta.
 \]
 
-Dies motiviert die folgende
+\noindent Dies motiviert die folgende
 \begin{mydef}[Kondition einer Matrix]
     Sei $A \in \C^{n \times n}$.
     Die \emph{Kondition von $A$} ist durch
@@ -43,9 +41,12 @@ Dies motiviert die folgende
 \end{remark}
 
 \section{Vandermonde-Matrizen}
+
 \begin{mydef}[Vandermonde-Matrix]
-    Für $n \in \N$ und einen Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$
-    sei die \emph{Vandermonde-Matrix von $z$} durch
+    Für $n \in \N$ und einen Vektor ${z = (z_0, \dots, z_{n-1}) \in \Cn}$
+    sei die
+    \emph{Vandermonde-Matrix zu den Stützstellen (oder Knoten) $z_0, \dots, z_{n-1}$}
+    durch
     \[
         \Vand{z} \defeq \begin{pmatrix}
             1         & 1         & \dots & 1 \\
@@ -59,6 +60,7 @@ Dies motiviert die folgende
     Bezeichnet man die Komponenten der Vandermonde-Matrix mit
     $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich:
     $ v_{kj} = z_j^k $ für $k, j = 0, \dots, n-1$.
+
 \end{mydef}
 
 \begin{lemma}
