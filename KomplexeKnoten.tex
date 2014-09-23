@@ -46,10 +46,10 @@ invariant unter Rotation und Spiegelung der Knoten ist.
     \noindent Wie behauptet, folgt insgesamt
     \[
         \begin{split}
-            \cond{\Vand{\alpha z}}_\infty
+            \cond[\infty]{\Vand{\alpha z}}
             &= \norm{\Vand{\alpha z}}_\infty \norm{\Vand{\alpha z}^{-1}}_\infty\\
             &= \norm{\Vand{z}}_\infty \norm{\Vand{z}^{-1}}_\infty
-            = \cond{\Vand{z}}_\infty.
+            = \cond[\infty]{\Vand{z}}.
         \end{split}
     \]
 
@@ -162,7 +162,7 @@ Knoten der $n$-ten Einheitswurzeln beträgt $n$.
 
 Im Folgenden untersuchen wir die Kondition einer Vandermonde-Matrix, bei der
 einer der Knoten von seiner ursprünglichen Position als $n$-te Einheitswurzel
-um einen Winkel $\delta \in \left[0,\frac{\pi}{n}\right)$ auf dem Einheitskreis
+um einen Winkel $\delta \in \left[0,\frac{2 \pi}{n}\right)$ auf dem Einheitskreis
 ausgelenkt wird.
 Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
 ändern Drehungen und Spiegelungen der Knoten nicht die Kondition der
@@ -294,8 +294,7 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
 \begin{theorem}
     Es gilt
     \begin{equation}
-        % FIXME: cond_\infty
-        \cond{ \Vand{\delta} }
+        \cond[\infty]{ \Vand{\delta} }
         = n^2 \prod_{j=1}^{n-1} \abs{ z_0(\delta) - z_j }^{-1}
         = n^2 \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
     \end{equation}
@@ -363,3 +362,13 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
     \caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
     \label{fig:row_j}
 \end{figure}
+
+\begin{theorem}
+    Es gilt
+    \begin{equation}
+        \norm{ \Vand{\delta}^{-1} }_F^2
+        = \frac{n-1}{n}
+          + \frac{\sin^2 \left( \frac{\pi \delta}{n} \right)}{n} \cdot \sum_{k=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+          + n \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+    \end{equation}
+\end{theorem}
