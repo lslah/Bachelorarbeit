@@ -205,10 +205,11 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
         = \abs{(-1)^r \sigma_r(z_1, \dots, z_{n-1})}
         = \abs{\sigma_r(z_1, \dots, z_{n-1})}.
     \]
-    Nach Definition der elementarsymmetrischen Polynome ist $\sigma_r({-z_1,
-    \dots, -z_{n-1}})$ der ${n\!-\!r\!-\!1}$-te Koeffizient des Polynoms vom
-    Grad $n-1$, das eindeutig durch die $n-2$ Nullstellen $z_k$, $k=1, \dots,
-    n-1$ bestimmt ist.
+    Nach Definition der elementarsymmetrischen Polynome ist
+    $\sigma_r({-z_1, \dots, -z_{n-1}})$
+    der ${n\!-\!r\!-\!1}$-te Koeffizient des Polynoms vom
+    Grad $n-1$, das eindeutig durch die $n-2$ Nullstellen
+    $z_k$, $k=1, \dots, n-1$ bestimmt ist.
     Wir zeigen, dass dies das Polynom $p(z) = \sum_{r=0}^{n-1} z^r$ ist.
 
     \noindent Tatsächlich ist $z_k = e^{2 \pi i k / n}$ für $k = 1, \dots, n-1$
@@ -293,7 +294,8 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
 \begin{theorem}
     Es gilt
     \begin{equation}
-        \cond_\infty \Vand{\delta}
+        % FIXME: cond_\infty
+        \cond{ \Vand{\delta} }
         = n^2 \prod_{j=1}^{n-1} \abs{ z_0(\delta) - z_j }^{-1}
         = n^2 \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
     \end{equation}
