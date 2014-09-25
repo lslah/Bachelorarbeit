@@ -1,4 +1,20 @@
 \chapter{Vandermonde-Matrizen mit Stützstellen auf dem Einheitskreis}
+
+Wie das vorherige Kapitel zeigt, sind Vandermonde-Matrizen mit reellen
+Stützstellen äußerst schlecht konditionier und werden daher nur für
+theoretische Betrachtungen verwendet.
+
+Anders verhält es sich, wenn man Knoten in der komplexen Ebene zulässt.
+Wählt man als Stützstellen die $n$-ten Einheitswurzeln, so erreicht die
+Vandermonde-Matrix sogar die perfekte Kondition $1$ bezüglich der Spektralnorm.
+
+In diesem Abschnitt untersuchen wir Vandermonde-Matrizen mit Knoten auf dem
+komplexen Einheitskreis, die jedoch von dem perfekten Fall der $n$-ten
+Einheitswurzeln abweichen.
+Für diese speziellen Konfigurationen leiten wir explizite Formeln zur
+Berechnung der Konditionen bezüglich der Zeilensummennorm und der Frobeniusnorm
+her.
+
 \section{Invarianz der Kondition unter Rotation der Knoten}
 
 Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
@@ -13,7 +29,6 @@ Rotation und Spiegelung der Knoten verändert.
     invariant unter Multiplikation der Knoten mit einer komplexen Zahl
     $\alpha = e^{i\varphi} \in \C$, $\varphi \in \R$.
 \end{lemma}
-
 \begin{proof}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$.
     Wegen $\abs{e^{i\varphi}} = 1$ für alle $\varphi \in \R$ gilt
@@ -51,7 +66,6 @@ Rotation und Spiegelung der Knoten verändert.
             = \cond[\infty]{\Vand{z}}.
         \end{split}
     \]
-
 \end{proof}
 
 \begin{lemma}
@@ -68,7 +82,6 @@ Rotation und Spiegelung der Knoten verändert.
     unter Multiplikation der Knoten mit einer komplexen Zahl $\alpha$ vom
     Betrag $\abs{\alpha} = 1$.
 \end{lemma}
-
 \begin{proof}
     Wir setzen
     \[
@@ -156,33 +169,34 @@ Diese motiviert die folgende Definition:
 % SECTION:OUTLIER
 \section{Vandermonde-Matrizen aus \boldmath{$(n\!-\!1)$} Einheitswurzeln und einem Ausreißer}
 
-Die Kondition bezüglich der Zeilensummennorm der Vandermonde-Matrix zu den $n$
-Knoten der $n$-ten Einheitswurzeln beträgt $n$.
-
-Im Folgenden untersuchen wir die Kondition einer Vandermonde-Matrix, bei der
-einer der Knoten von seiner ursprünglichen Position als $n$-te Einheitswurzel
-um einen Winkel $\delta \in \left[0,\frac{2 \pi}{n}\right)$ auf dem Einheitskreis
-ausgelenkt wird.
+Im Folgenden untersuchen wir die Kondition einer Vandermonde-Matrix zu den
+Knoten der $n$-ten Einheitswurzeln, wobei einer der Knoten von seiner
+ursprünglichen Position um einen Winkel $\delta \in \left[0,\frac{2
+\pi}{n}\right)$ auf dem Einheitskreis ausgelenkt wird.
 Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
 ändern Drehungen und Spiegelungen der Knoten nicht die Kondition der
 Vandermonde-Matrix.
 Daher können wir ohne das Problem zu beschränken stets den Knoten auslenken,
 welcher der $n$-ten Einheitswurzel $1$ zugeordnet ist.
+
 Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \C^n$ mit
 $z_0(\delta) = e^{2 \pi i \delta / n}$
 und
 $z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$
 und die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
 mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
+Häufig werden wir auf die explizite Angabe der Abhängigkeit von $\delta$
+verzichten, und beispielsweise nur kurz $z_0$ anstelle von $z_0(\delta)$
+schreiben.
 
+\subsection{Kondition bezüglich der Zeilensummennorm}
 
-% \begin{lemma}
-%     Es gilt
-%     \[
-%         \cond_\infty \Vand{1, e^{\frac{\pi i}{n}}, e^{\frac{2 \pi i}{n}}, \dots, e^{\frac{(n-1) \pi i}{n}}  }
-%         = n.
-%     \]
-% \end{lemma}
+Vandermonde-Matrizen mit Stützstellen innerhalb des komplexen Einheitskreises
+haben die Zeilensummennorm $1$, wie bereits in
+\lemmaref{infty_norm_vandermonde_unit_roots} gezeigt wurde.
+Dies trifft offensichtlich auch in unserem Fall zu, so dass wir für die
+Berechnung der Kondition nur noch die Zeilensummennorm der inversen
+Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
 
 \begin{lemma}
     \label{lemma:inverse_outlier_vandermonde_first_row_abs_sum}
@@ -242,17 +256,21 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
     \]
 \end{proof}
 
-\begin{theorem}
+Der Beweis der folgenden Vermutung konnte im Rahmen dieser Arbeit nicht
+erbracht werden. Numerische Untersuchungen konnten die Aussage jedoch nicht
+widerlegen.
+
+\begin{assumption}
     Es gilt
     \begin{equation}
         \cond[\infty]{ \Vand{\delta} }
         = n^2 \prod_{j=1}^{n-1} \abs{ z_0(\delta) - z_j }^{-1}
         = n^2 \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
     \end{equation}
-\end{theorem}
+\end{assumption}
 
-\begin{proof}
-    Wir müssen zeigen, dass
+\begin{remark}
+    Zum Beweis der Vermutung muss gezeigt werden, dass
     \[
         \norm{\Vand{\delta}^{-1}}_\infty
         = n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
@@ -266,7 +284,7 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
     gilt.
     Lemma \ref{lemma:inverse_outlier_vandermonde_first_row_abs_sum} liefert dann die Behauptung.
 
-    \noindent Eine Idee wäre, die beiden Faktoren $\Pi_j$ und
+    \noindent Der Ansatz, die beiden Faktoren $\Pi_j$ und
     $\sum_{r=0}^{n-1} \abs{\sigma_r^j}$ einzeln abzuschätzen,
     d.h. die Ungleichungen
     \[
@@ -276,9 +294,8 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
     \[
         \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \sum_{r=0}^{n-1} \abs{\sigma_r^0}
     \]
-    für alle $ j=1, \dots, n-1$ zu beweisen.
-    Dies ist jedoch im Allgemeinen nicht möglich, wie die Figuren
-    \ref{fig:pi_j} und \ref{fig:sigma_row_sum} für den Fall $n=5$ zeigen.
+    für alle $ j=1, \dots, n-1$ zu beweisen, muss im Allgemeinen scheitern, wie
+    die Figuren \ref{fig:pi_j} und \ref{fig:sigma_row_sum} für den Fall $n=5$ zeigen.
     Die schwarzen Graphen, die den Fall $j=0$ darstellen, nehmen dort niemals
     den Maximalwert unter allen Graphen von $j=0, \dots, n-1$ an.
     Die Figur \ref{fig:row_j} legt jedoch nahe, dass die Behauptung des
@@ -291,7 +308,7 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
         \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0}
     \]
     für $j=1, \dots, n-1$.
-\end{proof}
+\end{remark}
 
 %\begin{figure}[htb]
 %    \centering
@@ -314,6 +331,7 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
 %    \label{fig:row_j}
 %\end{figure}
 
+\subsection{Kondition bezüglich der Frobeniusnorm}
 % FIXME: Next paragraph is crap.
 Wir wollen nun eine explizite Formel für die Kondition der Vandermonde-Matrix
 $\Vand{\delta}$ bezüglich der Frobeniusnorm beweisen.
@@ -417,7 +435,7 @@ Hilfslemmata.
     \]
 \end{lemma}
 \begin{proof}
-    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - z_j)$ gilt
+    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - z_j)$ gilt\footnote{$\Re(z)$ bezeichnet hier den Realteil von $z$.}
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
@@ -606,6 +624,8 @@ Hilfslemmata.
     und damit die Behauptung.
 \end{proof}
 
+Schließlich können wir die Frobeniusnorm der inversen Vandermonde-Matrix
+$\Vand{\delta}^{-1}$ explizit angeben und beweisen.
 \begin{theorem}
     Es gilt
     \begin{equation}

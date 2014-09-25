@@ -3,24 +3,18 @@ In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1})
 \in \Cn$ gegeben.  Die zugehörige Vandermonde-Matrix sei mit $V \defeq
 \Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung der Zeilensummennorm der
 inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung der
-Kondition $\cond{V}$ zu finden.
-
-Zunächst gilt es die Inverse der Vandermonde-Matrix zu bestimmen. Anschließend
-betrachten wir die \emph{elementarsymmetrischen Polynome}, mit deren Hilfe sich
-$\Vand{z}^{-1}$ explizit darstellen lässt. Es folgen der eigentliche Beweis der
-Abschätzung und einige Beispiele von Vandermonde-Matrizen mit reellen
-Stützstellen und deren Kondition.
+Kondition $\cond[\infty]{V}$ zu finden.
 
 % TODO: reference gautschi1
 
 \section{Inversion der Vandermonde-Matrix}
 Es werden zunächst die \emph{Lagrange-Polynome} zu den Knoten
-$z_0, \dots, z_{n-1}$ eingeführt, deren Koeffizienten die Einträge der
-Inversen der Vandermonde-Matrix sind.
+$z_0, \dots, z_{n-1}$ eingeführt, deren Koeffizienten sich als Einträge der
+inversen Vandermonde-Matrix herausstellen.
 
 \begin{mydef}[Lagrange-Polynome]
     Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
-    \emph{Lagrange-Polynome} als
+    \emph{Lagrange-Polynome} durch
     \[
         l_j(z) = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}, \; j = 0, \dots, n-1.
     \]
@@ -245,7 +239,7 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
         \begin{split}
             0 &= c_n = a_n \conj{a}_0\\
             0 &= c_{n-1} = a_n \conj{a}_1 + a_{n-1} \conj{a}_0\\
-              &\dots\\
+              &\;\;\vdots\\
             0 &= c_1 = a_n \conj{a}_{n-1} + \dots + a_{1} \conj{a}_0\\
             M^2 &= c_0 = a_n^2 + \dots + a_0^2.
         \end{split}
@@ -255,7 +249,6 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
     Grund $a_1 = 0$ und induktiv folgen $a_j = 0$ für $j < n$.
     Schließlich zeigt die letzte Gleichung $M^2 = a_n^2$, so dass $p$ wie
     behauptet ein Polynom von der Form $p(z) = a_n z^n$ ist.
-
 \end{proof}
 
 Nun können wir eine Abschätzung der Zeilensummennorm der inversen

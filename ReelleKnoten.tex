@@ -10,12 +10,13 @@ der Vandermonde-Matrix mit Stützstellen innerhalb des komplexen
 Einheitskreises.
 Betrachtet man nämlich nur Stützstellen $z_j \in \C$ mit $\abs{z_j} \leq 1$,
 so gilt $\norm{\Vand{z}}_{\infty} = n$.
-Somit muss in diesem Fall zur Bestimmung von $\cond{\Vand{z}}$ nur noch die
+Somit muss in diesem Fall zur Bestimmung von $\cond[\infty]{\Vand{z}}$ nur noch die
 Norm der Inversen $\norm{\Vand{z}^{-1}}_{\infty}$ berechnet werden.
 Insbesondere gilt dies für reelle Stützstellen
 $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 
 \begin{lemma}
+    \label{lemma:infty_norm_vandermonde_unit_roots}
     Seien Stützstellen $z = (z_0, \dots, z_{n-1}) \in \Cn$
     mit $\abs{z_j} \leq 1$ für alle\linebreak
     $j=0,\dots,n-1$ gegeben.
@@ -26,9 +27,12 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 \end{lemma}
 
 \begin{proof}
-    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$ , folgt
+    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$, folgt
     \[
-        \norm{V(z)}_{\infty} = \max_{k=0,\dots,n-1} \left( \sum_{j=0}^{n-1} \abs{z_j^k} \right) = \sum_{j=0}^{n-1} \abs{z_j^0} = n.
+        \norm{V(z)}_{\infty}
+        = \max_{k=0,\dots,n-1} \left( \sum_{j=0}^{n-1} \abs{z_j^k} \right)
+        = \sum_{j=0}^{n-1} \abs{z_j^0}
+        = n.
     \]
 \end{proof}
 
@@ -40,7 +44,8 @@ so dass bei der oberen Schranke von (\ref{eq:inverse_vandermonde_inequality})
 Gleichheit gilt.
 \begin{lemma}
     \label{lemma:nonnegative_real_nodes}
-    Ist $V$ die zu den Stützstellen gehörige Vandermone-Matrix und definiert man
+    Ist $V$ die zu den Stützstellen $x_j \in \R$, $x_j \geq 0$ gehörige
+    Vandermone-Matrix und definiert man
     \[
         p(z) \defeq \prod_{j=0}^{n-1} \left( z - x_j \right),
     \]

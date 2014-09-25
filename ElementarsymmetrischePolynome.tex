@@ -18,6 +18,16 @@ $\norm{V^{-1}}_\infty$.
     \]
 \end{mydef}
 
+\begin{notation}
+    Als abkürzende Schreibweise setzen wir für gegebenes
+    $x = (x_1, \dots, x_{n}) \in \Cn$
+    \[
+        \sigma_{k}^{j}(x) \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
+    \]
+    Damit ist $\sigma_{k}^{j}(x)$ das k-te elementarsymmetrische Polynom in den
+    $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
+\end{notation}
+
 \begin{remark}
     Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
     \begin{equation}
@@ -36,7 +46,6 @@ $\norm{V^{-1}}_\infty$.
         \sigma_k (x_1, \dots, x_{n}) = \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
     \end{equation}
 \end{lemma}
-
 \begin{proof}
     Wir verwenden Gleichung (\ref{eq:explicit_elementary_symmetric_polynomials})
     und teilen die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
@@ -52,15 +61,7 @@ $\norm{V^{-1}}_\infty$.
     \end{equation*}
 \end{proof}
 
-\begin{notation}
-    Als abkürzende Schreibweise setzen wir im Folgenden für gegebene
-    $x_1, \dots, x_{n} \in \C$
-    \[
-        \sigma_{k}^{j} \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
-    \]
-    Damit ist $\sigma_{k}^{j}$ das k-te elementarsymmetrische Polynom in den
-    $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
-\end{notation}
+\noindent Wir beweisen noch zwei technische Lemmata, die uns später nützen.
 
 \begin{lemma}
     \label{lemma:elementary_symmetric_polynomials_const_multiplication}
@@ -82,8 +83,6 @@ $\norm{V^{-1}}_\infty$.
         = \alpha^k \sigma_{k}(x).
     \]
 \end{proof}
-
-Wir beweisen noch zwei technische Lemmata, die uns in späteren Kapiteln nützen.
 
 \begin{lemma}
     \label{lemma:outlier_sigma_zero}
@@ -138,7 +137,10 @@ Wir beweisen noch zwei technische Lemmata, die uns in späteren Kapiteln nützen
     \]
 \end{corollary}
 
-\section[Abschätzung der Betragssumme der elementarsymmetrischen Polynome]{Abschätzung von \boldmath $\sum_{k=0}^{n} \abs{\sigma_{k}}$}
+\section[Abschätzung der Betragssumme der elementarsymmetrischen Polynome]{Eine Abschätzung von \boldmath $\sum_{k=0}^{n} \abs{\sigma_{k}}$}
+
+Die folgende Abschätzung liefert uns im nächsten Abschnitt die obere Schranke
+der Zeilensummennorm der inversen Vandermonde-Matrix.
 \begin{lemma}[\cite{gautschi4}]
     \label{lemma:elementary_symmetric_polynomials_inequality}
     Sei $x = (x_1, \dots, x_n) \in \Cn$ wie zuvor.
@@ -169,32 +171,31 @@ Wir beweisen noch zwei technische Lemmata, die uns in späteren Kapiteln nützen
     also $\sigma_0(x_0) = 1$ und $\sigma_1(x_0) = x_0$.
     Damit ergibt sich: $\sum_{k=0}^{1} \abs{\sigma_k(x_0)} = \abs{1} + \abs{x_0} = 1 + \abs{x_0}$.\\[0.5em]
 %
-    \textbf{Induktionvoraussetzung:}
+    \noindent \textbf{Induktionvoraussetzung:}
     Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
 %
-    \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
+    \noindent \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
     Unter Verwendung von $\sigma_{0}(x_1, \dots, x_n) = 1$
     und $\sigma_{n}(x_1, \dots, x_n) = x_1 \cdots x_n$, folgt:
-    % TODO: Fix this.
-    %\begin{equation*}
-      \begin{align*}
+    \begin{equation*}
+      \begin{split}
         \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
         &= ( 1 + \abs{x_n} ) \cdot \prod_{k=1}^{n-1} \left( 1 + \abs{x_k} \right)\\
         &\overset{IV}{\geq}  ( 1 + \abs{x_n} ) \cdot \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}\\
         &= \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}
         + \sum_{k=1}^{n} \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
         &\geq \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})} + \abs{\sigma_{0}(x_1, \dots, x_{n-1})}\\
-        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})} \numberthis \label{eq:elementary_polynomials_inequality_proof}\\
+        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})}\\
         &\overset{(\ref{eq:recursion_elementary_symmetric_polynomials})}{=}
         \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n})} + \abs{\sigma_{0}(x_1, \dots, x_{n})} + \abs{\sigma_{n}(x_1, \dots, x_n)}\\
         &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}.
-      \end{align*}
-    %\end{equation*}
+      \end{split}
+    \end{equation*}
 
     Um den Spezialfall $x_k = r_k e^{i \varphi}$ der Behauptung zu beweisen,
     führen wir die Induktion analog, mit der neuen Induktionsbehauptung, dass
-    Gleichheit gelte.  Es bleibt nur zu zeigen, dass die Ungleichheit
-    (\ref{eq:elementary_polynomials_inequality_proof}) zur Gleichheit wird, d.h. dass
+    Gleichheit gelte.  Es bleibt nur zu zeigen, dass die zweite Abschätzung
+    oben zur Gleichheit wird, d.h. dass
     $\sigma_{k}(x_1, \dots, x_{n-1})$ und $x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})$
     linear abhängig sind und die Dreiecksungleichung als Gleichung
     \[
