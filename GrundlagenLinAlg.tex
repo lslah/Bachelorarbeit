@@ -1,5 +1,24 @@
 \chapter{Grundlagen aus der linearen Algebra}
 \section{Norm und Kondition}
+Zwei Matrixnormen werden im Laufe der Arbeit von entscheidener Bedeutung sein, weshalb wir uns zunächst an deren Definition erinnern.
+
+\begin{mydef}[Frobenius- und Zeilensummennorm]
+    Sei $A = (a_{kj})_{k,j=0}^{n-1} \in \C^{n\times n}$ eine Matrix.
+    Die \emph{Frobeniusnorm} von $A$ ist definiert durch
+    \begin{equation}
+        \label{eq:frobenius_norm}
+        \norm{A}_F
+        \defeq \sqrt{ \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} \abs{a_{kj}}^2}.
+    \end{equation}
+
+    \noindent Die \emph{Zeilensummennorm} von $A$ ist definiert durch
+    \begin{equation}
+        \label{eq:infinity_norm}
+        \norm{A}_\infty
+        \defeq \max_{k=0, \dots, n-1} \sum_{j=0}^{n-1} \abs{a_{kj}}.
+    \end{equation}
+\end{mydef}
+
 Wir betrachten ein lineares Gleichungssystem der Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$

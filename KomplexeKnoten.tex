@@ -3,8 +3,8 @@
 \section{Numerische Vorbetrachungen}
 
 Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
-gewöhnlicher Normen\footnote{}%TODO
-invariant unter Rotation und Spiegelung der Knoten ist.
+der Zeilensummennorm und aller unitär invarianten Normen sich nicht unter
+Rotation und Spiegelung der Knoten verändert.
 
 %TODO: Was bringt das?
 
@@ -189,13 +189,16 @@ Wir beweisen zunächst einige Hilfslemmata, die es uns schließlich ermöglichen
 eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
 
 \begin{lemma}
+    \label{lemma:outlier_sigma_zero}
     Es gilt
     \[
-        \sum_{r=0}^{n-1} \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
-        = \sum_{r=0}^{n-1} \abs{\sigma_r(z_1, \dots, z_{n-1})}
-        = n.
+        \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
+        = \abs{\sigma_r(z_1, \dots, z_{n-1})}
+        = 1
     \]
+    für alle $r = 0, \dots, n-1$.
 \end{lemma}
+
 
 \begin{proof}
     Nach Lemma \ref{lemma:elementary_symmetric_polynomials_const_multiplication}
@@ -230,8 +233,18 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
         = \abs{\sigma_r(-z_1, \dots, -z_{n-1})}
         = 1
     \]
-    gilt, was die Behauptung liefert.
+    gilt.
 \end{proof}
+
+\begin{corollary}
+    \label{corollary:outlier_sigma_zero_row_sum}
+    Es gilt
+    \[
+        \sum_{r=0}^{n-1} \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
+        = \sum_{r=0}^{n-1} \abs{\sigma_r(z_1, \dots, z_{n-1})}
+        = n.
+    \]
+\end{corollary}
 
 \begin{lemma}
     \label{lemma:inverse_outlier_vandermonde_first_row_abs_sum}
@@ -280,7 +293,7 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
         = \prod_{\substack{k = 1}}^{n-1} \frac{1}{2 \cdot \sin \left( \frac{\pi (k-\delta)}{n} \right)}.
     \]
 
-    \noindent Zusammen mit der Aussage des vorherigen Lemmas folgt nun die Behauptung:
+    \noindent Zusammen mit der Aussage des vorherigen Korollars folgt nun die Behauptung:
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{ u_{0r} }
@@ -342,33 +355,341 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
     für $j=1, \dots, n-1$.
 \end{proof}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=350pt]{images/pi_j}
-    \caption{$ f_j(\delta) = \Pi_j(\delta) $}
-    \label{fig:pi_j}
-\end{figure}
+%\begin{figure}[htb]
+%    \centering
+%    \includegraphics[width=350pt]{images/pi_j}
+%    \caption{$ f_j(\delta) = \Pi_j(\delta) $}
+%    \label{fig:pi_j}
+%\end{figure}
+%
+%\begin{figure}[htb]
+%    \centering
+%    \includegraphics[width=350pt]{images/sigma_row_sum}
+%    \caption{$ g_j(\delta) = \sum_{r=0}^{n-1} \abs{ \sigma_r^j(z(\delta)) } $}
+%    \label{fig:sigma_row_sum}
+%\end{figure}
+%
+%\begin{figure}[htb]
+%    \centering
+%    \includegraphics[width=350pt]{images/row_j}
+%    \caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
+%    \label{fig:row_j}
+%\end{figure}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=350pt]{images/sigma_row_sum}
-    \caption{$ g_j(\delta) = \sum_{r=0}^{n-1} \abs{ \sigma_r^j(z(\delta)) } $}
-    \label{fig:sigma_row_sum}
-\end{figure}
+% FIXME: Next paragraph is crap.
+Wir wollen nun eine explizite Formel für die Kondition der Vandermonde-Matrix
+$\Vand{\delta}$ bezüglich der Frobeniusnorm beweisen.
+Dazu sei an die Definition der Frobeniusnorm (\ref{eq:frobenius_norm}) erinnert.
+Es zeigt sich sofort, dass die Frobeniusnorm einer Vandermonde-Matrix mit
+$n$ Knoten auf dem Einheitskreis $n$ beträgt.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=350pt]{images/row_j}
-    \caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
-    \label{fig:row_j}
-\end{figure}
+\begin{lemma}
+    Für Knoten auf dem Einheitskreis
+    $z = \left(e^{i \varphi_0}, \dots, e^{i \varphi_{n-1}} \right) \in \C$
+    mit $\varphi_j \in \R$ für $j = 0, \dots, n-1$ gilt:
+    \begin{equation}
+        \norm{\Vand{z}}_F = n.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Es gilt
+    \[
+        \norm{\Vand{z}}_F^2
+        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} \abs{ \left(e^{i \varphi_j}\right)^k }^2
+        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} 1
+        = n^2.
+    \]
+\end{proof}
+
+Schwierigkeiten bereitet also erneut die Norm der inversen Vandermonde-Matrix.
+Wir betrachten im Folgenden die zwei Fälle $j=0$ und $j \in \{1, \dots, n-1\}$
+gesondert.
+
+\begin{lemma}
+    \label{lemma:inverse_outlier_zero_row_quadratic_sum}
+    Bezeichnen wir mit $u_{jr} \in \C$ für $j, r = 0, \dots, n-1$ die Elemente
+    der inversen Vandermonde-Matrix $V(\delta)^{-1}$, so gilt
+    \[
+        \sum_{r=0}^{n-1} \abs{u_{0r}}^2
+        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+    \]
+\end{lemma}
+\begin{proof}
+    % TODO: Hier fehlt noch der Hinweis auf pi_0, die Formel erscheint aus dem
+    % Nichts.
+    Mit Lemma \ref{lemma:outlier_sigma_zero} erhalten wir
+    \[
+        \begin{split}
+            \sum_{r=0}^{n-1} \abs{u_{0r}}^2
+            &= \sum_{r=0}^{n-1} \abs{\Pi_0}^2 \abs{\sigma_{r}^{0}(z_1, \dots, z_{n-1})}^2\\
+            &= \abs{\Pi_0}^2 \sum_{r=0}^{n-1} 1^2
+            = n \cdot \abs{\Pi_0}^2\\
+            &= n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+        \end{split}
+    \]
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:uptau_j}
+    Definiere $\uptau_j \in \C$ für $j=0, \dots, n-1$ durch
+    \[
+        \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \exp\left(\frac{2 \pi i j}{n}\right) - \exp\left(\frac{2 \pi i k}{n}\right) \right).
+    \]
+    Es gilt dann $\abs{\uptau_j} = n$ für alle $j = 0, \dots, n-1$.
+\end{lemma}
+\begin{proof}
+    Wir zeigen $\abs{\uptau_j} = \abs{\uptau_0}$ für alle $j = 1, \dots, n-1$ und
+    $\uptau_0 = n$.
+    Es gilt
+    \[
+        \begin{split}
+            \abs{\uptau_j}
+            &= \abs{\uptau_j \cdot e^{\frac{- 2\pi i j}{n}}}
+            = \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{e^0 - e^{\frac{2 \pi i (k-j)}{n}}}\\
+            &\overset{k' = k-j}{=}
+            \prod_{\substack{k'=-j\\ k\neq 0}}^{n-1-j} \abs{1 - e^{\frac{2 \pi i k'}{n}}}
+            = \prod_{\substack{k'=0\\ k\neq 0}}^{n-1} \abs{1 - e^{\frac{2 \pi i k'}{n}}}
+            = \abs{\uptau_0},
+        \end{split}
+    \]
+    wobei wir im letzten Schritt nur die Reihenfolge der Faktoren verändern und
+    die $2\pi$-Periodizität von $e^{i \varphi}$ ausnutzen.
+
+    \noindent Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - z_k)$ können wir $\uptau_0 = p(1)$
+    schreiben.
+    Bereits im Beweis von \lemmaref{outlier_sigma_zero} hatten wir gesehen, dass
+    \[
+        p(z) = \prod_{k=1}^{n-1} (z-z_k) = \sum_{k=0}^{n-1} z^k
+    \]
+    gilt.
+    Damit folgt sofort
+    \[
+        \uptau_0 = p(1) = \sum_{k=0}^{n-1} 1^k = n.
+    \]
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:sum_shifted_unit_roots}
+    Für $j \in \{1, \dots, n-1\}$ gilt
+    \[
+        \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right) = 0.
+    \]
+\end{lemma}
+\begin{proof}
+    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - z_j)$ gilt
+    \[
+        \begin{split}
+            \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
+            &= \sum_{r=0}^{n-1} \Re\left( e^{\frac{2 \pi i j r}{n} - i \varphi} \right)
+            = \Re \left( \sum_{r=0}^{n-1} e^{\frac{2 \pi i j r}{n} - i \varphi} \right)\\
+            &= \Re \left( e^{-i \varphi}\sum_{r=0}^{n-1} \left( e^{\frac{2 \pi i j}{n}}\right)^r \right)
+            = \Re \left( e^{-i \varphi} p\left( e^{\frac{2 \pi i j}{n}} \right) \right)
+            = 0.
+        \end{split}
+    \]
+\end{proof}
+
+\begin{lemma}
+    \label{lemma:inverse_outlier_nonzero_row_quadratic_sum}
+    Sei $z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \Cn$ wie zuvor.
+    Erneut bezeichnen wir mit $u_{jr}$ die Elemente der inversen
+    Vandermonde-Matrix $\Vand{\delta}^{-1}$.
+    Dann gilt für ${j = 1, \dots, n-1}$
+    \begin{equation}
+        \sum_{r=0}^{n-1} \abs{u_{jr}}^2
+        = \frac{\rho(\delta)^2 + 1}{n}
+    \end{equation}
+    mit
+    \[
+        \rho(\delta) \defeq \frac{\sin \left( \pi \frac{\delta}{n} \right)}{\sin \left( \pi \frac{j - \delta}{n} \right)}.
+    \]
+\end{lemma}
+\begin{proof}
+    In diesem Beweis werden wir der Übersicht wegen meist auf die explizite
+    Erwähnung der Abhängigkeit von $\delta$ verzichten, und nur kurz
+    $z_0 = z_0(\delta)$ schreiben.
+
+    \noindent Sei $j \in \{1, \dots, n-1\}$ fixiert.
+    Wir erinnern uns zunächst daran, dass mit Lemma
+    \ref{lemma:elementary_symmetric_polynomials_const_multiplication}
+    für ${r = 0, \dots, n-1}$ gilt:
+    \[
+        \abs{ \sigma_r^j (z)}
+        = \abs{(-1)^r \sigma_r^j (-z) }
+        = \abs{\sigma_r^j (-z) }.
+    \]
+    Weiterhin ist nach Definition $\sigma_r^j (-z)$ der $n\!-\!j\!-\!1$-te
+    Koeffizient des Polynoms
+    \[
+        \begin{split}
+            p(z)
+            &= \sum_{k=0}^{n-1} a_k z^k
+            \defeq \prod_{\substack{k=0 \\ k\neq j}}^{n-1} (z-z_k)
+            = \left( \prod_{k=1}^{n-1} (z-z_k) \right) \cdot \frac{z-z_0(\delta)}{z-z_j}.
+        \end{split}
+    \]
+    Im Beweis von Lemma
+    \ref{lemma:outlier_sigma_zero}
+    hatten wir bereits gesehen, dass die Gleichheit
+    \[
+        \prod_{k=1}^{n-1} (z-z_k) = \sum_{k=0}^{n-1} z^k
+    \]
+    gilt, so dass wir weiter
+    \[
+        p(z)
+        = \sum_{k=0}^{n-1} a_k z^k
+        = \sum_{k=0}^{n-1} z^k \cdot \frac{z-z_0(\delta)}{z-z_j}
+    \]
+    erhalten.
+    Multiplikation der Gleichung mit $(z-z_j)$ liefert die äquivalente
+    Darstellung
+    \[
+        (z-z_j) \cdot \sum_{k=0}^{n-1} a_k z^k
+        = (z-z_0(\delta)) \cdot \sum_{k=0}^{n-1} z^k
+    \]
+    oder ausmultipliziert
+    \[
+        \sum_{k=0}^{n-1} \left( a_k z^{k+1} - a_k z_j z^k \right)
+        = \sum_{k=0}^{n-1} \left( z^{k+1} - z_0 z^k \right).
+    \]
+
+    \noindent Durch Vergleich der Koeffizienten erhalten wir die $n+1$
+    Gleichungen
+    \begin{equation*}
+        \begin{split}
+            -a_0 z_j              &= -z_0\\
+            a_0 - a_1 z_j         &= 1 - z_0\\
+            a_1 - a_2 z_j         &= 1 - z_0\\
+                                  &\;\; \vdots\\
+            a_{n-2} - a_{n-1} z_j &= 1 - z_0\\
+            a_{n-1}               &= 1
+        \end{split}
+    \end{equation*}
+    und in etwas kompakterer Form
+    \[
+        \begin{split}
+            -a_0 z_j            &= -z_0, \\
+            a_{n-1}             &= 1, \\
+            a_{k-1} - a_{k} z_j &= 1 - z_0 \text{ für } k \in \{1, \dots, n-1\}.
+        \end{split}
+    \]
+    Es zeigt sich nun, dass für $k=1, \dots, n$ gilt:
+    \begin{equation}
+        \label{eq:elementy_symmetric_polynomials_nonzero_row}
+        a_{n-k}
+        = (1 - z_0) \left( \sum_{r=0}^{k-2} z_j^r \right) + z_j^{k-1}.
+    \end{equation}
+    Für $k=1$ ist dies offensichtlich wahr.
+    Ist die Gleichung für ein $k \in \{1, \dots, n\}$ bereits gezeigt, so folgt
+    mit Hilfe der Gleichung
+    $a_{n-(k+1)} - a_{n-k} z_j = 1 - z_0$, dass unsere Behauptung tatsächlich
+    auch für $a_{n-(k+1)}$ gilt:
+    \[
+        \begin{split}
+            a_{n-k-1}
+            &= 1-z_0 + z_j a_{n-k}\\
+            &= (1-z_0) + z_j \left( (1 - z_0) \left( \sum_{r=0}^{k-2} z_j^r \right) + z_j^{k-1} \right)\\
+            &= (1-z_0) + (1 - z_0) \left( \sum_{r=0}^{k-2} z_j^{r+1} \right) + z_j^{k}\\
+            &= (1 - z_0) \left( \sum_{r=0}^{k-1} z_j^r \right) + z_j^{k}.
+        \end{split}
+    \]
+    Induktion über $k = 1, \dots, n$ liefert also die Richtigkeit von Gleichung
+    (\ref{eq:elementy_symmetric_polynomials_nonzero_row}).
+    Wir identifizieren nun die elementarsymmetrischen Polynome gemäß ihrer
+    Definition durch
+    ${\sigma_r^j(-z) = a_{n-(r+1)}}$ für $r=0, \dots, n-1$ und
+    formen unter Verwendung der geometrischen Reihe weiter um:
+    \[
+        \begin{split}
+            \sigma_r^j(-z)
+            &= (1 - z_0) \left( \sum_{l=0}^{r-1} z_j^l \right) + z_j^{r}\\
+            &= (1 - z_0) \frac{1-z_j^r}{1-z_j} + z_j^{r}
+            = \frac{(1-z_0)(1-z_j^r) + (1-z_j) z_j^r}{1-z_j}\\
+            &= \frac{1 + z_0 z_j^r - z_0 - z_j^{r+1}}{1-z_j}
+            = \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{1-z_j}.
+        \end{split}
+    \]
+
+    \noindent Damit gilt für alle $r=0, \dots, n-1$
+    \[
+        \begin{split}
+            u_{jr}
+            &= (-1)^r \Pi_j \sigma_r^j(z)
+            = \Pi_j \sigma_r^j(-z) \\
+            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j) \cdot \prod_{\substack{k=0\\ k\neq j}}^{n-1} (z_j - z_k)}\\
+            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \left((z_j - 1) (z_j - z_1) \dots (z_j - z_{n-1}) \right)}\\
+            &\eqdef \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \uptau_j }\\
+            &= \frac{1}{\uptau_j} \left( \frac{1 - z_0}{z_j-z_0} - z_j^r \right),
+        \end{split}
+    \]
+    mit
+    \[
+        \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \exp\left(\frac{2 \pi i j}{n}\right) - \exp\left(\frac{2 \pi i k}{n}\right) \right).
+    \]
+    Wie in \lemmaref{uptau_j} gezeigt, gilt $\abs{\uptau_j} = n$ für alle $j \in \{1, \dots, n-1\}$.
+
+    \noindent Wir schreiben nun $ \rho e^{i\varphi} \defeq \frac{1-z_0}{z_j-z_0} $
+    mit $\rho, \varphi \in \R$, $\rho \geq 0$ und erhalten
+    \[
+        \begin{split}
+            \abs{u_{jr}}^2
+            &= \frac{1}{n^2} \abs{ \rho e^{i\varphi} - z_j^r }^2
+            = \frac{1}{n^2} \left( \rho^2 + 1 - \rho \left( e^{\varphi - \frac{2\pi j r}{n}} + e^{\frac{2 \pi j r } {n} - \varphi} \right) \right)\\
+            &= \frac{1}{n^2} \left( \rho^2 + 1 - 2 \rho \cos \left( \frac{2 \pi j r}{n} - \varphi \right) \right).
+        \end{split}
+    \]
+
+    \noindent Insgesamt folgt für die $j$-te Zeile
+    \[
+        \begin{split}
+            \sum_{r=0}^{n-1} \abs{u_{jr}}^2
+            &= \sum_{r=0}^{n-1} \frac{1}{n^2} \left( \rho^2 + 1 - 2 \rho \cos \left( \frac{2 \pi j r}{n} - \varphi \right) \right)\\
+            &= \frac{\rho^2 + 1}{n} - \frac{2 \rho}{n^2} \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
+            = \frac{\rho^2 + 1}{n},
+        \end{split}
+    \]
+    denn es gilt nach \lemmaref{sum_shifted_unit_roots}
+    \[
+        \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right) = 0.
+    \]
+
+    \noindent Nach Definition ist $\rho = \frac{\abs{ 1 - z_0}}{\abs{z_j - z_0}}$.
+    Mit
+    $\abs{1-z_0} = 2 \cdot \sin \left( \pi \frac{\delta}{n} \right)$
+    und
+    $\abs{z_j-z_0} = 2 \cdot \sin \left( \pi \frac{j - \delta}{n} \right)$
+    folgt
+    \[
+        \rho = \frac{\sin \left( \pi \frac{\delta}{n} \right)}{\sin \left( \pi \frac{j - \delta}{n} \right)},
+    \]
+    und damit die Behauptung.
+\end{proof}
 
 \begin{theorem}
     Es gilt
     \begin{equation}
         \norm{ \Vand{\delta}^{-1} }_F^2
-        = \frac{n-1}{n}
+        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
           + \frac{\sin^2 \left( \frac{\pi \delta}{n} \right)}{n} \cdot \sum_{k=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{k-\delta}{n} \right)}
-          + n \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+          + \frac{n-1}{n}
     \end{equation}
 \end{theorem}
+\begin{proof}
+    Die Behauptung folgt sofort mit Hilfe der Lemmata
+    \ref{lemma:inverse_outlier_zero_row_quadratic_sum} und
+    \ref{lemma:inverse_outlier_nonzero_row_quadratic_sum}:
+    \[
+        \begin{split}
+            \norm{ \Vand{\delta}^{-1} }_F^2
+            &= \sum_{j=0}^{n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}^2
+             = \sum_{r=0}^{n-1} \abs{u_{0r}}^2
+             + \sum_{j=1}^{n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}^2\\
+            &= n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+             + \sum_{j=1}^{n-1} \left( \frac{1}{n} \cdot \frac{\sin^2 \left( \pi \frac{\delta}{n} \right)}{\sin^2 \left( \pi \frac{j - \delta}{n} \right)}
+             + \frac{1}{n} \right)\\
+            &= n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+             + \frac{\sin^2 \left( \pi \frac{\delta}{n} \right)}{n} \cdot \sum_{j=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{j - \delta}{n} \right)}
+             + \frac{n-1}{n}.
+         \end{split}
+     \]
+\end{proof}
