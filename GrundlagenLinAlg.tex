@@ -1,6 +1,7 @@
 \chapter{Grundlagen aus der linearen Algebra}
 \section{Norm und Kondition}
-Zwei Matrixnormen werden im Laufe der Arbeit von entscheidener Bedeutung sein, weshalb wir uns zunächst an deren Definition erinnern.
+Zwei Matrixnormen werden im Laufe der Arbeit von entscheidener Bedeutung sein,
+weshalb wir uns zunächst an deren Definitionen erinnern.
 
 \begin{mydef}[Frobenius- und Zeilensummennorm]
     Sei $A = (a_{kj})_{k,j=0}^{n-1} \in \C^{n\times n}$ eine Matrix.
@@ -19,7 +20,18 @@ Zwei Matrixnormen werden im Laufe der Arbeit von entscheidener Bedeutung sein, w
     \end{equation}
 \end{mydef}
 
-Wir betrachten ein lineares Gleichungssystem der Form
+\begin{remark}
+    Später werden wir die \emph{unitäre Invarianz} der
+    Frobeniusnorm benötigen, d.h. die Eigenschaft, dass für eine unitäre Matrix
+    $U \in \C^{n\times n}$ und eine beliebige Matrix $A \in \C^{n\times n}$
+    gilt:
+    \[
+        \norm{A U} = \norm{U A} = \norm{A}.
+    \]
+\end{remark}
+
+Wir wollen nun den Begriff der Kondition einer Matrix motivieren.
+Dazu betrachten wir ein lineares Gleichungssystem der Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
 und gesuchten Vektor $x \in \Cn$.
@@ -56,7 +68,7 @@ folgt für den relativen Fehler:
 \end{mydef}
 
 \begin{remark}
-    Mit der vorherigen Definition gilt nun: $ \frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta $.
+    Mit dieser Definition gilt nun: $ \frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta $.
 \end{remark}
 
 \section{Vandermonde-Matrizen}

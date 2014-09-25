@@ -67,193 +67,27 @@ Koeffizienten der Lagrange-Polynome:
     wie behauptet.
 \end{proof}
 
-\section{Elementarsymmetrische Polynome}
-Um eine explizite Darstellung der Elemente von $V^{-1}$ zu finden, führen wir
-die \emph{elementarsymmetrischen Polynome} ein.
-Diese liefern ebenfalls die Grundlage der Abschätzung von
-$\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
+Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
+elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
+Inversen der Vandermonde-Matrix angegeben werden.
+Dazu schreiben wir für $j = 0, \dots, n-1$
+\begin{equation*}
+    \sum_{r = 0}^{n-1} u_{jr} z^{r}
+    = l_j(z)
+    = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}
+    = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
+\end{equation*}
+mit
+\begin{equation}
+    \label{def:pi_j}
+    \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
+\end{equation}
 
-\begin{mydef}[Elementarsymmetrische Polynome]
-    Für $x = (x_1, \dots, x_{n}) \in \Cn$ definieren wir die
-    \emph{k-ten elementarsymmetrischen Polynome
-    $\sigma_{k}(x) = \sigma_{k}(x_1, \dots, x_{n})$, $k = 0, \dots, n$
-    in den $n$ Variablen $x_j$, $j = 1, \dots, n$} durch
-    \[
-        \prod_{k=1}^{n} (z + x_k)
-        = \sum_{k=0}^{n} \sigma_{k}(x_1, \dots, x_{n}) z^{n-k}.
-    \]
-\end{mydef}
-
-\begin{remark}
-    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
-    \begin{equation}
-        \label{eq:explicit_elementary_symmetric_polynomials}
-        \sigma_{k}(x_1, \dots, x_{n})
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \left( \prod_{r=1}^k x_{j_r} \right).
-    \end{equation}
-\end{remark}
-
+\noindent Mit Lemma
+\ref{lemma:elementary_symmetric_polynomials_const_multiplication} erhalten
+wir dann
 \begin{lemma}
-    \label{lemma:recursion_elementary_symmetric_polynomials}
-    Die elementarsymmetrischen Polynome erfüllen die Rekursionsformel:
-    \begin{equation}
-        \label{eq:recursion_elementary_symmetric_polynomials}
-        \sigma_k (x_1, \dots, x_{n}) = \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
-    \end{equation}
-\end{lemma}
-
-\begin{proof}
-    Wir verwenden Gleichung (\ref{eq:explicit_elementary_symmetric_polynomials})
-    und teilen die rechte Seite in zwei Gruppen von Summanden, je nachdem, ob
-    $x_n$ ein Faktor im Summand ist:
-    \begin{equation*}
-        \begin{split}
-            \sigma_k (x_1, \dots, x_{n})
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}\\
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}
-            + \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_{j_1} \cdots x_{j_k} \cdot x_{n}\\
-            &= \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
-        \end{split}
-    \end{equation*}
-\end{proof}
-
-\begin{lemma}[\cite{gautschi4}]
-    \label{lemma:elementary_symmetric_polynomials_inequality}
-    Es gilt:
-    \begin{equation}
-        \label{eq:elementary_symmetric_polynomials_inequality}
-        \sum_{k=0}^{n} \abs{\sigma_{k}} \leq \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
-    \end{equation}
-    Gleichheit gilt, wenn $x_k = r_k \cdot e^{i\varphi}$ für ein
-    festes $\varphi \in \R$ und beliebige $r_k \in \R_+$,
-    d.h. wenn alle $x_k$ auf einer Halbgeraden durch den Nullpunkt
-    in der komplexen Ebene liegen.
-\end{lemma}
-
-\begin{remark}
-    Für die letzte Aussage des Lemmas, lässt sich sogar Äquivalenz zeigen, d.h.
-    Gleichheit gilt \emph{genau dann}, wenn $x_k = r_k \cdot e^{i\varphi}$ für
-    ein festes $\varphi \in \R$ und beliebige $r_k \in \R_+$.
-    Da diese Aussage jedoch für den Rest der Arbeit nicht von Bedeutung ist,
-    beweisen wir nur die schwächere Form des Lemmas.
-\end{remark}
-
-\begin{proof}[Beweis von Lemma \ref{lemma:elementary_symmetric_polynomials_inequality}]
-    Zum Beweis, wenden wir vollständige Induktion über $n \in \N$ und
-    Lemma \ref{lemma:recursion_elementary_symmetric_polynomials} an.\\[0.5em]
-    \textbf{Induktionsanfang ($n=1$):}
-    Es ist $ (z+x_0) = \sigma_0(x_0) \cdot z^1 + \sigma_1(x_0) \cdot z^0$,
-    also $\sigma_0(x_0) = 1$ und $\sigma_1(x_0) = x_0$.
-    Damit ergibt sich: $\sum_{k=0}^{1} \abs{\sigma_k(x_0)} = \abs{1} + \abs{x_0} = 1 + \abs{x_0}$.\\[0.5em]
-%
-    \textbf{Induktionvoraussetzung:}
-    Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
-%
-    \textbf{Induktionsschritt ($n-1 \rightarrow n$):}
-    Unter Verwendung von $\sigma_{0}(x_1, \dots, x_n) = 1$
-    und $\sigma_{n}(x_1, \dots, x_n) = x_1 \cdots x_n$, folgt:
-    % TODO: Fix this.
-    %\begin{equation*}
-      \begin{align*}
-        \prod_{k=1}^{n} \left( 1 + \abs{x_k} \right)
-        &= ( 1 + \abs{x_n} ) \cdot \prod_{k=1}^{n-1} \left( 1 + \abs{x_k} \right)\\
-        &\overset{IV}{\geq}  ( 1 + \abs{x_n} ) \cdot \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}\\
-        &= \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}
-        + \sum_{k=1}^{n} \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
-        &\geq \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})} + \abs{\sigma_{0}(x_1, \dots, x_{n-1})}\\
-        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})} \numberthis \label{eq:elementary_polynomials_inequality_proof}\\
-        &\overset{(\ref{eq:recursion_elementary_symmetric_polynomials})}{=}
-        \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n})} + \abs{\sigma_{0}(x_1, \dots, x_{n})} + \abs{\sigma_{n}(x_1, \dots, x_n)}\\
-        &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}.
-      \end{align*}
-    %\end{equation*}
-
-    Um den Spezialfall $x_k = r_k e^{i \varphi}$ der Behauptung zu beweisen,
-    führen wir die Induktion analog, mit der neuen Induktionsbehauptung, dass
-    Gleichheit gelte.  Es bleibt nur zu zeigen, dass die Ungleichheit
-    (\ref{eq:elementary_polynomials_inequality_proof}) zur Gleichheit wird, d.h. dass
-    $\sigma_{k}(x_1, \dots, x_{n-1})$ und $x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})$
-    linear abhängig sind und die Dreiecksungleichung als Gleichung
-    \[
-        \abs{\sigma_{k}(x_1, \dots, x_{n-1})} + \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
-        = \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
-    \]
-    gilt.
-    Dazu verwenden wir Gleichung
-    (\ref{eq:explicit_elementary_symmetric_polynomials}) und stellen fest, dass
-    \begin{equation*}
-        \begin{split}
-            \sigma_{k}(x_1, \dots, x_{n-1})
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}\\
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} \cdots r_{j_k} \right)
-        \end{split}
-    \end{equation*}
-    und
-    \begin{equation*}
-        \begin{split}
-            x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
-            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_n \cdot x_{j_1} \cdots x_{j_{k-1}}\\
-            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n e^{i\varphi} \cdot r_{j_1} e^{i\varphi} \cdots r_{j_{k-1}} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n \cdot r_{j_1} \cdots r_{j_{k-1}} \right)
-        \end{split}
-    \end{equation*}
-    in dieselbe Richtung $e^{k\cdot i\varphi}$ zeigen, also linear abhängig sind, wie behauptet.
-\end{proof}
-
-\begin{notation}
-    Als abkürzende Schreibweise setzen wir im Folgenden für gegebene $x_1, \dots, x_{n} \in \C$
-    \[
-        \sigma_{k}^{j} \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
-    \]
-    Damit ist $\sigma_{k}^{j}$ das k-te elementarsymmetrische Polynom in den
-    $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
-\end{notation}
-
-\begin{lemma}
-    \label{lemma:elementary_symmetric_polynomials_const_multiplication}
-    Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt:
-    \begin{equation}
-        \label{eq:elementary_symmetric_polynomials_const_multiplication}
-        \sigma_{k}(\alpha x)
-        = \alpha^{k} \sigma_{k}(x)
-    \end{equation}
-\end{lemma}
-
-\begin{proof}
-    Unter Verwendung von Gleichung
-    (\ref{eq:explicit_elementary_symmetric_polynomials})
-    erhalten wir:
-    \[
-        \sigma_{k}(\alpha x)
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \alpha x_{j_1} \cdots \alpha x_{j_k}
-        = \alpha^k \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
-        = \alpha^k \sigma_{k}(x).
-    \]
-\end{proof}
-
-\begin{remark}
-    %TODO: Remark vs. lemma? More verbose proof?
-    Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
-    elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
-    Inversen der Vandermonde-Matrix angegeben werden.
-    Dazu schreiben wir für $j = 0, \dots, n-1$
-    \begin{equation*}
-        \sum_{r = 0}^{n-1} u_{jr} z^{r}
-        = l_j(z)
-        = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r}
-        = \Pi_j \cdot \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z - z_r \right)
-    \end{equation*}
-    mit
-    \begin{equation}
-        \label{def:pi_j}
-        \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
-    \end{equation}
-
-    \noindent Mit Lemma
-    \ref{lemma:elementary_symmetric_polynomials_const_multiplication} erhalten
-    wir dann für $j, r = 0, \dots, n-1$
+    Für $j, r = 0, \dots, n-1$ gilt
     \begin{equation}
         \label{eq:explicit_inverse_vandermonde}
         u_{jr}
@@ -261,7 +95,7 @@ $\norm{V^{-1}}_\infty$ im nächsten Abschnitt.
         \overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
           (-1)^r \Pi_j \sigma_{r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
     \end{equation}
-\end{remark}
+\end{lemma}
 
 % FIXME: Bad description.
 \noindent Zum Abschluss dieses Abschnitts, beweisen wir noch ein Lemma, das später
@@ -504,144 +338,3 @@ Vandermonde-Matrix angegeben und beweisen:
     die Behauptung.
 \end{proof}
 
-\section{Vandermonde-Matrizen mit reellen Stützstellen}
-Als Anwendung von Satz \ref{thm:inverse_vandermonde_inequality} werden wir nun
-einige ausgewählte Beispiele für Vandermonde-Matrizen mit reellen Stützstellen
-betrachten und deren Kondition berechnen.
-Die Beispiele wurden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
-
-Zunächst beweisen wir noch ein allgemeineres Lemma über die Zeilensummennorm
-der Vandermonde-Matrix mit Stützstellen innerhalb des komplexen
-Einheitskreises.
-Betrachtet man nämlich nur Stützstellen $z_j \in \C$ mit $\abs{z_j} \leq 1$,
-so gilt $\norm{\Vand{z}}_{\infty} = n$.
-Somit muss in diesem Fall zur Bestimmung von $\cond{\Vand{z}}$ nur noch die
-Norm der Inversen $\norm{\Vand{z}^{-1}}_{\infty}$ berechnet werden.
-Insbesondere gilt dies für reelle Stützstellen
-$x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
-
-\begin{lemma}
-    Seien Stützstellen $z = (z_0, \dots, z_{n-1}) \in \Cn$
-    mit $\abs{z_j} \leq 1$ für alle\linebreak
-    $j=0,\dots,n-1$ gegeben.
-    Dann gilt
-    \[
-        \norm{V(z)}_{\infty} = n.
-    \]
-\end{lemma}
-
-\begin{proof}
-    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$ , folgt
-    \[
-        \norm{V(z)}_{\infty} = \max_{k=0,\dots,n-1} \left( \sum_{j=0}^{n-1} \abs{z_j^k} \right) = \sum_{j=0}^{n-1} \abs{z_j^0} = n.
-    \]
-\end{proof}
-
-\subsection{Nicht-negative reelle Stützstellen}
-Betrachte die Stützstellen $z_j = x_j \in \R_+$ für $j = 0, \dots, n-1$
-und $x_k \neq x_j$ für $k \neq j$.
-Diese erfüllen die Zusatzbedingung von Satz \ref{thm:inverse_vandermonde_inequality},
-so dass bei der oberen Schranke von (\ref{eq:inverse_vandermonde_inequality})
-Gleichheit gilt.
-\begin{lemma}
-    \label{lemma:nonnegative_real_nodes}
-    Ist $V$ die zu den Stützstellen gehörige Vandermone-Matrix und definiert man
-    \[
-        p(z) \defeq \prod_{j=0}^{n-1} \left( z - x_j \right),
-    \]
-    so folgt
-    \[
-        \norm{V^{-1}}_{\infty} = \frac{ \abs{p(-1)}}{\min_{j=0, \dots, n-1} \{ (1+x_j) \abs{p^{\prime}(x_j)} \}}.
-    \]
-\end{lemma}
-
-\begin{proof}
-    Es gilt
-    \[
-        \abs{p(-1)} = \abs{\prod_{j=0}^{n-1} (-1 - x_j)} = \prod_{j=0}^{n-1} \left( 1 + x_j \right).
-    \]
-    Weiter ist nach der Produktregel
-    \[
-        p^{\prime}(z) = \sum_{k=0}^{n-1} \left( \prod_{\substack{j=0\\ j\neq k}}^{n-1} \left( z - x_j \right) \right),
-    \]
-    also
-    \[
-        \abs{p^{\prime}(x_k)} = \prod_{\substack{j=0\\ j\neq k}}^{n-1} \abs{ x_k - x_j }.
-    \]
-    Insgesamt folgt mit Satz \ref{thm:inverse_vandermonde_inequality}
-    \[
-        \begin{split}
-            \frac{ \abs{p(-1)}}{\min_{j=0, \dots, n-1} \{ (1+x_j) \abs{p^{\prime}(x_j)} \}}
-            = \frac{\prod_{k=0}^{n-1} \left( 1 + x_k \right)}{\min_{j=0, \dots, n-1} \{ (1+x_j) \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{ x_j - x_k }\}}\\
-            = \max_{j=0, \dots, n-1} \left( \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{\left( 1 + x_k \right)}{\abs{ x_j - x_k }} \right)
-            \overset{(\ref{eq:inverse_vandermonde_inequality})}{=} \norm{\Vand{x}^{-1}}_{\infty}.
-        \end{split}
-    \]
-\end{proof}
-
-\begin{example}[Harmonische Stützstellen]
-    Seien die Stützstellen $x_k = \frac{1}{k}, \; k=1, \dots, n$ gegeben.
-    Mit den Bezeichnungen wie in Lemma \ref{lemma:nonnegative_real_nodes} gilt dann
-    \[
-        \abs{p(-1)} = \prod_{k=1}^{n} \left( 1 + \frac{1}{k} \right) = n+1,
-    \]
-    wie eine einfache Induktion zeigt.
-    Für $\delta_k \defeq (1 + x_k) \abs{ p^{\prime}(x_k) }$ gilt
-    \[
-        \begin{split}
-            \delta_k &= \left( 1 + \frac{1}{k} \right) \prod_{\substack{r = 1\\ r\neq k}}^n \abs{ \frac{1}{k} - \frac{1}{r} }
-                     = \left( \frac{k+1}{k} \right) \prod_{\substack{r = 1\\ r\neq k}}^n \abs{ \frac{r-k}{rk}}\\
-                     &= \left( \frac{k+1}{k^n} \right) \frac{k}{n!} \prod_{\substack{r = 1\\ r\neq k}}^n \abs{ r-k }
-                     = \left( \frac{k+1}{k^n} \right) \frac{k}{n!} (n-k)! \, (k-1)!\\
-                     &= \left( \frac{(k+1)! \, (n-k)!}{k^n n!} \right).
-        \end{split}
-    \]
-    Weiter folgt dann
-    \[
-        \min_{k=1, \dots, n} \delta_k \leq \delta_n = \frac{n+1}{n^n}
-    \]
-    und schließlich mit Lemma \ref{lemma:nonnegative_real_nodes}:
-    \[
-        \cond{V} = \norm{V}_\infty \cdot \norm{V^{-1}}_\infty \geq n \cdot (n+1) \frac{n^n}{n+1} = n^{n+1}.
-    \]
-\end{example}
-
-\begin{example}[Äquidistante Stützstellen]
-    Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}, \; k=1, \dots, n$.
-    Dann ist
-    \[
-        \begin{split}
-            p(-1)
-            &= \prod_{k=1}^{n} \left( 1 + \frac{k-1}{n-1} \right)
-            = \prod_{k=1}^{n} \left( \frac{n + k - 2}{n-1} \right)\\
-            &= \frac{1}{(n-1)^n} \frac{(2n-2)!\,}{(n-2)!\,}
-            = \frac{(2n-2)!\,}{(n-1)^{n-1}(n-1)!\,}.
-        \end{split}
-    \]
-    Mit $\delta_k \defeq (1 + x_k) \abs{ p^{\prime}(x_k) }$ gilt
-    \[
-        \begin{split}
-            \delta_k
-            &= \left( 1 + \frac{k-1}{n-1} \right) \cdot \prod_{\substack{j=1\\ j\neq k}}^{n} \abs{ \frac{k-j}{n-1} }
-            = \frac{n+k-2}{(n-1)^{n}} \cdot \prod_{\substack{j=1\\ j\neq k}}^{n} \abs{ k-j }\\
-            &= \frac{(n+k-2)(k-1)!\, (n-k)!\,}{(n-1)^{n}} .
-        \end{split}
-    \]
-    ...\\ %TODO
-    Insgesamt folgt
-    \[
-        \cond{\Vand{x}} \sim \frac{\sqrt{2}}{4\pi} \cdot 8^n \text{ für } n \rightarrow \infty.
-    \]
-\end{example}
-
-\subsection{Symmetrische reelle Stützstellen}
-In diesem Abschnitt seien nun reelle Stützstellen gegeben, die symmetrisch um
-den Ursprung angeordnet sind.
-
-\begin{lemma}[ohne Beweis]
-    Sei $x = (x_1, \dots, x_n) \in \Rn$ mit $x_j + x_{n+1-j} = 0$ für $j = 1, \dots, n$.
-    Dann gilt
-    \[
-        \norm{\Vand{x}^{-1}} = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} }.
-    \]
-\end{lemma}

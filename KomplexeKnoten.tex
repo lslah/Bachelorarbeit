@@ -1,6 +1,5 @@
-\chapter{Stützstellen auf dem Einheitskreis}
-% FIXME: Bad section title.
-\section{Numerische Vorbetrachungen}
+\chapter{Vandermonde-Matrizen mit Stützstellen auf dem Einheitskreis}
+\section{Invarianz der Kondition unter Rotation der Knoten}
 
 Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
 der Zeilensummennorm und aller unitär invarianten Normen sich nicht unter
@@ -185,67 +184,6 @@ mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
 %     \]
 % \end{lemma}
 
-Wir beweisen zunächst einige Hilfslemmata, die es uns schließlich ermöglichen
-eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
-
-\begin{lemma}
-    \label{lemma:outlier_sigma_zero}
-    Es gilt
-    \[
-        \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
-        = \abs{\sigma_r(z_1, \dots, z_{n-1})}
-        = 1
-    \]
-    für alle $r = 0, \dots, n-1$.
-\end{lemma}
-
-
-\begin{proof}
-    Nach Lemma \ref{lemma:elementary_symmetric_polynomials_const_multiplication}
-    gilt
-    \[
-        \abs{\sigma_r(-z_1, \dots, -z_{n-1})}
-        = \abs{(-1)^r \sigma_r(z_1, \dots, z_{n-1})}
-        = \abs{\sigma_r(z_1, \dots, z_{n-1})}.
-    \]
-    Nach Definition der elementarsymmetrischen Polynome ist
-    $\sigma_r({-z_1, \dots, -z_{n-1}})$
-    der ${n\!-\!r\!-\!1}$-te Koeffizient des Polynoms vom
-    Grad $n-1$, das eindeutig durch die $n-2$ Nullstellen
-    $z_k$, $k=1, \dots, n-1$ bestimmt ist.
-    Wir zeigen, dass dies das Polynom $p(z) = \sum_{r=0}^{n-1} z^r$ ist.
-
-    \noindent Tatsächlich ist $z_k = e^{2 \pi i k / n}$ für $k = 1, \dots, n-1$
-    eine Nullstelle von $p(z)$:
-    \[
-        \begin{split}
-            p(z_k)
-            &= \sum_{r=0}^{n-1} z_k^r
-            = \sum_{r=0}^{n-1} \left( e^{\frac{2 \pi i k}{n}} \right)^r
-            = \frac{1 - \left( e^{\frac{2 \pi i k}{n}} \right)^n}{1 - \left( e^{\frac{2 \pi i k}{n}} \right)}
-            = \frac{1 - \left( e^{\frac{2 \pi i n}{n}} \right)^k}{1 - \left( e^{\frac{2 \pi i k}{n}} \right)}
-            = 0.
-        \end{split}
-    \]
-    Damit ist gezeigt, dass für $r=0, \dots, n-1$
-    \[
-        \abs{\sigma_r(z_1, \dots, z_{n-1})}
-        = \abs{\sigma_r(-z_1, \dots, -z_{n-1})}
-        = 1
-    \]
-    gilt.
-\end{proof}
-
-\begin{corollary}
-    \label{corollary:outlier_sigma_zero_row_sum}
-    Es gilt
-    \[
-        \sum_{r=0}^{n-1} \abs{\sigma_r^0(z_0, z_1, \dots, z_{n-1})}
-        = \sum_{r=0}^{n-1} \abs{\sigma_r(z_1, \dots, z_{n-1})}
-        = n.
-    \]
-\end{corollary}
-
 \begin{lemma}
     \label{lemma:inverse_outlier_vandermonde_first_row_abs_sum}
     Sei $z(\delta) = (z_0(\delta), \dots, z_{n-1}) \in \C^n$ mit
@@ -293,7 +231,7 @@ eine geschlossene Formel für die Kondition von $\Vand{\delta}$ anzugeben.
         = \prod_{\substack{k = 1}}^{n-1} \frac{1}{2 \cdot \sin \left( \frac{\pi (k-\delta)}{n} \right)}.
     \]
 
-    \noindent Zusammen mit der Aussage des vorherigen Korollars folgt nun die Behauptung:
+    \noindent Zusammen mit der Aussage des Korollars \ref{corollary:outlier_sigma_zero_row_sum} folgt nun die Behauptung:
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{ u_{0r} }
@@ -401,9 +339,9 @@ $n$ Knoten auf dem Einheitskreis $n$ beträgt.
     \]
 \end{proof}
 
-Schwierigkeiten bereitet also erneut die Norm der inversen Vandermonde-Matrix.
-Wir betrachten im Folgenden die zwei Fälle $j=0$ und $j \in \{1, \dots, n-1\}$
-gesondert.
+Schwierigkeiten kann also nur die Norm der inversen Vandermonde-Matrix
+bereiten.  Wir betrachten im Folgenden die zwei Fälle $j=0$ und
+$j \in \{1, \dots, n-1\}$ gesondert.
 
 \begin{lemma}
     \label{lemma:inverse_outlier_zero_row_quadratic_sum}
@@ -429,13 +367,16 @@ gesondert.
     \]
 \end{proof}
 
+Als Vorbereitung für den Fall $j \in \{1, \dots, n-1\}$ benötigen wir noch zwei
+Hilfslemmata.
+
 \begin{lemma}
     \label{lemma:uptau_j}
     Definiere $\uptau_j \in \C$ für $j=0, \dots, n-1$ durch
     \[
         \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \exp\left(\frac{2 \pi i j}{n}\right) - \exp\left(\frac{2 \pi i k}{n}\right) \right).
     \]
-    Es gilt dann $\abs{\uptau_j} = n$ für alle $j = 0, \dots, n-1$.
+    Dann gilt $\abs{\uptau_j} = n$ für alle $j = 0, \dots, n-1$.
 \end{lemma}
 \begin{proof}
     Wir zeigen $\abs{\uptau_j} = \abs{\uptau_0}$ für alle $j = 1, \dots, n-1$ und
