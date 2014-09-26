@@ -62,7 +62,7 @@ Koeffizienten der Lagrange-Polynome:
 \end{proof}
 
 Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
-elementarsymmetrischen Polynomen, kann eine explizite Darstellung der
+elementarsymmetrischen Polynomen kann eine explizite Darstellung der
 Inversen der Vandermonde-Matrix angegeben werden.
 Dazu schreiben wir für $j = 0, \dots, n-1$
 \begin{equation*}
@@ -252,7 +252,7 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
 \end{proof}
 
 Nun können wir eine Abschätzung der Zeilensummennorm der inversen
-Vandermonde-Matrix angegeben und beweisen:
+Vandermonde-Matrix angeben und beweisen:
 \begin{theorem}
   \label{thm:inverse_vandermonde_inequality}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
@@ -326,8 +326,7 @@ Vandermonde-Matrix angegeben und beweisen:
     \noindent Da diese Ungleichung für alle $j \in \{0, \dots, n-1\}$ erfüllt ist, folgt
     \[
         \max_{j = 0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
-        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}},
+        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
     \]
-    die Behauptung.
 \end{proof}
 

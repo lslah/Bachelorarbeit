@@ -34,15 +34,15 @@ Wir wollen nun den Begriff der Kondition einer Matrix motivieren.
 Dazu betrachten wir ein lineares Gleichungssystem der Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
-und gesuchten Vektor $x \in \Cn$.
+und gesuchtem Vektor $x \in \Cn$.
 Dabei nehmen wir $x \neq 0$ und $b \neq 0$ an.
-Weiter sei nur ein verfälschter Eingangsvektor $\tilde{b} = b + \Delta b$
-mit relativem Fehler
+Weiter sei ein verfälschter Eingangsvektor $\tilde{b} = b + \Delta b$,
+$\Delta b \in \Cn$ mit relativem Fehler
 \[
     \frac{\norm{\tilde{b} - b}}{\norm{b}} = \frac{\norm{\Delta b}}{\norm{b}} \leq \delta
 \]
 gegeben.
-Wir bezeichnen mit $\tilde{x}$ die Lösung des verfälschten Gleichungssystems
+Wir bezeichnen mit $\tilde{x} \in \Cn$ die Lösung des verfälschten Gleichungssystems
 $A \tilde{x} = \tilde{b}$.
 Wegen der Linearität von $A^{-1}$ erhalten wir
 \[
@@ -55,8 +55,11 @@ $\tilde{x}$ in Abhängigkeit vom Eingangsfehler $\delta$.
 Wegen $ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
 und $ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
 folgt für den relativen Fehler:
+%FIXME: equal sized norm-bars
 \[
-    \frac{\norm{\Delta x}}{\norm{x}} \leq \norm{A} \norm{A^{-1}} \frac{\norm{\Delta b}}{\norm{b}} \leq \norm{A} \norm{A^{-1}} \delta.
+    \frac{\norm{\Delta x}}{\norm{x}}
+    \leq \norm{A} \norm{A^{-1}} \frac{\norm{\Delta b}}{\norm{b}}
+    \leq \norm{A} \norm{A^{-1}} \delta.
 \]
 
 \noindent Dies motiviert die folgende
@@ -89,7 +92,7 @@ folgt für den relativen Fehler:
     \]
     definiert.
     Bezeichnet man die Komponenten der Vandermonde-Matrix mit
-    $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich:
+    $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich
     $ v_{kj} = z_j^k $ für $k, j = 0, \dots, n-1$.
 
 \end{mydef}
@@ -98,7 +101,8 @@ folgt für den relativen Fehler:
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$.
     Es gilt
     \[
-        \det \Vand{z} = \prod_{0 \leq k < j \leq n-1} \left( z_j - z_k \right).
+        \det \Vand{z}
+        = \prod_{0 \leq k < j \leq n-1} \left( z_j - z_k \right).
     \]
 \end{lemma}
 
@@ -119,14 +123,14 @@ folgt für den relativen Fehler:
             1         & 1         & \dots & 1 \\
             z_0       & z_1       & \dots & z_{n-1} \\
             z_0^2     & z_1^2     & \dots & z_{n-1}^2 \\
-            \vdots    & \vdots    & \dots & \vdots \\
+            \vdots    & \vdots    & \vdots & \vdots \\
             z_0^{n-1} & z_1^{n-1} & \dots & z_{n-1}^{n-1}
         \end{vmatrix}
         = \begin{vmatrix}
             1      & 1                  & \dots & 1 \\
             0      & (z_1-z_0)          & \dots & (z_{n-1}-z_0) \\
             0      & (z_1-z_0)z_1^1     & \dots & (z_{n-1}-z_0) z_{n-1}^1 \\
-            \vdots & \vdots             & \dots & \vdots \\
+            \vdots & \vdots             & \vdots & \vdots \\
             0      & (z_1-z_0)z_1^{n-2} & \dots & (z_{n-1}-z_0) z_{n-1}^{n-2}
         \end{vmatrix}.
     \]
@@ -140,7 +144,7 @@ folgt für den relativen Fehler:
                 1         & \dots & 1 \\
                 z_1       & \dots & z_{n-1} \\
                 z_1^2     & \dots & z_{n-1}^2 \\
-                \vdots    & \dots & \vdots \\
+                \vdots    & \vdots & \vdots \\
                 z_1^{n-2} & \dots & z_{n-1}^{n-2}
             \end{vmatrix}
             = \prod_{j=0}^{n-1} (z_j - z_0) \det{\Vand{z_1, \dots, z_{n-1}}}\\
@@ -155,4 +159,5 @@ folgt für den relativen Fehler:
     $z = (z_0, \dots, z_{n-1}) \in \Cn$ ist genau dann invertierbar, wenn
     $z_k \neq z_j$ für alle $k \neq j$, d.h. wenn die $z_k$ paarweise
     verschieden sind.
+    % FIXME: k /= j - Was stört Julius? k, j \in \{1, \dots, n-1\} ?
 \end{corollary}
