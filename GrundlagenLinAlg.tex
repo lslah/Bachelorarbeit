@@ -20,6 +20,7 @@ weshalb wir uns zunächst an deren Definitionen erinnern.
     \end{equation}
 \end{mydef}
 
+% TODO: Proof unitary invariance of frobenius norm?!
 \begin{remark}
     Später werden wir die \emph{unitäre Invarianz} der
     Frobeniusnorm benötigen, d.h. die Eigenschaft, dass für eine unitäre Matrix
@@ -30,8 +31,9 @@ weshalb wir uns zunächst an deren Definitionen erinnern.
     \]
 \end{remark}
 
-Wir wollen nun den Begriff der Kondition einer Matrix motivieren.
-Dazu betrachten wir ein lineares Gleichungssystem der Form
+Wir wollen nun ähnlich wie in \cite[S. 205ff]{stoer1} den Begriff der Kondition
+einer Matrix motivieren.  Dazu betrachten wir ein lineares Gleichungssystem der
+Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
 und gesuchtem Vektor $x \in \Cn$.
@@ -72,6 +74,14 @@ folgt für den relativen Fehler:
 
 \begin{remark}
     Mit dieser Definition gilt nun: $ \frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta $.
+\end{remark}
+
+\begin{remark}
+    Auch für den Fall, dass die Matrix $A$ in verfälschter Form $A + \Delta A$
+    vorliegt und somit das Gleichungssystem $(A + \Delta A)(x + \Delta x) = (b
+    + \Delta b)$ gelöst wird, lässt sich eine Ungleichung mit Hilfe der
+    Konditionszahl herleiten. Dazu sei auf \cite[S. 203ff]{stoer1} und \cite[S.
+    54ff]{schaback} verwiesen.
 \end{remark}
 
 \section{Vandermonde-Matrizen}
