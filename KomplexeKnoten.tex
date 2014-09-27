@@ -1,7 +1,7 @@
 \chapter{Vandermonde-Matrizen mit Stützstellen auf dem Einheitskreis}
 
 Wie das vorherige Kapitel zeigt, sind Vandermonde-Matrizen mit reellen
-Stützstellen äußerst schlecht konditionier und werden daher nur für
+Stützstellen schlecht konditioniert und werden daher hauptsächlich für
 theoretische Betrachtungen verwendet.
 
 Anders verhält es sich, wenn man Knoten in der komplexen Ebene zulässt.
@@ -12,7 +12,7 @@ In diesem Abschnitt untersuchen wir Vandermonde-Matrizen mit Knoten auf dem
 komplexen Einheitskreis, die jedoch von dem perfekten Fall der $n$-ten
 Einheitswurzeln abweichen.
 Für diese speziellen Konfigurationen leiten wir explizite Formeln zur
-Berechnung der Konditionen bezüglich der Zeilensummennorm und der Frobeniusnorm
+Berechnung der Kondition bezüglich der Zeilensummennorm und der Frobeniusnorm
 her.
 
 \section{Invarianz der Kondition unter Rotation der Knoten}
@@ -630,7 +630,7 @@ $\Vand{\delta}^{-1}$ explizit angeben und beweisen.
     Es gilt
     \begin{equation}
         \norm{ \Vand{\delta}^{-1} }_F^2
-        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
           + \frac{\sin^2 \left( \frac{\pi \delta}{n} \right)}{n} \cdot \sum_{k=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{k-\delta}{n} \right)}
           + \frac{n-1}{n}
     \end{equation}

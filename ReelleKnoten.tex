@@ -1,8 +1,10 @@
 
 \chapter{Vandermonde-Matrizen mit reellen Stützstellen}
 Als Anwendung von Satz \ref{thm:inverse_vandermonde_inequality} werden wir nun
-einige ausgewählte Beispiele für Vandermonde-Matrizen mit reellen Stützstellen
-betrachten und deren Kondition berechnen.
+die Kondition einer Vandermonde-Matrix zu nicht-negativen harmonischen Stützstellen
+berechnen.
+Weitere Konditionen von Vandermonde-Matrizen mit reellen Stützstellen werden
+angegeben.
 Die Beispiele wurden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
 
 Zunächst beweisen wir ein allgemeineres Lemma über die Zeilensummennorm
@@ -38,10 +40,12 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 
 \section{Nicht-negative Stützstellen}
 Betrachte die Stützstellen $z_j = x_j \in \R_+$ für $j = 0, \dots, n-1$
-und $x_k \neq x_j$ für $k \neq j$.
-Diese erfüllen die Zusatzbedingung von Satz \ref{thm:inverse_vandermonde_inequality},
+mit $x_k \neq x_j$ für $k \neq j$.
+Diese liegen auf einer Halbgeraden durch den Ursprung und erfüllen damit die
+Zusatzbedingung von Satz \ref{thm:inverse_vandermonde_inequality},
 so dass bei der oberen Schranke von (\ref{eq:inverse_vandermonde_inequality})
 Gleichheit gilt.
+Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechnen.
 \begin{lemma}
     \label{lemma:nonnegative_real_nodes}
     Ist $V$ die zu den Stützstellen $x_j \in \R$, $x_j \geq 0$ gehörige
@@ -81,7 +85,7 @@ Gleichheit gilt.
 
 \begin{example}[Harmonische Stützstellen]
     Seien die Stützstellen $x_k = \frac{1}{k}, \; k=1, \dots, n$ gegeben.
-    Mit den Bezeichnungen wie in Lemma \ref{lemma:nonnegative_real_nodes} gilt dann
+    Mit den Bezeichnungen wie in \lemmaref{nonnegative_real_nodes} gilt dann
     \[
         \abs{p(-1)} = \prod_{k=1}^{n} \left( 1 + \frac{1}{k} \right) = n+1,
     \]
@@ -102,46 +106,65 @@ Gleichheit gilt.
     \]
     und schließlich mit Lemma \ref{lemma:nonnegative_real_nodes}:
     \[
-        \cond{V} = \norm{V}_\infty \cdot \norm{V^{-1}}_\infty \geq n \cdot (n+1) \frac{n^n}{n+1} = n^{n+1}.
+        \cond[\infty]{V} = \norm{V}_\infty \cdot \norm{V^{-1}}_\infty \geq n \cdot (n+1) \frac{n^n}{n+1} = n^{n+1}.
     \]
 \end{example}
 
-\begin{example}[Äquidistante Stützstellen]
+\begin{example}[Äquidistante Stützstellen \cite{gautschi3}]
     Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}, \; k=1, \dots, n$.
-    Dann ist
+    Ähnliche Untersuchungen wie im vorherigen Beispiel liefern die
+    asymptotische Formel
     \[
-        \begin{split}
-            p(-1)
-            &= \prod_{k=1}^{n} \left( 1 + \frac{k-1}{n-1} \right)
-            = \prod_{k=1}^{n} \left( \frac{n + k - 2}{n-1} \right)\\
-            &= \frac{1}{(n-1)^n} \frac{(2n-2)!\,}{(n-2)!\,}
-            = \frac{(2n-2)!\,}{(n-1)^{n-1}(n-1)!\,}.
-        \end{split}
+        \cond[\infty]{\Vand{x}} \sim \frac{\sqrt{2}}{4\pi} \cdot 8^n \text{ für } n \rightarrow \infty.
     \]
-    Mit $\delta_k \defeq (1 + x_k) \abs{ p^{\prime}(x_k) }$ gilt
-    \[
-        \begin{split}
-            \delta_k
-            &= \left( 1 + \frac{k-1}{n-1} \right) \cdot \prod_{\substack{j=1\\ j\neq k}}^{n} \abs{ \frac{k-j}{n-1} }
-            = \frac{n+k-2}{(n-1)^{n}} \cdot \prod_{\substack{j=1\\ j\neq k}}^{n} \abs{ k-j }\\
-            &= \frac{(n+k-2)(k-1)!\, (n-k)!\,}{(n-1)^{n}} .
-        \end{split}
-    \]
-    ...\\ %TODO
-    Insgesamt folgt
-    \[
-        \cond{\Vand{x}} \sim \frac{\sqrt{2}}{4\pi} \cdot 8^n \text{ für } n \rightarrow \infty.
-    \]
+    Für eine ausführliche Herleitung sei auf \cite[S. 344f]{gautschi3}
+    verwiesen.
 \end{example}
 
 \section{Symmetrische Stützstellen}
-In diesem Abschnitt seien nun reelle Stützstellen gegeben, die symmetrisch um
-den Ursprung angeordnet sind.
+Es zeigt sich, dass die Kondition der Vandermonde-Matrix verbessert werden
+kann, wenn man die Stützstellen symmetrisch um den Ursprung anordnet.
 
-\begin{lemma}[ohne Beweis]
+Analog zu \lemmaref{nonnegative_real_nodes} lässt sich für den Fall
+symmetrischer reeller Stützstellen, die folgende Aussage zeigen.
+Der Beweis kann in \cite[S. 341]{gautschi3} nachgelesen werden.
+\begin{lemma}[\cite{gautschi3}, ohne Beweis]
+    \label{lemma:symmetric_real_nodes}
     Sei $x = (x_1, \dots, x_n) \in \Rn$ mit $x_j + x_{n+1-j} = 0$ für $j = 1, \dots, n$.
     Dann gilt
     \[
-        \norm{\Vand{x}^{-1}} = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} }.
+        \norm{\Vand{x}^{-1}}_\infty = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} },
     \]
+    mit $p(x) \defeq \prod_{k=1}^{n} (x - x_k)$.
 \end{lemma}
+
+\begin{example}[Äquidistante, symmetrische Stützstellen \cite{gautschi1}]
+    Seien $x_k = 1 - \frac{2(k-1)}{n-1}$ für ${k = 1, \dots, n}$.
+    Dann ergibt sich unter Verwendung von \lemmaref{symmetric_real_nodes}
+    \[
+        \cond[\infty]{\Vand{x}} \sim \frac{1}{\pi} e^{-\frac{1}{4} \pi} e^{n\left( \frac{1}{4} \pi + \frac{1}{2} \ln 2 \right)} \text{ für } n \rightarrow \infty.
+    \]
+\end{example}
+
+Anstelle der exponentiellen Wachstumsrate von $8$ im nicht-negativen Fall, wird mit
+symmetrischen, äquidistanten Stützstellen eine Wachstumsrate von
+\[
+    \exp \left( \frac{1}{4} \pi + \frac{1}{2} \ln 2 \right) = 3.1017\dots
+\]
+erreicht.
+Die Kondition kann noch weiter verbessert werden, wenn die sogenannten
+\emph{Tschebycheff Knoten} verwendet werden.
+
+\begin{example}[Tschebyscheff Stützstellen \cite{gautschi3}]
+    Wir betrachten die Knoten $x_k = \cos \left( \frac{(2k-1) \pi}{2n} \right)$
+    für $k=1, \dots, n$.
+    Unter Anwendung von \lemmaref{symmetric_real_nodes} lässt sich die
+    asymptotische Formel
+    \[
+        \cond[\infty]{\Vand{x}} \sim \frac{3^{\frac{3}{4}}}{4} \left( 1 + \sqrt{2} \right)^n \text{ für } n \rightarrow \infty
+    \]
+    beweisen.
+    Die Wachstumsrate beträgt hier $1 + \sqrt{2} = 2.4142..$.
+\end{example}
+
+
