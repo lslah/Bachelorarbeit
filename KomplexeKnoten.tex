@@ -15,6 +15,50 @@ Für diese speziellen Konfigurationen leiten wir explizite Formeln zur
 Berechnung der Kondition bezüglich der Zeilensummennorm und der Frobeniusnorm
 her.
 
+\section{Vandermonde-Matrizen zu den \boldmath $n$-ten Einheitswurzeln}
+
+\begin{lemma}
+    Sei $n \in \N$ und $z = (z_0, \dots, z_{n-1}) \in \Cn$ der Vektor der
+    $n$-ten Einheitswurzeln, also $z_j = e^{\frac{2 \pi i j}{n}}$ für
+    $j = 0, \dots, n-1$.
+    Dann gilt
+    \[
+        \cond[F]{\Vand{z}} = n.
+    \]
+\end{lemma}
+\begin{proof}
+    Wir setzen $W = (w_{jr})_{j,r=0}^{n-1} \in \C^{n\times n}$ mit
+    $w_{jr} \defeq \frac{1}{n} e^{- \frac{2 \pi i j r}{n}}$
+    und zeigen $V^{-1} = W$.
+    Seien dazu $a_{kr} \in \C$ die Elemente des Matrixproduktes
+    $A = V W \in \C^{n\times n}$.
+    Dann gilt für $k, r = 0, \dots, n-1$
+    \[
+        \begin{split}
+            a_{kr}
+            &= \sum_{j=0}^{n-1} v_{kj} w_{jr}
+            = \sum_{j=0}^{n-1} \frac{1}{n} \exp \left( \frac{2 \pi i k j}{n} \right) \exp \left( -\frac{2 \pi i j r}{n} \right)\\
+            &= \frac{1}{n} \sum_{j=0}^{n-1} \exp \left( \frac{2 \pi i j (k - r)}{n} \right)
+            = \frac{1}{n} \sum_{j=0}^{n-1} \left( \exp \left( \frac{2 \pi i (k - r)}{n} \right) \right)^j\\
+            &= \frac{1}{n} \cdot \left\{
+                \begin{array}{ll}
+                    n, \text{ falls } k-r \equiv 0 \mod n\\
+                    0, \text{ falls } k-r \not\equiv 0 \mod n
+                \end{array}
+              \right.\\
+            &= \left\{
+                \begin{array}{ll}
+                    1, \text{ falls } k = r \\
+                    0, \text{ falls } k \neq r .
+                \end{array}
+              \right.
+        \end{split}
+    \]
+    Damit ist $V^{-1} = W$ gezeigt und wegen $\norm{V}_F = n$ und
+    $\norm{V^{-1}}_F = \norm{W}_F = \frac{1}{n} \norm{\bar V}_F = 1$ folgt die Behauptung.
+\end{proof}
+
+
 \section{Invarianz der Kondition unter Rotation der Knoten}
 
 Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
