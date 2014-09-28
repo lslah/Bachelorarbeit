@@ -147,7 +147,8 @@ folgenden Lemma benötigen werden.
     Sei $\rho \in \R_+$ und $F: \C \mapsto \C$ eine auf $\abs{x} \leq \rho$
     analytische Funktion.
     Bezeichne mit $\zeta_1, \dots, \zeta_n \in \C$ die Nullstellen von $F$ mit
-    $\abs{\zeta_j} \leq \rho$.
+    $\abs{\zeta_j} \leq \rho$, wobei die Nullstellen entsprechend ihrer
+    Vielfachheit mehrfach vorkommen können.
     Weiter sei $F(0) \neq 0$.
     Jensens Formel in Integralform lautet dann
     \begin{equation}
@@ -161,11 +162,11 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Lemma benötigt.
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
     $a_j \in \C$ für $j = 0, \dots, n$, $a_n \neq 0$ und Nullstellen
-    $\zeta_r \in \C$, $r = 1, \dots, n$.
+    $\zeta_j \in \C$, $j = 1, \dots, n$.
     Dann gilt
     \begin{equation}
         \label{eq:polynom_coefficient_sum_inequality}
-        \sum_{j=0}^{n} \abs{a_j} \geq \abs{a_n} \prod_{r=1}^{n} \max \left(1, \abs{\zeta_r} \right).
+        \sum_{j=0}^{n} \abs{a_j} \geq \abs{a_n} \prod_{j=1}^{n} \max \left(1, \abs{\zeta_j} \right).
     \end{equation}
     Gleichheit gilt genau dann, wenn $p(z) = a_n z^n$.
 \end{lemma}
@@ -178,7 +179,9 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Lemma benötigt.
         \zeta_1 \leq \dots \leq \zeta_r \leq 1 < \zeta_{r+1} \leq \dots \leq \zeta_n
     \]
     gilt.
-    Satz \ref{thm:jensens_formula} liefert dann mit $\rho = 1$ und $\log \frac{1}{z} = -\log z$
+    Wir identifizieren $p$ mit $F$ und wählen $\rho =1$ in Satz
+    \ref{thm:jensens_formula}.
+    Zusammen mit $\log \frac{1}{z} = -\log z$ liefert dieser dann
     \[
         \log \abs{a_0}
         = \log \abs{p(0)}
