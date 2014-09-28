@@ -140,8 +140,23 @@ nützlich sein wird.
 
 \section{Abschätzung der Zeilensummennorm der inversen Vandermonde-Matrix}
 
-Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benötigt:
+Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert, die wir im
+folgenden Lemma benötigen werden.
+\begin{theorem}
+    \label{thm:jensens_formula}
+    Sei $\rho \in \R_+$ und $F: \C \mapsto \C$ eine auf $\abs{x} \leq \rho$
+    analytische Funktion.
+    Bezeichne mit $\zeta_1, \dots, \zeta_n \in \C$ die Nullstellen von $F$ mit
+    $\abs{\zeta_j} \leq \rho$.
+    Weiter sei $F(0) \neq 0$.
+    Jensens Formel in Integralform lautet dann
+    \begin{equation}
+        \frac{1}{2\pi} \int_{0}^{2 \pi} \log \abs{F\left( \rho e^{i\phi} \right)} d\phi
+        = \log \abs{F(0)} + \sum_{j=1}^{n} \log \frac{\rho}{\abs{\zeta_j}}.
+    \end{equation}
+\end{theorem}
 
+Als Vorbereitung für den folgenden Satz wird noch ein weiteres Lemma benötigt.
 \begin{lemma}[\cite{gautschi2}]
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
@@ -163,7 +178,7 @@ Als Vorbereitung für den folgenden Satz wird noch ein weiteres Hilfslemma benö
         \zeta_1 \leq \dots \leq \zeta_r \leq 1 < \zeta_{r+1} \leq \dots \leq \zeta_n
     \]
     gilt.
-    Jensens Formel liefert dann
+    Satz \ref{thm:jensens_formula} liefert dann mit $\rho = 1$ und $\log \frac{1}{z} = -\log z$
     \[
         \log \abs{a_0}
         = \log \abs{p(0)}
