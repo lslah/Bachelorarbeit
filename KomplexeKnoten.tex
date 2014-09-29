@@ -246,7 +246,8 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
         \Pi_0 = \prod_{k=1}^{n-1} \abs{ z_0 - z_k }^{-1}.
     \]
 
-    \noindent Für $k = 1,\dots,n-1$ gilt mit $\varphi \defeq \frac{\pi (k - \delta)}{n}$
+    \noindent Sei $k \in \{1, \dots, n-1\}$ und $\varphi \defeq \frac{\pi (k - \delta)}{n}$.
+    Dann gilt
     \[
         \begin{split}
             \abs{z_0 - z_k}^2
@@ -261,11 +262,12 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
         \end{split}
     \]
     also
-    \[
+    \begin{equation}
+        \label{eq:pi_0}
         \Pi_0
         = \prod_{\substack{k = 1}}^{n-1} \abs{ z_0 - z_k }^{-1}
         = \prod_{\substack{k = 1}}^{n-1} \frac{1}{2 \cdot \sin \left( \frac{\pi (k-\delta)}{n} \right)}.
-    \]
+    \end{equation}
 
     \noindent Zusammen mit der Aussage des Korollars \ref{corollary:outlier_sigma_zero_row_sum} folgt nun die Behauptung:
     \[
@@ -273,7 +275,8 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
             \sum_{r=0}^{n-1} \abs{ u_{0r} }
             &= \sum_{r=0}^{n-1} \abs{ (-1)^{n-1-r} \Pi_0 \sigma_{n-1-r}(z_1, \dots, z_{n-1}) }\\
             &= \left( \sum_{r=0}^{n-1} \abs{ \sigma_{n-1-r}(z_1, \dots, z_{n-1}) } \right) \cdot \abs{\Pi_0}\\
-            &= n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+            &\overset{(\ref{eq:outlier_sigma_zero_row_sum})}{=}
+                n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
         \end{split}
     \]
 \end{proof}
@@ -327,9 +330,8 @@ widerlegen.
     \noindent Der Beweis kann also nur erbracht werden, wenn das gesamte Produkt
     abgeschätzt werden kann:
     \[
-        \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0}
+        \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0} \text{ für } j=1, \dots, n-1.
     \]
-    für $j=1, \dots, n-1$.
 \end{remark}
 
 %\begin{figure}[htb]
@@ -377,26 +379,30 @@ $j \in \{1, \dots, n-1\}$ gesondert.
 \begin{proof}
     % TODO: Hier fehlt noch der Hinweis auf pi_0, die Formel erscheint aus dem
     % Nichts.
-    Mit Lemma \ref{lemma:outlier_sigma_zero} erhalten wir
+    Mit Lemma \ref{lemma:outlier_sigma_zero} und Gleichung (\ref{eq:pi_0}) aus
+    dem Beiweis von \lemmaref{inverse_outlier_vandermonde_first_row_abs_sum}
+    erhalten wir
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{0r}}^2
-            &= \sum_{r=0}^{n-1} \abs{\Pi_0}^2 \abs{\sigma_{r}^{0}(z_1, \dots, z_{n-1})}^2\\
-            &= \abs{\Pi_0}^2 \sum_{r=0}^{n-1} 1^2
+            &= \sum_{r=0}^{n-1} \abs{\Pi_0}^2 \abs{\sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1})}^2\\
+            &\overset{(\ref{eq:outlier_sigma_zero})}=
+                \abs{\Pi_0}^2 \sum_{r=0}^{n-1} 1^2
             = n \cdot \abs{\Pi_0}^2\\
-            &= n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
+            &\overset{(\ref{eq:pi_0})}=
+                n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}.
         \end{split}
     \]
 \end{proof}
 
-Als Vorbereitung für den Fall $j \in \{1, \dots, n-1\}$ benötigen wir noch zwei
+\noindent Als Vorbereitung für den Fall $j \in \{1, \dots, n-1\}$ benötigen wir noch zwei
 Hilfslemmata.
-
 \begin{lemma}
     \label{lemma:uptau_j}
+    Sei $\w_n \defeq e^{\frac{2 \pi i}{n}}$.
     Definiere $\uptau_j \in \C$ für $j=0, \dots, n-1$ durch
     \[
-        \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \exp\left(\frac{2 \pi i j}{n}\right) - \exp\left(\frac{2 \pi i k}{n}\right) \right).
+        \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \w_n^j - \w_n^k\right).
     \]
     Dann gilt $\abs{\uptau_j} = n$ für alle $j = 0, \dots, n-1$.
 \end{lemma}
@@ -407,22 +413,23 @@ Hilfslemmata.
     \[
         \begin{split}
             \abs{\uptau_j}
-            &= \abs{\uptau_j \cdot e^{\frac{- 2\pi i j}{n}}}
-            = \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{e^0 - e^{\frac{2 \pi i (k-j)}{n}}}\\
+            &= \abs{\uptau_j \cdot \w_n^{-j}}
+            = \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{\w_n^0 - \w_n^{k-j} }\\
             &\overset{k' = k-j}{=}
-            \prod_{\substack{k'=-j\\ k\neq 0}}^{n-1-j} \abs{1 - e^{\frac{2 \pi i k'}{n}}}
-            = \prod_{\substack{k'=0\\ k\neq 0}}^{n-1} \abs{1 - e^{\frac{2 \pi i k'}{n}}}
+            \prod_{\substack{k'=-j\\ k\neq 0}}^{n-1-j} \abs{1 - \wn^{k'}}
+            = \prod_{\substack{k'=0\\ k\neq 0}}^{n-1} \abs{1 - \wn^{k'}}
             = \abs{\uptau_0},
         \end{split}
     \]
     wobei wir im letzten Schritt nur die Reihenfolge der Faktoren verändern und
     die $2\pi$-Periodizität von $e^{i \varphi}$ ausnutzen.
 
-    \noindent Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - z_k)$ können wir $\uptau_0 = p(1)$
+    \noindent Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - \wn^k)$ können wir $\uptau_0 = p(1)$
     schreiben.
+
     Bereits im Beweis von \lemmaref{outlier_sigma_zero} hatten wir gesehen, dass
     \[
-        p(z) = \prod_{k=1}^{n-1} (z-z_k) = \sum_{k=0}^{n-1} z^k
+        p(z) = \prod_{k=1}^{n-1} (z-\w_n^k) = \sum_{k=0}^{n-1} z^k
     \]
     gilt.
     Damit folgt sofort
@@ -439,14 +446,14 @@ Hilfslemmata.
     \]
 \end{lemma}
 \begin{proof}
-    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - z_j)$ gilt\footnote{$\Re(z)$ bezeichnet hier den Realteil von $z$.}
+    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - \wn^j)$ gilt\footnote{$\Re(z)$ bezeichnet hier den Realteil von $z$.}
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
             &= \sum_{r=0}^{n-1} \Re\left( e^{\frac{2 \pi i j r}{n} - i \varphi} \right)
             = \Re \left( \sum_{r=0}^{n-1} e^{\frac{2 \pi i j r}{n} - i \varphi} \right)\\
-            &= \Re \left( e^{-i \varphi}\sum_{r=0}^{n-1} \left( e^{\frac{2 \pi i j}{n}}\right)^r \right)
-            = \Re \left( e^{-i \varphi} p\left( e^{\frac{2 \pi i j}{n}} \right) \right)
+            &= \Re \left( e^{-i \varphi}\sum_{r=0}^{n-1} \left( \wn^j \right)^r \right)
+            = \Re \left( e^{-i \varphi} p\left( \wn^j \right) \right)
             = 0.
         \end{split}
     \]
@@ -576,9 +583,9 @@ Hilfslemmata.
     \noindent Damit gilt für alle $r=0, \dots, n-1$
     \[
         \begin{split}
-            u_{jr}
-            &= (-1)^r \Pi_j \sigma_r^j(z)
-            = \Pi_j \sigma_r^j(-z) \\
+            u_{j,n-1-r}
+            &\overset{(\ref{eq:explicit_inverse_vandermonde})}=
+                \Pi_j \sigma_{r}^j(-z) \\
             &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j) \cdot \prod_{\substack{k=0\\ k\neq j}}^{n-1} (z_j - z_k)}\\
             &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \left((z_j - 1) (z_j - z_1) \dots (z_j - z_{n-1}) \right)}\\
             &\eqdef \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \uptau_j }\\
@@ -589,31 +596,27 @@ Hilfslemmata.
     \[
         \uptau_j \defeq \prod_{\substack{k=0\\k\neq j}}^{n-1} \left( \exp\left(\frac{2 \pi i j}{n}\right) - \exp\left(\frac{2 \pi i k}{n}\right) \right).
     \]
-    Wie in \lemmaref{uptau_j} gezeigt, gilt $\abs{\uptau_j} = n$ für alle $j \in \{1, \dots, n-1\}$.
 
     \noindent Wir schreiben nun $ \rho e^{i\varphi} \defeq \frac{1-z_0}{z_j-z_0} $
-    mit $\rho, \varphi \in \R$, $\rho \geq 0$ und erhalten
+    mit $\rho, \varphi \in \R$, $\rho \geq 0$ und erhalten zusammen mit $\abs{\uptau_j} = n$ aus \lemmaref{uptau_j}
     \[
         \begin{split}
-            \abs{u_{jr}}^2
+            \abs{u_{j,n-1-r}}^2
             &= \frac{1}{n^2} \abs{ \rho e^{i\varphi} - z_j^r }^2
             = \frac{1}{n^2} \left( \rho^2 + 1 - \rho \left( e^{\varphi - \frac{2\pi j r}{n}} + e^{\frac{2 \pi j r } {n} - \varphi} \right) \right)\\
             &= \frac{1}{n^2} \left( \rho^2 + 1 - 2 \rho \cos \left( \frac{2 \pi j r}{n} - \varphi \right) \right).
         \end{split}
     \]
 
-    \noindent Insgesamt folgt für die $j$-te Zeile
+    \noindent Mit Hilfe von \lemmaref{sum_shifted_unit_roots} folgt insgesamt
+    für die $j$-te Zeile
     \[
         \begin{split}
-            \sum_{r=0}^{n-1} \abs{u_{jr}}^2
+            \sum_{r=0}^{n-1} \abs{u_{j,n-1-r}}^2
             &= \sum_{r=0}^{n-1} \frac{1}{n^2} \left( \rho^2 + 1 - 2 \rho \cos \left( \frac{2 \pi j r}{n} - \varphi \right) \right)\\
             &= \frac{\rho^2 + 1}{n} - \frac{2 \rho}{n^2} \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
-            = \frac{\rho^2 + 1}{n},
+            = \frac{\rho^2 + 1}{n}.
         \end{split}
-    \]
-    denn es gilt nach \lemmaref{sum_shifted_unit_roots}
-    \[
-        \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right) = 0.
     \]
 
     \noindent Nach Definition ist $\rho = \frac{\abs{ 1 - z_0}}{\abs{z_j - z_0}}$.
