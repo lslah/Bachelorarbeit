@@ -127,50 +127,40 @@ Rotation und Spiegelung der Knoten verändert.
     Betrag $\abs{\alpha} = 1$.
 \end{lemma}
 \begin{proof}
-    Wir setzen
+    Nach Lemma \ref{lemma:vandermonde_const_multiplication} gelten
     \[
-        V = (v_{kj})_{k,j=0}^{n-1} \defeq \Vand{z}, \;
-        \tilde{V} = (\tilde{v}_{kj})_{k,j=0}^{n-1} \defeq \Vand{\alpha z}
+        \norm{ \Vand{\alpha z} }
+        \overset{(\ref{eq:vandermonde_const_multiplication})}{=}
+            \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}}
     \]
-    und zeigen $\norm{\tilde{V}} = \norm{V}$ und
-    $\norm{\tilde{V}^{-1}} = \norm{V^{-1}}$.
-
-    \noindent Es gilt für $j,k = 0,\dots,n-1$:
+    und
     \[
-        \tilde{v}_{kj} = (\alpha z_j)^k = \alpha^k z_j^k = \alpha^k v_{kj},
+        \norm{ \Vand{\alpha z}^{-1} }
+        \overset{(\ref{eq:inverse_vandermonde_const_multiplication})}{=}
+            \norm{\Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}}.
     \]
-    d.h. wir können
-    \[
-        \tilde{V} = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V
-    \]
-    schreiben.
-
-    \noindent Für die inverse Vandermonde-Matrix hatten wir bereits in
-    Lemma (\ref{lemma:inverse_vandermonde_const_multiplication})
-    gesehen, dass $ \tilde{V}^{-1} = \alpha^{-n+1} \cdot V^{-1} \cdot \diag{\alpha^{0}, \dots, \alpha^{n-1}} $ gilt.
-
-    \noindent Weiter können wir uns leicht davon überzeugen, dass
-    $\diag{\alpha^0, \dots, \alpha^{n-1}}$
-    für $\alpha = e^{i\varphi}$, $\varphi \in \R$
-    eine unitäre Matrix ist, denn es gilt:
+    Mit $e^{i \varphi} \defeq \alpha$ für ein $\varphi \in \R$ stellen wir
+    leicht fest, dass
+    $\diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}$ eine unitäre Matrix ist:\footnote{$A^H$ bezeichnet hier die adjungierte Matrix von $A$}
     \[
         \begin{split}
-               \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}^{H}
-            &= \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \overline{\diag{\alpha^0, \dots, \alpha^{n-1}}}\\
-            &= \diag{1, e^{i\varphi} \cdot e^{-i\varphi}, \dots, e^{i\varphi (n-1)} \cdot e^{-i \varphi (-n+1)}}\\
-            &= \diag{1, \dots, 1}.
+            \diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}^H
+            &= \diag{1, e^{i \varphi}, \dots, e^{(n-1) i \varphi}}^H\\
+            &= \diag{1, e^{-i \varphi}, \dots, e^{-(n-1) i \varphi}}\\
+            &= \diag{1, e^{i \varphi}, \dots, e^{(n-1) i \varphi}}^{-1}\\
+            &= \diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}^{-1}
         \end{split}
     \]
 
-    \noindent Damit erhalten wir
+\enlargethispage{3em}
+    \noindent Insgesamt folgt
     \[
         \begin{split}
             \cond{\Vand{\alpha z}}
-            = \cond{\tilde{V}}
-            &= \norm{\tilde{V}} \norm{\tilde{V}^{-1}}\\
-            &= \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V} \norm{\alpha^{-n+1} \cdot V^{-1} \cdot \diag{\alpha^0, \dots, \alpha^{n-1}}}\\
-            &= \norm{V} \norm{V^{-1}}
-            = \cond{V} = \cond{\Vand{z}}.
+            &= \norm{\Vand{\alpha z}} \norm{\Vand{\alpha z}^{-1}}\\
+            &= \norm{\diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}} \norm{\Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}}\\
+            &= \norm{\Vand{z}} \norm{\Vand{z}^{-1}}
+            = \cond{\Vand{z}}.
         \end{split}
     \]
 \end{proof}

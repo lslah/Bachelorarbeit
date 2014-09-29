@@ -182,3 +182,48 @@ folgt für den relativen Fehler:
     $z_k \neq z_j$ für alle $k \neq j$, d.h. wenn die $z_k$ paarweise
     verschieden sind.
 \end{corollary}
+
+%TODO: Überleitung?
+\begin{lemma}
+    \label{lemma:vandermonde_const_multiplication}
+    Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ mit $z_k$ paarweise verschieden und
+    $\alpha \in \C \! \setminus \! \{0\}$.
+    Dann gilt
+    \begin{equation}
+        \label{eq:vandermonde_const_multiplication}
+        \Vand{\alpha z}
+        = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}
+    \end{equation}
+    und entsprechend
+    \begin{equation}
+        \label{eq:inverse_vandermonde_const_multiplication}
+        \Vand{\alpha z}^{-1}
+        = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Wir setzen
+    \[
+        V = (v_{kj})_{k,j=0}^{n-1} \defeq \Vand{z}, \;
+        \tilde{V} = (\tilde{v}_{kj})_{k,j=0}^{n-1} \defeq \Vand{\alpha z}.
+    \]
+
+    \noindent Dann gilt für $j,k = 0,\dots,n-1$
+    \[
+        \tilde{v}_{kj} = (\alpha z_j)^k = \alpha^k z_j^k = \alpha^k v_{kj},
+    \]
+    d.h. wir können
+    \[
+        \tilde{V} = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V
+    \]
+    schreiben.
+    Mit $z_0, \dots, z_{n-1} \in \C$ sind auch
+    $\alpha z_0, \dots, \alpha z_{n-1} \in \C$
+    paarweise verschieden, so dass $\tilde{V}$ invertierbar ist und es folgt
+    \[
+        \tilde{V}^{-1}
+        = \left( \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V \right)^{-1}
+        = V^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.
+    \]
+\end{proof}
+
