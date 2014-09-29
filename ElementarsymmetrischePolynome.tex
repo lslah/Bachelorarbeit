@@ -9,12 +9,12 @@ $\norm{V^{-1}}_\infty$.
 
 \begin{mydef}[Elementarsymmetrische Polynome]
     Für $x = (x_1, \dots, x_{n}) \in \Cn$ definieren wir die
-    \emph{k-ten elementarsymmetrischen Polynome
-    $\sigma_{k}(x) = \sigma_{k}(x_1, \dots, x_{n})$, $k = 0, \dots, n$
+    \emph{r-ten elementarsymmetrischen Polynome
+    $\sigma_{r}(x) = \sigma_{r}(x_1, \dots, x_{n})$, $r = 0, \dots, n$
     in den $n$ Variablen $x_j$, $j = 1, \dots, n$} durch
     \[
         \prod_{k=1}^{n} (z + x_k)
-        = \sum_{k=0}^{n} \sigma_{k}(x_1, \dots, x_{n}) z^{n-k}.
+        = \sum_{r=0}^{n} \sigma_{r}(x_1, \dots, x_{n}) z^{n-r}.
     \]
 \end{mydef}
 
@@ -22,9 +22,9 @@ $\norm{V^{-1}}_\infty$.
     Als abkürzende Schreibweise setzen wir für gegebenes
     $x = (x_1, \dots, x_{n}) \in \Cn$
     \[
-        \sigma_{k}^{j}(x) \defeq \sigma_{k}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
+        \sigma_{r}^{j}(x) \defeq \sigma_{r}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
     \]
-    Damit ist $\sigma_{k}^{j}(x)$ das k-te elementarsymmetrische Polynom in den
+    Damit ist $\sigma_{r}^{j}(x)$ das r-te elementarsymmetrische Polynom in den
     $n-1$ Variablen $x_r$, $r \in \{ 1, \dots, n \} \setminus \{ j \}$.
 \end{notation}
 
@@ -32,10 +32,15 @@ $\norm{V^{-1}}_\infty$.
     Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
     \begin{equation}
         \label{eq:explicit_elementary_symmetric_polynomials}
-        \sigma_{k}(x_1, \dots, x_{n})
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \left( \prod_{r=1}^k x_{j_r} \right).
+        \sigma_{r}(x_1, \dots, x_{n})
+        = \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}
+        = \sum_{1 \leq j_1 < \dots < j_r \leq n} \left( \prod_{k=1}^r x_{j_k} \right)
     \end{equation}
+    für $r \in \N$.
+    Dabei ist der Fall $r = 0$ nicht als leere Summe, sondern als Summe mit
+    leerem Produkt als einzigem Summanden zu verstehen, so dass
+    $\sigma_0(x) = 1$ gilt. Dies entspricht gerade dem Höchstkoeffizienten des
+    Polynoms aus der Definition.
 \end{remark}
 
 \begin{lemma}
@@ -43,7 +48,7 @@ $\norm{V^{-1}}_\infty$.
     Die elementarsymmetrischen Polynome erfüllen die Rekursionsformel:
     \begin{equation}
         \label{eq:recursion_elementary_symmetric_polynomials}
-        \sigma_k (x_1, \dots, x_{n}) = \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
+        \sigma_r (x_1, \dots, x_{n}) = \sigma_r (x_1, \dots, x_{n-1}) + x_{n} \sigma_{r-1} (x_1, \dots, x_{n-1}).
     \end{equation}
 \end{lemma}
 \begin{proof}
@@ -52,11 +57,11 @@ $\norm{V^{-1}}_\infty$.
     $x_n$ ein Faktor im Summand ist:
     \begin{equation*}
         \begin{split}
-            \sigma_k (x_1, \dots, x_{n})
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}\\
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}
-            + \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_{j_1} \cdots x_{j_k} \cdot x_{n}\\
-            &= \sigma_k (x_1, \dots, x_{n-1}) + x_{n} \sigma_{k-1} (x_1, \dots, x_{n-1}).
+            \sigma_r (x_1, \dots, x_{n})
+            &= \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}\\
+            &= \sum_{1 \leq j_1 < \dots < j_r \leq n-1} x_{j_1} \cdots x_{j_r}
+            + \sum_{1 \leq j_1 < \dots < j_{r-1} \leq n-1} x_{j_1} \cdots x_{j_r} \cdot x_{n}\\
+            &= \sigma_r (x_1, \dots, x_{n-1}) + x_{n} \sigma_{r-1} (x_1, \dots, x_{n-1}).
         \end{split}
     \end{equation*}
 \end{proof}
@@ -68,8 +73,8 @@ $\norm{V^{-1}}_\infty$.
     Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt:
     \begin{equation}
         \label{eq:elementary_symmetric_polynomials_const_multiplication}
-        \sigma_{k}(\alpha x)
-        = \alpha^{k} \sigma_{k}(x)
+        \sigma_{r}(\alpha x)
+        = \alpha^{r} \sigma_{r}(x)
     \end{equation}
 \end{lemma}
 \begin{proof}
@@ -77,10 +82,10 @@ $\norm{V^{-1}}_\infty$.
     (\ref{eq:explicit_elementary_symmetric_polynomials})
     erhalten wir:
     \[
-        \sigma_{k}(\alpha x)
-        = \sum_{1 \leq j_1 < \dots < j_k \leq n} \alpha x_{j_1} \cdots \alpha x_{j_k}
-        = \alpha^k \sum_{1 \leq j_1 < \dots < j_k \leq n} x_{j_1} \cdots x_{j_k}
-        = \alpha^k \sigma_{k}(x).
+        \sigma_{r}(\alpha x)
+        = \sum_{1 \leq j_1 < \dots < j_r \leq n} \alpha x_{j_1} \cdots \alpha x_{j_r}
+        = \alpha^r \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}
+        = \alpha^r \sigma_{r}(x).
     \]
 \end{proof}
 
@@ -131,10 +136,11 @@ $\norm{V^{-1}}_\infty$.
 
 \begin{corollary}
     \label{corollary:outlier_sigma_zero_row_sum}
-    Es gilt
-    \[
+    Mit $\omega_n \defeq e^{\frac{2 \pi i}{n}}$ gilt
+    \begin{equation}
+        \label{eq:outlier_sigma_zero_row_sum}
         \sum_{r=0}^{n-1} \abs{\sigma_r(\wn^1, \dots, \wn^{n-1})} = n.
-    \]
+    \end{equation}
 \end{corollary}
 
 \section[Abschätzung der Betragssumme der elementarsymmetrischen Polynome]{Eine Abschätzung von \boldmath $\sum_{k=0}^{n} \abs{\sigma_{k}}$}
@@ -199,28 +205,34 @@ der Zeilensummennorm der inversen Vandermonde-Matrix.
     $\sigma_{k}(x_1, \dots, x_{n-1})$ und $x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})$
     linear abhängig sind und die Dreiecksungleichung als Gleichung
     \[
-        \abs{\sigma_{k}(x_1, \dots, x_{n-1})} + \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
-        = \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
+        \begin{split}
+            \abs{\sigma_{k}(x_1, \dots, x_{n-1})} + \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
+            = \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}
+        \end{split}
     \]
     gilt.
-    Dazu verwenden wir Gleichung
-    (\ref{eq:explicit_elementary_symmetric_polynomials}) und stellen fest, dass
+
+    \noindent Mit Gleichung
+    (\ref{eq:explicit_elementary_symmetric_polynomials})
+    sieht man sofort ein, dass
+    $\sigma_k(r_1, \dots, r_{n-1}) \in \R_{+}$ für alle $k \in \N$ gilt.
+    Weiter verwenden wir
+    \lemmaref{elementary_symmetric_polynomials_const_multiplication}
+    und stellen fest, dass
     \begin{equation*}
-        \begin{split}
-            \sigma_{k}(x_1, \dots, x_{n-1})
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} x_{j_1} \cdots x_{j_k}\\
-            &= \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} e^{i\varphi} \cdots r_{j_k} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_k \leq n-1} r_{j_1} \cdots r_{j_k} \right)
-        \end{split}
+        \sigma_{k}(x_1, \dots, x_{n-1})
+        = \sigma_k(e^{i \varphi} \cdot (r_1, \dots, r_{n-1}))
+        \overset{(\ref{eq:explicit_elementary_symmetric_polynomials})}{=}
+            e^{k \cdot i \varphi} \cdot \underbrace{\sigma_k(r_1, \dots, r_{n-1})}_{> 0}
     \end{equation*}
     und
     \begin{equation*}
-        \begin{split}
-            x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
-            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} x_n \cdot x_{j_1} \cdots x_{j_{k-1}}\\
-            &= \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n e^{i\varphi} \cdot r_{j_1} e^{i\varphi} \cdots r_{j_{k-1}} e^{i\varphi}\\
-            &= e^{k\cdot i\varphi} \cdot \left( \sum_{1 \leq j_1 < \dots < j_{k-1} \leq n-1} r_n \cdot r_{j_1} \cdots r_{j_{k-1}} \right)
-        \end{split}
+        x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
+        = x_n \cdot \sigma_{k-1}(e^{i \varphi} \cdot (r_1, \dots, r_{n-1}))
+        \overset{(\ref{eq:explicit_elementary_symmetric_polynomials})}{=}
+            e^{k \cdot i \varphi} \cdot \underbrace{r_n \sigma_{k-1}(r_1, \dots, r_{n-1})}_{> 0}
     \end{equation*}
-    in die gleiche Richtung $e^{k\cdot i\varphi}$ zeigen, also linear abhängig sind, wie behauptet.
+    \enlargethispage{2em}
+    in die gleiche Richtung $e^{k\cdot i\varphi}$ zeigen, also linear abhängig
+    sind, wie behauptet.
 \end{proof}
