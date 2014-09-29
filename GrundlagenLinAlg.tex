@@ -32,7 +32,12 @@ weshalb wir uns zunächst an deren Definitionen erinnern.
 \end{remark}
 
 Wir wollen nun ähnlich wie in \cite[S. 205ff]{stoer1} den Begriff der Kondition
-einer Matrix motivieren.  Dazu betrachten wir ein lineares Gleichungssystem der
+einer Matrix motivieren.  Dazu seien eine Vektorraumnorm auf $\Cn$ und eine
+submultiplikative Matrixnorm auf $\C^{n\times n}$ gegeben, die wir jeweils mit
+$\emptynorm$ bezeichnen. Die Matrixnorm sei dabei mit der Vektorraumnorm
+verträglich, d.h. es gelte $ \norm{Ax} \leq \norm{A}\norm{x}$ für alle $A \in
+\C^{n\times n}$ und $x \in \Cn$. Wir betrachten wir ein lineares
+Gleichungssystem der
 Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
@@ -67,13 +72,13 @@ folgt für den relativen Fehler:
 \noindent Dies motiviert die folgende
 \begin{mydef}[Kondition einer Matrix]
     Sei $A \in \C^{n \times n}$.
-    Die \emph{Kondition von $A$} ist durch
+    Die \emph{Kondition von $A$ bezüglich der Norm $\emptynorm$} ist durch
     $\cond{A} \defeq \norm{A} \norm{A^{-1}}$
     definiert.
 \end{mydef}
 
 \begin{remark}
-    Mit dieser Definition gilt nun: $ \frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta $.
+    Mit den Bezeichnungen wie in oben gilt dann: ${\frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta }$.
 \end{remark}
 
 \begin{remark}
@@ -83,6 +88,12 @@ folgt für den relativen Fehler:
     Konditionszahl herleiten. Dazu sei auf \cite[S. 203ff]{stoer1} und \cite[S.
     54ff]{schaback} verwiesen.
 \end{remark}
+
+\begin{notation}
+    Für die Konditionen bezüglich der Frobenius- und der Zeilensummennorm
+    verwenden wir die Schreibweisen $ \cond[F]{A} $ bzw. $\cond[\infty]{A}$ für
+    Matrizen $A \in \C^{n\times n}$.
+\end{notation}
 
 \section{Vandermonde-Matrizen}
 
@@ -98,11 +109,11 @@ folgt für den relativen Fehler:
             z_0^2     & z_1^2     & \dots & z_{n-1}^2 \\
             \vdots    & \vdots    & \ddots & \vdots \\
             z_0^{n-1} & z_1^{n-1} & \dots & z_{n-1}^{n-1}
-        \end{pmatrix}
+        \end{pmatrix} \in \C^{n \times n}
     \]
     definiert.
     Bezeichnet man die Komponenten der Vandermonde-Matrix mit
-    $\left( v_{kj} \right)_{k,j = 0}^{n-1}$, so ergibt sich
+    $v_{kj} \in \C$, so ergibt sich
     $ v_{kj} = z_j^k $ für $k, j = 0, \dots, n-1$.
 
 \end{mydef}
@@ -126,7 +137,8 @@ folgt für den relativen Fehler:
     Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
     \textbf{Induktionsschritt (\boldmath $n\!-\!1 \rightarrow n$):}
     Durch Zeilenoperationen ändert sich der Wert der Determinante nicht.
-    Wir ziehen daher in jeder Zeile das $z_0$-fache der vorherigen Zeile ab.
+    Wir ziehen daher in jeder Zeile das $z_0$-fache der vorherigen Zeile ab und
+    erhalten
     \[
         \det{\Vand{z}}
         = \begin{vmatrix}
