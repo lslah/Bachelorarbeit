@@ -18,10 +18,30 @@ her.
 \section{Vandermonde-Matrizen zu den \boldmath $n$-ten Einheitswurzeln}
 
 \begin{lemma}
+    \label{lemma:frobenius_norm_vandermonde_unit_circle}
+    Für Knoten auf dem Einheitskreis
+    $z = \left(e^{i \varphi_0}, \dots, e^{i \varphi_{n-1}} \right) \in \C$
+    mit $\varphi_j \in \R$ für $j = 0, \dots, n-1$ gilt:
+    \begin{equation}
+        \norm{\Vand{z}}_F = n.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Es gilt
+    \[
+        \norm{\Vand{z}}_F^2
+        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} \abs{ \left(e^{i \varphi_j}\right)^k }^2
+        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} 1
+        = n^2.
+    \]
+\end{proof}
+
+
+\begin{lemma}
     Sei $n \in \N$ und $z = (z_0, \dots, z_{n-1}) \in \Cn$ der Vektor der
     $n$-ten Einheitswurzeln, also $z_j = e^{\frac{2 \pi i j}{n}}$ für
     $j = 0, \dots, n-1$.
-    Dann gilt
+    Dann gilt für die Kondition bzgl. der Frobeniusnorm
     \[
         \cond[F]{\Vand{z}} = n.
     \]
@@ -54,8 +74,10 @@ her.
               \right.
         \end{split}
     \]
-    Damit ist $V^{-1} = W$ gezeigt und wegen $\norm{V}_F = n$ und
-    $\norm{V^{-1}}_F = \norm{W}_F = \frac{1}{n} \norm{\bar V}_F = 1$ folgt die Behauptung.
+    Damit ist $V^{-1} = W$ gezeigt.
+    Nach Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} gilt $\norm{V}_F = n$
+    und damit $\norm{V^{-1}}_F = \norm{W}_F = \frac{1}{n} \norm{\overline V}_F = 1$,
+    was die Behauptung zeigt.
 \end{proof}
 
 
@@ -86,16 +108,17 @@ Rotation und Spiegelung der Knoten verändert.
         \end{split}
     \]
 
-    \noindent Für die Zeilensummennorm der inversen Vandermonde-Matrix erinnern wir uns an Gleichung
+    \noindent Für die Zeilensummennorm der inversen Vandermonde-Matrix erinnern
+    wir uns an Gleichung
     (\ref{eq:inverse_vandermonde_const_multiplication})
-    aus Lemma \ref{lemma:inverse_vandermonde_const_multiplication}:
-    $\tilde{u}_{jr} = u_{jr} \alpha^{-n+r+1}$.
+    aus Lemma \ref{lemma:vandermonde_const_multiplication}:
+        $\Vand{\alpha z}^{-1}
+        = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.$
     Damit ist sofort ersichtlich
     \[
         \begin{split}
             \norm{\Vand{\alpha z}^{-1}}_\infty
-            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{\tilde{u}_{jr}}
-            = \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}} \abs{\alpha^{-n+r+1}}\\
+            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}} \abs{\alpha^{-r}}\\
             &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
             = \norm{\Vand{\alpha}^{-1}}_\infty.
         \end{split}
@@ -191,7 +214,7 @@ schreiben.
 \subsection{Kondition bezüglich der Zeilensummennorm}
 
 Vandermonde-Matrizen mit Stützstellen innerhalb des komplexen Einheitskreises
-haben die Zeilensummennorm $1$, wie bereits in
+haben die Zeilensummennorm $n$, wie bereits in
 \lemmaref{infty_norm_vandermonde_unit_roots} gezeigt wurde.
 Dies trifft offensichtlich auch in unserem Fall zu, so dass wir für die
 Berechnung der Kondition nur noch die Zeilensummennorm der inversen
@@ -216,7 +239,7 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
 \begin{proof}
     Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt
     \[
-        u_{0r} = (-1)^{r} \Pi_0 \sigma_{r}^{0}(z_1, \dots, z_{n-1}),
+        u_{0r} = (-1)^{n-1-r} \Pi_0 \sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1}),
     \]
     mit
     \[
@@ -248,8 +271,8 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{ u_{0r} }
-            &= \sum_{r=0}^{n-1} \abs{ (-1)^{r} \Pi_0 \sigma_{r}(z_1, \dots, z_{n-1}) }\\
-            &= \left( \sum_{r=0}^{n-1} \abs{ \sigma_{r}(z_1, \dots, z_{n-1}) } \right) \cdot \abs{\Pi_0}\\
+            &= \sum_{r=0}^{n-1} \abs{ (-1)^{n-1-r} \Pi_0 \sigma_{n-1-r}(z_1, \dots, z_{n-1}) }\\
+            &= \left( \sum_{r=0}^{n-1} \abs{ \sigma_{n-1-r}(z_1, \dots, z_{n-1}) } \right) \cdot \abs{\Pi_0}\\
             &= n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
         \end{split}
     \]
@@ -335,27 +358,9 @@ widerlegen.
 Wir wollen nun eine explizite Formel für die Kondition der Vandermonde-Matrix
 $\Vand{\delta}$ bezüglich der Frobeniusnorm beweisen.
 Dazu sei an die Definition der Frobeniusnorm (\ref{eq:frobenius_norm}) erinnert.
-Es zeigt sich sofort, dass die Frobeniusnorm einer Vandermonde-Matrix mit
-$n$ Knoten auf dem Einheitskreis $n$ beträgt.
-
-\begin{lemma}
-    Für Knoten auf dem Einheitskreis
-    $z = \left(e^{i \varphi_0}, \dots, e^{i \varphi_{n-1}} \right) \in \C$
-    mit $\varphi_j \in \R$ für $j = 0, \dots, n-1$ gilt:
-    \begin{equation}
-        \norm{\Vand{z}}_F = n.
-    \end{equation}
-\end{lemma}
-\begin{proof}
-    Es gilt
-    \[
-        \norm{\Vand{z}}_F^2
-        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} \abs{ \left(e^{i \varphi_j}\right)^k }^2
-        = \sum_{k=0}^{n-1} \sum_{j=0}^{n-1} 1
-        = n^2.
-    \]
-\end{proof}
-
+Bereits in Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} wurde
+gezeigt, dass die Norm einer Vandermonde-Matrix mit $n$ Knoten auf dem
+Einheitskreis $n$ beträgt.
 Schwierigkeiten kann also nur die Norm der inversen Vandermonde-Matrix
 bereiten.  Wir betrachten im Folgenden die zwei Fälle $j=0$ und
 $j \in \{1, \dots, n-1\}$ gesondert.

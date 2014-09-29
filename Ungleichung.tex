@@ -87,10 +87,12 @@ wir dann
     Für $j, r = 0, \dots, n-1$ gilt
     \begin{equation}
         \label{eq:explicit_inverse_vandermonde}
-        u_{jr}
-        = \Pi_j \sigma_{n-1-r}^{j}(-z_0, \dots, -z_{n-1})
-        \overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
-          (-1)^r \Pi_j \sigma_{n-1-r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
+        \begin{split}
+            u_{jr}
+            &= \Pi_j \sigma_{n-1-r}^{j}(-z_0, \dots, -z_{n-1})\\
+            &\overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
+                (-1)^{n-1-r} \Pi_j \sigma_{n-1-r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
+        \end{split}
     \end{equation}
 \end{lemma}
 
@@ -255,7 +257,7 @@ Vandermonde-Matrix angeben und beweisen:
             \norm{V^{-1}}_{\infty}
             &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}\\
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
-              \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{(-1)^{r} \Pi_j \sigma_{n-1-r}^{j}}
+              \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{(-1)^{n-1-r} \Pi_j \sigma_{n-1-r}^{j}}
             = \max_{j=0, \dots, n-1} \abs{\Pi_j} \sum_{r=0}^{n-1} \abs{\sigma_{n-1-r}^{j}}\\
             &\overset{(\ref{eq:elementary_symmetric_polynomials_inequality})}{\leq}
               \max_{j=0, \dots, n-1} \abs{\Pi_j} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( 1 + \abs{z_k} \right)
@@ -287,7 +289,7 @@ Vandermonde-Matrix angeben und beweisen:
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{jr}}
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
-            \sum_{r=0}^{n-1} \abs{(-1)^r \Pi_j \sigma_{n-1-r}^j}\\
+            \sum_{r=0}^{n-1} \abs{(-1)^{n-1-r} \Pi_j \sigma_{n-1-r}^j}\\
             &= \sum_{k=0}^{n-1} \abs{a_k}
             \overset{(\ref{eq:polynom_coefficient_sum_inequality})}{>}
                 \abs{a_{n}} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \max \left(1, \abs{\zeta_r} \right)\\
