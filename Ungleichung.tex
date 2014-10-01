@@ -1,8 +1,8 @@
 \chapter{Eine Ungleichung für die Kondition von Vandermonde-Matrizen}
 In diesem Abschnitt sei ein $n$-elementiger Vektor $z = (z_0, \dots, z_{n-1})
 \in \Cn$ gegeben.  Die zugehörige Vandermonde-Matrix sei mit $V \defeq
-\Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung der Zeilensummennorm der
-inversen Vandermonde-Matrix $\norm{V^{-1}}_{\infty}$ und damit eine Abschätzung der
+\Vand{z}$ bezeichnet.  Ziel ist es, eine Abschätzung der Zeilensummennorm
+inverser Vandermonde-Matrizen und damit eine Abschätzung der
 Kondition $\cond[\infty]{V}$ zu finden.
 
 % TODO: reference gautschi1
@@ -10,13 +10,14 @@ Kondition $\cond[\infty]{V}$ zu finden.
 \section{Inversion der Vandermonde-Matrix}
 Es werden zunächst die \emph{Lagrange-Polynome} zu den Knoten
 $z_0, \dots, z_{n-1}$ eingeführt, deren Koeffizienten sich als Einträge der
-inversen Vandermonde-Matrix herausstellen.
+inversen Vandermonde-Matrix herausstellen werden.
 
 \begin{mydef}[Lagrange-Polynome]
     Für $ z = (z_0, \dots, z_{n-1}) \in \Cn $ definiere die
     \emph{Lagrange-Polynome} durch
     \[
-        l_j(z) = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r} \text{ für } j = 0, \dots, n-1.
+        l_j(z)
+        \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{z - z_r}{z_j - z_r} \text{ für } j = 0, \dots, n-1.
     \]
 \end{mydef}
 
@@ -31,20 +32,20 @@ inversen Vandermonde-Matrix herausstellen.
     \end{enumerate}
 \end{remark}
 
-\noindent Wegen $l_j \in \Pi_{n-1}$, können die Lagrange-Polynome ausmultipliziert als
+\noindent Wegen $l_j \in \Pi_{n-1}$ können die Lagrange-Polynome ausmultipliziert als
 \begin{equation}
     \label{eq:lagrange}
     l_j(z) = \sum_{r = 0}^{n-1} u_{jr} z^{r}
 \end{equation}
-mit Koeffizienten $u_{jr} \in \C$ geschrieben werden.
-Wir finden nun den folgenden Zusammenhang zwischen $V^{-1}$ und den
-Koeffizienten der Lagrange-Polynome:
+mit den Koeffizienten $u_{jr} \in \C$ geschrieben werden.
 
+Im folgenden Lemma zeigt sich, dass die Koeffizienten der Lagrange-Polynome
+genau den Einträgen der inversen Vandermonde-Matrix entsprechen.
 \begin{lemma}[\cite{gautschi3}]
     \label{lemma:vandermonde-inversion}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
-    $l_j$, $j = 0, \dots, n-1$ die zugehörigen Lagrange-Polynome
-    mit Koeffizienten $u_{jr}$ wie in (\ref{eq:lagrange}).
+    $l_j$ die zugehörigen Lagrange-Polynome für $j = 0, \dots, n-1$
+    mit den Koeffizienten $u_{jr}$ wie in (\ref{eq:lagrange}).
     Dann ist die Koeffizienten-Matrix $U = (u_{jr})_{j,r = 0}^{n-1}$ die
     Inverse der Vandermonde-Matrix $V = \Vand{z} = (z_{j}^{k})_{k,j = 0}^{n-1}$.
 \end{lemma}
@@ -66,7 +67,7 @@ Koeffizienten der Lagrange-Polynome:
 
 Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
 elementarsymmetrischen Polynomen kann eine explizite Darstellung der
-Inversen der Vandermonde-Matrix angegeben werden.
+inversen Vandermonde-Matrix angegeben werden.
 Dazu schreiben wir für $j = 0, \dots, n-1$
 \begin{equation*}
     \sum_{r = 0}^{n-1} u_{jr} z^{r}
@@ -80,9 +81,9 @@ mit
     \Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}.
 \end{equation}
 
-\noindent Mit Lemma
-\ref{lemma:elementary_symmetric_polynomials_const_multiplication} erhalten
-wir dann
+\noindent Nutzen wir Lemma
+\ref{lemma:elementary_symmetric_polynomials_const_multiplication}, so erhalten
+wir
 \begin{lemma}
     Für $j, r = 0, \dots, n-1$ gilt
     \begin{equation}
@@ -96,7 +97,7 @@ wir dann
     \end{equation}
 \end{lemma}
 
-\section{Abschätzung der Zeilensummennorm der inversen Vandermonde-Matrix}
+\section{Eine Abschätzung der Zeilensummennorm inverser Vandermonde-Matrizen}
 
 Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert, die wir im
 folgenden Lemma benötigen werden.
@@ -119,7 +120,7 @@ folgenden Lemma benötigen werden.
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
     $a_j \in \C$ für $j = 0, \dots, n$, $a_n \neq 0$ und Nullstellen
-    $\zeta_j \in \C$, $j = 1, \dots, n$.
+    $\zeta_j \in \C$ mit $j = 1, \dots, n$.
     Dann gilt
     \begin{equation}
         \label{eq:polynom_coefficient_sum_inequality}
@@ -142,7 +143,7 @@ folgenden Lemma benötigen werden.
     \[
         \log \abs{a_0}
         = \log \abs{p(0)}
-        = \sum_{k=1}^{r} \log \abs{\zeta_k} + \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi,
+        = \sum_{k=1}^{r} \log \abs{\zeta_k} + \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi
     \]
     oder äquivalent dazu
     \begin{equation}
@@ -152,7 +153,7 @@ folgenden Lemma benötigen werden.
     \end{equation}
 
     \noindent Mit Hilfe der Nullstellen $\zeta_j$ können wir $p$ als Produkt
-    seiner Linearfaktoren darstellen
+    seiner Linearfaktoren darstellen:
     \[
         p(z) = \sum_{j = 0}^{n} a_j z^j = a_n \prod_{k=1}^n (z-\zeta_k).
     \]
@@ -161,7 +162,7 @@ folgenden Lemma benötigen werden.
     \[
         a_0 = p(0) = a_n (-1)^n \prod_{k=1}^n \zeta_k,
     \]
-    so dass wir (\ref{eq:jensen_polynom}) vereinfacht darstellen können
+    so dass wir (\ref{eq:jensen_polynom}) vereinfacht darstellen können:
     \[
         \abs{a_n} \prod_{k=r+1}^{n} \abs{\zeta_k}
         = \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right).
@@ -180,7 +181,7 @@ folgenden Lemma benötigen werden.
         \sum_{j=0}^n \abs{a_j} \geq \abs{a_n} \prod_{k=1}^n \max(1, \zeta_k).
     \]
 
-    \noindent Im Fall, dass $p(z) = a_n x^n$ gilt, ist
+    \noindent Für den Fall $p(z) = a_n x^n$, ist
     $ \sum_{j=0}^{n} \abs{a_j}
       = \abs{a_n} \cdot \prod_{r=1}^n \max(1, \abs{\zeta_r})
       = \abs{a_n} $
@@ -195,8 +196,8 @@ folgenden Lemma benötigen werden.
         = \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
         \eqdef M,
     \]
-    und damit, dass für $0 \leq \varphi \leq 2 \pi$ der Betrag des Polynoms
-    $\abs{p\left( e^{i\varphi} \right)}$ konstant $M$ ist.
+    und damit die Konstanz des Betrages $\abs{p(e^{i\varphi})} = M$ für
+    $0 \leq \varphi \leq 2 \pi$.
     Wir betrachten das trigonometrische Polynom
     \[
         \abs{p\left( e^{i\varphi} \right)}^2
@@ -205,9 +206,9 @@ folgenden Lemma benötigen werden.
     \]
     mit Koeffizienten\footnote{Hier sei $a_k = 0$ für $k<0$ und $k > n$.}
     \[
-        c_l = \sum_{-\infty}^\infty a_k \conj{a}_{k-l}, \; c_{-l} = \conj{c_l}.
+        c_l = \sum_{-\infty}^\infty a_k \conj{a}_{k-l} \text{ und } c_{-l} = \conj{c_l}.
     \]
-    Wegen $\abs{p\left( e^{i\varphi} \right)}^2 \equiv M^2$, muss $c_j = 0$ für
+    Wegen $\abs{p\left( e^{i\varphi} \right)}^2 \equiv M^2$ muss $c_j = 0$ für
     $j > 0$ und $c_0 = M^2$ gelten.
     Wir erhalten die Bedingungen
     \begin{equation*}
@@ -223,7 +224,7 @@ folgenden Lemma benötigen werden.
     Einsetzen von $a_0 = 0$ in die zweite Bedingung liefert aus dem gleichen
     Grund $a_1 = 0$ und induktiv folgen $a_j = 0$ für $j < n$.
     Schließlich zeigt die letzte Gleichung $M^2 = a_n^2$, so dass $p$ wie
-    behauptet ein Polynom von der Form $p(z) = a_n z^n$ ist.
+    behauptet ein Polynom der Form $p(z) = a_n z^n$ ist.
 \end{proof}
 
 Nun können wir eine Abschätzung der Zeilensummennorm der inversen
@@ -239,7 +240,7 @@ Vandermonde-Matrix angeben und beweisen:
     \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
   \end{equation}
   Gleichheit für die obere Grenze gilt, wenn $z_k = r_k \cdot e^{i \varphi}$
-  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$, $k = 0, \dots, n-1$ gilt.
+  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$ mit $k = 0, \dots, n-1$ gilt.
 \end{theorem}
 
 \begin{proof}
@@ -251,7 +252,7 @@ Vandermonde-Matrix angeben und beweisen:
     elementarsymmetrische Polynome
     (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
     \ref{lemma:elementary_symmetric_polynomials_inequality} ein.
-    Es gilt:
+    Es gilt
     \begin{equation*}
         \begin{split}
             \norm{V^{-1}}_{\infty}
@@ -271,15 +272,15 @@ Vandermonde-Matrix angeben und beweisen:
     \[
         p(z) = \sum_{k=0}^{n-1} a_k z^k
         \defeq \Pi_j \cdot \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( z - z_k \right)
-        \overset{(\ref{eq:explicit_inverse_vandermonde})}{=} \sum_{k=0}^{n-1} (-1)^{n-1-k} \Pi_j \sigma_{n-1-k}^j(z_0, \dots, z_{n-1}) \cdot z^k,
+        \overset{(\ref{eq:explicit_inverse_vandermonde})}{=} \sum_{k=0}^{n-1} (-1)^{n-1-k} \cdot \Pi_j \cdot \sigma_{n-1-k}^j(z_0, \dots, z_{n-1}) \cdot z^k,
     \]
-    d.h. die Koeffizienten von $p$ ergeben sich für $k = 0, \dots, n-1$ als
+    d.h. die Koeffizienten von $p$ ergeben sich für $k = 0, \dots, n-1$ durch
     \[
         a_k = (-1)^{n-1-k} \cdot \Pi_j \cdot \sigma_{n-1-k}^j(z_0, \dots, z_{n-1}).
     \]
     Offensichtlich hat $p$ die $n-1$ Nullstellen
     $\zeta_r \defeq z_r$ für $r \in \{0,\dots,n-1\} \setminus \{j\}$.
-    Wegen $z_k \neq z_r$ für $k \neq r$, hat $p$ Nullstellen ungleich $0$ und
+    Wegen $z_k \neq z_r$ für $k \neq r$ existieren für das Polynom $p$ Nullstellen ungleich $0$ und
     es kann nicht $p(z) \equiv a_{n-1} z^{n-1}$ gelten.
     Damit kann die strikte Ungleichung
     (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
@@ -298,11 +299,11 @@ Vandermonde-Matrix angeben und beweisen:
         \end{split}
     \]
 
-    \noindent Da diese Ungleichung für alle $j \in \{0, \dots, n-1\}$ erfüllt ist, folgt
+    \noindent Da diese Ungleichung für alle $j \in \{0, \dots, n-1\}$ erfüllt
+    ist, folgt die Behauptung:
     \[
         \max_{j = 0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
-        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}},
+        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
     \]
-    was die Behauptung zeigt.
 \end{proof}
 
