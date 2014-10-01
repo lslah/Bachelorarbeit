@@ -1,0 +1,24 @@
+\chapter{Einleitung}
+
+Schon früh im Studium der numerischen Mathematik trifft man bei der
+reellen Polynominterpolation auf Vandermonde-Matrizen.
+Man stellt schnell fest, dass diese dort nur für theoretische Betrachtungen
+sinnvoll sind.
+Für die praktische Berechnung der Koeffizienten des Interpolationspolynoms
+wird auf andere Methoden als die Invertierung der Vandermonde-Matrix
+zurückgegriffen, da sich diese Berechnung als schlecht konditioniert herausstellt und damit große numerische Fehler hervorruft.
+
+Anders verhält es sich wenn man Vandermonde-Matrizen mit Knoten in der
+komplexen Ebene betrachtet.  So ist die Vandermonde-Matrix zu den $n$-ten
+Einheitswurzeln sogar optimal konditioniert bezüglich der Spektralnorm.
+In einer Reihe von Anwendungen entstehen Vandermonde-Matrizen, die durch Knoten
+auf dem Einheitskreis definiert sind, die teilweise nur leicht von der
+äquidistanten Verteilung abweichen.
+
+In dieser Arbeit wird eine spezielle Art von Vandermonde-Matrizen untersucht,
+bei der $n-1$ Knoten ihre optimale Position als $n$-te Einheitswurzel einnehmen
+und der zur Einheitswurzel $1$ gehörige Knoten um einen Winkel $\delta \in
+[\frac{2 \pi}{n})$ ausgelenkt wird.
+Ziel ist es, explizite geschlossene Formeln für die Kondition dieser
+Vandermonde-Matrizen bzgl. der Frobeniusnorm und der Zeilensummennorm zu
+finden.
