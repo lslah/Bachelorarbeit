@@ -189,17 +189,19 @@ folgt für den relativen Fehler
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ mit $z_k$ paarweise verschieden und
     $\alpha \in \C \! \setminus \! \{0\}$.
     Dann gilt
-    \begin{equation}
-        \label{eq:vandermonde_const_multiplication}
-        \Vand{\alpha z}
-        = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}
-    \end{equation}
-    und entsprechend
-    \begin{equation}
-        \label{eq:inverse_vandermonde_const_multiplication}
-        \Vand{\alpha z}^{-1}
-        = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.
-    \end{equation}
+    \begin{subequations}
+        \begin{equation}
+            \label{eq:vandermonde_const_multiplication}
+            \Vand{\alpha z}
+            = \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot \Vand{z}
+        \end{equation}
+        und entsprechend
+        \begin{equation}
+            \label{eq:inverse_vandermonde_const_multiplication}
+            \Vand{\alpha z}^{-1}
+            = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.
+        \end{equation}
+    \end{subequations}
 \end{lemma}
 \begin{proof}
     Wir setzen
