@@ -5,17 +5,17 @@ die Kondition einer Vandermonde-Matrix zu nicht-negativen harmonischen Stützste
 berechnen.
 Weitere Konditionen von Vander"-monde-Matrizen mit reellen Stützstellen werden
 angegeben.
-Die Beispiele wurden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
+Die Beispiele werden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
 
-Zunächst beweisen wir ein allgemeineres Lemma über die Zeilensummennorm
+Zunächst beweisen wir ein allgemeines Lemma über die Zeilensummennorm
 von Vandermonde-Matrizen mit Stützstellen innerhalb des komplexen
 Einheitskreises.
 Betrachtet man nämlich nur Stützstellen $z_j \in \C$ mit $\abs{z_j} \leq 1$,
 so gilt $\norm{\Vand{z}}_{\infty} = n$.
 Somit muss in diesem Fall zur Bestimmung von $\cond[\infty]{\Vand{z}}$ nur noch die
 Norm der Inversen $\norm{\Vand{z}^{-1}}_{\infty}$ berechnet werden.
-Insbesondere gilt dies für reelle Stützstellen
-$x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
+Dies gilt insbesondere für reelle Stützstellen
+$x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$ für $j=0, \dots, n-1$.
 
 \begin{lemma}
     \label{lemma:infty_norm_vandermonde_unit_roots}
@@ -29,7 +29,7 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$.
 \end{lemma}
 
 \begin{proof}
-    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$, folgt
+    Wegen $\abs{z_j^k} \leq \abs{z_j^r}$ für $k > r$ und alle $j = 0, \dots, n-1$ folgt
     \[
         \norm{V(z)}_{\infty}
         = \max_{k=0,\dots,n-1} \left( \sum_{j=0}^{n-1} \abs{z_j^k} \right)
@@ -48,8 +48,8 @@ Gleichheit gilt.
 Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechnen.
 \begin{lemma}
     \label{lemma:nonnegative_real_nodes}
-    Ist $V$ die zu den Stützstellen $x_j \in \R$, $x_j \geq 0$ gehörige
-    Vandermone-Matrix und definiert man
+    Ist $V$ die zu den Stützstellen $x_j \in \R$ mit $x_j \geq 0$ gehörige
+    Vandermonde-Matrix und definiert man
     \[
         p(z) \defeq \prod_{j=0}^{n-1} \left( z - x_j \right),
     \]
@@ -84,7 +84,7 @@ Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechn
 \end{proof}
 
 \begin{example}[Harmonische Stützstellen]
-    Seien die Stützstellen $x_k = \frac{1}{k}, \; k=1, \dots, n$ gegeben.
+    Seien die Stützstellen $x_k = \frac{1}{k}$ mit $k=1, \dots, n$ gegeben.
     Mit den Bezeichnungen wie in \lemmaref{nonnegative_real_nodes} gilt dann
     \[
         \abs{p(-1)} = \prod_{k=1}^{n} \left( 1 + \frac{1}{k} \right) = n+1,
@@ -111,7 +111,7 @@ Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechn
 \end{example}
 
 \begin{example}[Äquidistante Stützstellen \cite{gautschi3}]
-    Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}, \; k=1, \dots, n$.
+    Betrachte die Stützstellen $x_k = \frac{k-1}{n-1}$ mit $k=1, \dots, n$.
     Ähnliche Untersuchungen wie im vorherigen Beispiel liefern die
     asymptotische Formel
     \[
@@ -131,11 +131,10 @@ Der Beweis kann in \cite[S. 341]{gautschi3} nachgelesen werden.
 \begin{lemma}[\cite{gautschi3}, ohne Beweis]
     \label{lemma:symmetric_real_nodes}
     Sei $x = (x_1, \dots, x_n) \in \Rn$ mit $x_j + x_{n+1-j} = 0$ für $j = 1, \dots, n$.
-    Dann gilt
+    Dann gilt mit $p(x) \defeq \prod_{k=1}^{n} (x - x_k)$
     \[
-        \norm{\Vand{x}^{-1}}_\infty = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} },
+        \norm{\Vand{x}^{-1}}_\infty = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} }.
     \]
-    mit $p(x) \defeq \prod_{k=1}^{n} (x - x_k)$.
 \end{lemma}
 
 \begin{example}[Äquidistante, symmetrische Stützstellen \cite{gautschi1}]
