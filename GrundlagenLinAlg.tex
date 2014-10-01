@@ -24,25 +24,25 @@ weshalb wir uns zunächst an deren Definitionen erinnern.
 \begin{remark}
     Später werden wir die \emph{unitäre Invarianz} der
     Frobeniusnorm benötigen, d.h. die Eigenschaft, dass für eine unitäre Matrix
-    $U \in \C^{n\times n}$ und eine beliebige Matrix $A \in \C^{n\times n}$
+    $U \in \C^{n\times n}$ und eine beliebige Matrix ${A \in \C^{n\times n}}$
     gilt:
     \[
-        \norm{A U} = \norm{U A} = \norm{A}.
+        \norm{A U}_F = \norm{U A}_F = \norm{A}_F.
     \]
 \end{remark}
 
-Wir wollen nun ähnlich wie in \cite[S. 205ff]{stoer1} den Begriff der Kondition
-einer Matrix motivieren.  Dazu seien eine Vektorraumnorm auf $\Cn$ und eine
+Im Folgenden wird ähnlich wie in \cite[S. 205ff]{stoer1} der Begriff der Kondition
+einer Matrix motiviert.  Dazu seien eine Vektorraumnorm auf $\Cn$ und eine
 submultiplikative Matrixnorm auf $\C^{n\times n}$ gegeben, die wir jeweils mit
 $\emptynorm$ bezeichnen. Die Matrixnorm sei dabei mit der Vektorraumnorm
 verträglich, d.h. es gelte $ \norm{Ax} \leq \norm{A}\norm{x}$ für alle $A \in
-\C^{n\times n}$ und $x \in \Cn$. Wir betrachten wir ein lineares
-Gleichungssystem der
-Form
+\C^{n\times n}$ und $x \in \Cn$.
+Wir betrachten ein lineares Gleichungssystem der Form
 $Ax = b$ mit invertierbarer Matrix
 $A \in \C^{n \times n}$, $n \in \N$, $b \in \Cn$
 und gesuchtem Vektor $x \in \Cn$.
 Dabei nehmen wir $x \neq 0$ und $b \neq 0$ an.
+% TODO : Eingangsvektor?
 Weiter sei ein verfälschter Eingangsvektor $\tilde{b} = b + \Delta b$,
 $\Delta b \in \Cn$ mit relativem Fehler
 \[
@@ -51,17 +51,16 @@ $\Delta b \in \Cn$ mit relativem Fehler
 gegeben.
 Wir bezeichnen mit $\tilde{x} \in \Cn$ die Lösung des verfälschten Gleichungssystems
 $A \tilde{x} = \tilde{b}$.
-Wegen der Linearität von $A^{-1}$ erhalten wir
+Mit $\Delta x \defeq A^{-1} \Delta b$ erhalten wir wegen der Linearität von $A^{-1}$
 \[
-    \tilde{x} = A^{-1} \tilde{b} = A^{-1} b + A^{-1} \Delta b = x + \Delta x,
+    \tilde{x} = A^{-1} \tilde{b} = A^{-1} b + A^{-1} \Delta b = x + \Delta x.
 \]
-wobei $\Delta x \defeq A^{-1} \Delta b$.
 
 \noindent Gesucht ist nun ein Maß des relativen Fehlers der verfälschten Lösung
 $\tilde{x}$ in Abhängigkeit vom Eingangsfehler $\delta$.
 Wegen $ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
 und $ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
-folgt für den relativen Fehler:
+folgt für den relativen Fehler
 %FIXME: equal sized norm-bars
 \[
     \frac{\norm{\Delta x}}{\norm{x}}
@@ -72,13 +71,13 @@ folgt für den relativen Fehler:
 \noindent Dies motiviert die folgende
 \begin{mydef}[Kondition einer Matrix]
     Sei $A \in \C^{n \times n}$.
-    Die \emph{Kondition von $A$ bezüglich der Norm $\emptynorm$} ist durch
+    Dann ist die \emph{Kondition von $A$ bezüglich der Norm $\emptynorm$} durch
     $\cond{A} \defeq \norm{A} \norm{A^{-1}}$
     definiert.
 \end{mydef}
 
 \begin{remark}
-    Mit den Bezeichnungen wie in oben gilt dann: ${\frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta }$.
+    Mit den Bezeichnungen wie oben gilt dann ${\frac{\norm{\Delta x}}{\norm{x}} \leq \cond{A} \cdot \delta }$.
 \end{remark}
 
 \begin{remark}
@@ -128,10 +127,10 @@ folgt für den relativen Fehler:
 \end{lemma}
 
 \begin{proof}
-    Bezeichne mit $v_{kj} = z_j^k$ für $k,j \in \{0, \dots, n-1\}$ die Elemente von $\Vand{z}$.
-    Der Beweis erfolgt durch vollständige Induktion über $n \in \N$.\\
+    Bezeichne mit $v_{kj} = z_j^k$ für $k,j = 0, \dots, n-1$ die Elemente von $\Vand{z}$.
+    Der Beweis erfolgt durch vollständige Induktion nach $n \in \N$.\\
     \textbf{Induktionsanfang (\boldmath $n=1$):}\\
-    Da das leere Produkt $1$ ergibt, gilt
+    Da das leere Produkt per Definition $1$ ergibt, gilt
     $\det{\Vand{z}}~=~1~=~\prod_{0 \leq k < j \leq 0} (z_j~-~z_k)$. \\[0.5em]
     \textbf{Induktionvoraussetzung:}
     Sei die Behauptung für $n-1 \in \N$ erfüllt.\\[0.5em]
@@ -156,22 +155,23 @@ folgt für den relativen Fehler:
             0      & (z_1-z_0)z_1^{n-2} & \dots & (z_{n-1}-z_0) z_{n-1}^{n-2}
         \end{vmatrix}.
     \]
-    Entwicklung der Determinante nach der ersten Spalte mit Hilfe des
-    Laplaceschen Entwicklungssatzes und Ausnutzung der Multilinearität der
-    Determinante, liefert nun die Behauptung:
+    Die Entwicklung der Determinante nach der ersten Spalte mit Hilfe des
+    Laplace'schen Entwicklungssatzes und Ausnutzung der Multilinearität der
+    Determinante liefern nun die Behauptung:
     \[
         \begin{split}
             \det{\Vand{z}}
-            &= \prod_{j=0}^{n-1} (z_j - z_0) \begin{vmatrix}
+            &= \prod_{r=0}^{n-1} (z_r - z_0) \begin{vmatrix}
                 1         & \dots & 1 \\
                 z_1       & \dots & z_{n-1} \\
                 z_1^2     & \dots & z_{n-1}^2 \\
                 \vdots    & \ddots & \vdots \\
                 z_1^{n-2} & \dots & z_{n-1}^{n-2}
             \end{vmatrix}
-            = \prod_{j=0}^{n-1} (z_j - z_0) \det{\Vand{z_1, \dots, z_{n-1}}}\\
-            &\overset{IV}{=} \prod_{j=0}^{n-1} (z_j - z_0) \prod_{1 \leq k < r \leq n-1} (z_r - z_k)
-            = \prod_{0 \leq k < r \leq n-1} (z_r - z_k).
+            = \prod_{r=0}^{n-1} (z_r - z_0) \det{\Vand{z_1, \dots, z_{n-1}}}\\
+            &\overset{IV}{=}
+                \prod_{r=0}^{n-1} (z_r - z_0) \prod_{1 \leq k < j \leq n-1} (z_j - z_k)
+            = \prod_{0 \leq k < j \leq n-1} (z_j - z_k).
         \end{split}
     \]
 \end{proof}
@@ -179,7 +179,7 @@ folgt für den relativen Fehler:
 \begin{corollary}
     Die Vandermonde-Matrix $\Vand{z}$ mit
     $z = (z_0, \dots, z_{n-1}) \in \Cn$ ist genau dann invertierbar, wenn
-    $z_k \neq z_j$ für alle $k \neq j$, d.h. wenn die $z_k$ paarweise
+    $z_k \neq z_j$ für alle $k \neq j$ gilt, d.h. wenn die $z_k$ paarweise
     verschieden sind.
 \end{corollary}
 
