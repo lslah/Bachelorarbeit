@@ -21,7 +21,7 @@ her.
     \label{lemma:frobenius_norm_vandermonde_unit_circle}
     Für Knoten auf dem Einheitskreis
     $z = \left(e^{i \varphi_0}, \dots, e^{i \varphi_{n-1}} \right) \in \C$
-    mit $\varphi_j \in \R$ für $j = 0, \dots, n-1$ gilt:
+    mit $\varphi_j \in \R$ für $j = 0, \dots, n-1$ gilt
     \begin{equation}
         \norm{\Vand{z}}_F = n.
     \end{equation}
@@ -83,9 +83,9 @@ her.
 
 \section{Invarianz der Kondition unter Rotation der Knoten}
 
-Im Folgenden zeigen wir, dass die Kondition einer Vandermonde-Matrix bezüglich
-der Zeilensummennorm und aller unitär invarianten Normen sich nicht unter
-Rotation und Spiegelung der Knoten verändert.
+Im Folgenden zeigen wir, dass sich die Kondition einer Vandermonde-Matrix
+bezüglich der Zeilensummennorm und aller unitär invarianten Normen weder unter
+Rotation noch unter Spiegelung der Knoten verändert.
 
 %TODO: Was bringt das?
 
@@ -93,7 +93,7 @@ Rotation und Spiegelung der Knoten verändert.
     \label{lemma:vandermonde_rotation_invariance}
     Die Kondition der Vandermonde-Matrix bezüglich der Zeilensummennorm ist
     invariant unter Multiplikation der Knoten mit einer komplexen Zahl
-    $\alpha = e^{i\varphi} \in \C$, $\varphi \in \R$.
+    $\alpha = e^{i\varphi} \in \C$ mit $\varphi \in \R$.
 \end{lemma}
 \begin{proof}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$.
@@ -114,7 +114,7 @@ Rotation und Spiegelung der Knoten verändert.
     aus Lemma \ref{lemma:vandermonde_const_multiplication}:
         $\Vand{\alpha z}^{-1}
         = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.$
-    Damit ist sofort ersichtlich
+    Damit ist sofort ersichtlich, dass
     \[
         \begin{split}
             \norm{\Vand{\alpha z}^{-1}}_\infty
@@ -124,7 +124,7 @@ Rotation und Spiegelung der Knoten verändert.
         \end{split}
     \]
 
-    \noindent Wie behauptet, folgt insgesamt
+    \noindent Wie behauptet folgt insgesamt
     \[
         \begin{split}
             \cond[\infty]{\Vand{\alpha z}}
@@ -136,12 +136,12 @@ Rotation und Spiegelung der Knoten verändert.
 \end{proof}
 
 \begin{lemma}
-    Sei $\emptynorm$ eine Matrix-Norm die invariant unter Multiplikation mit unitären
+    Sei $\emptynorm$ eine Matrix-Norm, die invariant unter Multiplikation mit unitären
     Matrizen ist, d.h. für jede Matrix $A \in \C^{n\times n}$ und jede
     unitäre Matrix $U \in \C^{n\times n}$ gilt $\norm{UA} = \norm{AU} = \norm{A}$.
     Weiter seien ein Vektor $z = (z_0, \dots, z_{n-1}) \in \Cn$ und eine
     komplexe Zahl $\alpha \in \C$ mit Betrag $\abs{\alpha} = 1$ gegeben.
-    Dann gilt für die Kondition bezüglich der Norm $\emptynorm$:
+    Dann gilt für die Kondition bezüglich der Norm $\emptynorm$
     \[
         \cond{\Vand{\alpha z}} = \cond{\Vand{z}},
     \]
@@ -164,18 +164,17 @@ Rotation und Spiegelung der Knoten verändert.
     \]
     Mit $e^{i \varphi} \defeq \alpha$ für ein $\varphi \in \R$ stellen wir
     leicht fest, dass
-    $\diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}$ eine unitäre Matrix ist:\footnote{$A^H$ bezeichnet hier die adjungierte Matrix von $A$}
+    $\diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}$ eine unitäre Matrix ist:
     \[
         \begin{split}
             \diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}^H
             &= \diag{1, e^{i \varphi}, \dots, e^{(n-1) i \varphi}}^H\\
             &= \diag{1, e^{-i \varphi}, \dots, e^{-(n-1) i \varphi}}\\
             &= \diag{1, e^{i \varphi}, \dots, e^{(n-1) i \varphi}}^{-1}\\
-            &= \diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}^{-1}
+            &= \diag{\alpha^0, \alpha^1, \dots, \alpha^{n-1}}^{-1},
         \end{split}
     \]
-
-\enlargethispage{3em}
+    wobei $A^H$ die adjungierte Matrix von $A$ bezeichne.
     \noindent Insgesamt folgt
     \[
         \begin{split}
@@ -196,16 +195,16 @@ Knoten der $n$-ten Einheitswurzeln, wobei einer der Knoten von seiner
 ursprünglichen Position um einen Winkel $\delta \in \left[0,\frac{2
 \pi}{n}\right)$ auf dem Einheitskreis ausgelenkt wird.
 Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
-ändern Drehungen und Spiegelungen der Knoten nicht die Kondition der
+ändern weder Drehungen noch Spiegelungen der Knoten die Kondition der
 Vandermonde-Matrix.
-Daher können wir ohne das Problem zu beschränken stets den Knoten auslenken,
+Daher können wir ohne das Problem zu beschränken, stets den Knoten auslenken,
 welcher der $n$-ten Einheitswurzel $1$ zugeordnet ist.
 
 Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \C^n$ mit
 $z_0(\delta) = e^{2 \pi i \delta / n}$
 und
 $z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$
-und die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
+sowie die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
 mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
 Häufig werden wir auf die explizite Angabe der Abhängigkeit von $\delta$
 verzichten, und beispielsweise nur kurz $z_0$ anstelle von $z_0(\delta)$
@@ -239,7 +238,7 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
 \begin{proof}
     Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt
     \[
-        u_{0r} = (-1)^{n-1-r} \Pi_0 \sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1}),
+        u_{0r} = (-1)^{n-1-r} \cdot \Pi_0 \cdot \sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1})
     \]
     mit
     \[
@@ -269,11 +268,12 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
         = \prod_{\substack{k = 1}}^{n-1} \frac{1}{2 \cdot \sin \left( \frac{\pi (k-\delta)}{n} \right)}.
     \end{equation}
 
-    \noindent Zusammen mit der Aussage des Korollars \ref{corollary:outlier_sigma_zero_row_sum} folgt nun die Behauptung:
+    \noindent Zusammen mit der Aussage des Korollars
+    \ref{corollary:outlier_sigma_zero_row_sum} folgt nun die Behauptung:
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{ u_{0r} }
-            &= \sum_{r=0}^{n-1} \abs{ (-1)^{n-1-r} \Pi_0 \sigma_{n-1-r}(z_1, \dots, z_{n-1}) }\\
+            &= \sum_{r=0}^{n-1} \abs{ (-1)^{n-1-r} \cdot \Pi_0 \cdot \sigma_{n-1-r}(z_1, \dots, z_{n-1}) }\\
             &= \left( \sum_{r=0}^{n-1} \abs{ \sigma_{n-1-r}(z_1, \dots, z_{n-1}) } \right) \cdot \abs{\Pi_0}\\
             &\overset{(\ref{eq:outlier_sigma_zero_row_sum})}{=}
                 n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
@@ -281,7 +281,7 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
     \]
 \end{proof}
 
-Der Beweis der folgenden Vermutung konnte im Rahmen dieser Arbeit nicht
+Der Beweis der folgenden Vermutung kann im Rahmen dieser Arbeit nicht
 erbracht werden. Numerische Untersuchungen konnten die Aussage jedoch nicht
 widerlegen.
 
@@ -327,8 +327,8 @@ widerlegen.
     Satzes tatsächlich wahr ist, denn der Graph des Produktes ist stets für
     $j=0$ maximal.
 
-    \noindent Der Beweis kann also nur erbracht werden, wenn das gesamte Produkt
-    abgeschätzt werden kann:
+    \noindent Der Beweis kann also nur erbracht werden, indem das gesamte Produkt
+    abgeschätzt wird:
     \[
         \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0} \text{ für } j=1, \dots, n-1.
     \]
@@ -427,7 +427,7 @@ Hilfslemmata.
     \noindent Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - \wn^k)$ können wir $\uptau_0 = p(1)$
     schreiben.
 
-    Bereits im Beweis von \lemmaref{outlier_sigma_zero} hatten wir gesehen, dass
+    Bereits im Beweis von \lemmaref{outlier_sigma_zero} haben wir gesehen, dass
     \[
         p(z) = \prod_{k=1}^{n-1} (z-\w_n^k) = \sum_{k=0}^{n-1} z^k
     \]
@@ -446,7 +446,7 @@ Hilfslemmata.
     \]
 \end{lemma}
 \begin{proof}
-    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - \wn^j)$ gilt\footnote{$\Re(z)$ bezeichnet hier den Realteil von $z$.}
+    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - \wn^j)$ gilt
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
@@ -454,9 +454,10 @@ Hilfslemmata.
             = \Re \left( \sum_{r=0}^{n-1} e^{\frac{2 \pi i j r}{n} - i \varphi} \right)\\
             &= \Re \left( e^{-i \varphi}\sum_{r=0}^{n-1} \left( \wn^j \right)^r \right)
             = \Re \left( e^{-i \varphi} p\left( \wn^j \right) \right)
-            = 0.
+            = 0,
         \end{split}
     \]
+    wobei $\Re(z)$ den Realteil von $z$ bezeichnet.
 \end{proof}
 
 \begin{lemma}
@@ -476,18 +477,19 @@ Hilfslemmata.
 \end{lemma}
 \begin{proof}
     In diesem Beweis werden wir der Übersicht wegen meist auf die explizite
-    Erwähnung der Abhängigkeit von $\delta$ verzichten, und nur kurz
+    Erwähnung der Abhängigkeit von $\delta$ verzichten und nur kurz
     $z_0 = z_0(\delta)$ schreiben.
 
     \noindent Sei $j \in \{1, \dots, n-1\}$ fixiert.
     Wir erinnern uns zunächst daran, dass mit Lemma
     \ref{lemma:elementary_symmetric_polynomials_const_multiplication}
-    für ${r = 0, \dots, n-1}$ gilt:
+    für ${r = 0, \dots, n-1}$
     \[
         \abs{ \sigma_r^j (z)}
         = \abs{(-1)^r \sigma_r^j (-z) }
-        = \abs{\sigma_r^j (-z) }.
+        = \abs{\sigma_r^j (-z) }
     \]
+    gilt.
     Weiterhin ist nach Definition $\sigma_r^j (-z)$ der $n\!-\!j\!-\!1$-te
     Koeffizient des Polynoms
     \[
@@ -500,11 +502,11 @@ Hilfslemmata.
     \]
     Im Beweis von Lemma
     \ref{lemma:outlier_sigma_zero}
-    hatten wir bereits gesehen, dass die Gleichheit
+    haben wir bereits die Gleichheit
     \[
         \prod_{k=1}^{n-1} (z-z_k) = \sum_{k=0}^{n-1} z^k
     \]
-    gilt, so dass wir weiter
+    gezeigt, so dass wir damit
     \[
         p(z)
         = \sum_{k=0}^{n-1} a_k z^k
@@ -539,16 +541,17 @@ Hilfslemmata.
     \[
         \begin{split}
             -a_0 z_j            &= -z_0, \\
-            a_{n-1}             &= 1, \\
-            a_{k-1} - a_{k} z_j &= 1 - z_0 \text{ für } k \in \{1, \dots, n-1\}.
+            a_{k-1} - a_{k} z_j &= 1 - z_0 \text{ für } k \in \{1, \dots, n-1\},\\
+            a_{n-1}             &= 1.
         \end{split}
     \]
-    Es zeigt sich nun, dass für $k=1, \dots, n$ gilt:
+    Es zeigt sich nun, dass für $k=1, \dots, n$
     \begin{equation}
         \label{eq:elementy_symmetric_polynomials_nonzero_row}
         a_{n-k}
-        = (1 - z_0) \left( \sum_{r=0}^{k-2} z_j^r \right) + z_j^{k-1}.
+        = (1 - z_0) \left( \sum_{r=0}^{k-2} z_j^r \right) + z_j^{k-1}
     \end{equation}
+    gilt.
     Für $k=1$ ist dies offensichtlich wahr.
     Ist die Gleichung für ein $k \in \{1, \dots, n\}$ bereits gezeigt, so folgt
     mit Hilfe der Gleichung
@@ -563,8 +566,8 @@ Hilfslemmata.
             &= (1 - z_0) \left( \sum_{r=0}^{k-1} z_j^r \right) + z_j^{k}.
         \end{split}
     \]
-    Induktion über $k = 1, \dots, n$ liefert also die Richtigkeit von Gleichung
-    (\ref{eq:elementy_symmetric_polynomials_nonzero_row}).
+    Induktion nach $k = 1, \dots, n$ liefert also die Richtigkeit der Gleichung
+    \eqref{eq:elementy_symmetric_polynomials_nonzero_row}.
     Wir identifizieren nun die elementarsymmetrischen Polynome gemäß ihrer
     Definition durch
     ${\sigma_r^j(-z) = a_{n-(r+1)}}$ für $r=0, \dots, n-1$ und
@@ -585,8 +588,8 @@ Hilfslemmata.
         \begin{split}
             u_{j,n-1-r}
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}=
-                \Pi_j \sigma_{r}^j(-z) \\
-            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j) \cdot \prod_{\substack{k=0\\ k\neq j}}^{n-1} (z_j - z_k)}\\
+                \Pi_j \cdot \sigma_{r}^j(-z) \\
+            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j) \cdot \Pi_j}\\
             &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \left((z_j - 1) (z_j - z_1) \dots (z_j - z_{n-1}) \right)}\\
             &\eqdef \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \uptau_j }\\
             &= \frac{1}{\uptau_j} \left( \frac{1 - z_0}{z_j-z_0} - z_j^r \right),
@@ -637,7 +640,7 @@ $\Vand{\delta}^{-1}$ explizit angeben und beweisen.
     Es gilt
     \begin{equation}
         \norm{ \Vand{\delta}^{-1} }_F^2
-        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+        = n \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
           + \frac{\sin^2 \left( \frac{\pi \delta}{n} \right)}{n} \cdot \sum_{k=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{k-\delta}{n} \right)}
           + \frac{n-1}{n}
     \end{equation}
