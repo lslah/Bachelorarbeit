@@ -22,13 +22,13 @@ weshalb wir uns zunächst an deren Definitionen erinnern.
 
 % TODO: Proof unitary invariance of frobenius norm?!
 \begin{remark}
-    Später werden wir die \emph{unitäre Invarianz} der
-    Frobeniusnorm benötigen, d.h. die Eigenschaft, dass für eine unitäre Matrix
+    Später benötigen wir die \emph{unitäre Invarianz} der
+    Frobeniusnorm, d.h. die Eigenschaft, dass für eine unitäre Matrix
     $U \in \C^{n\times n}$ und eine beliebige Matrix ${A \in \C^{n\times n}}$
-    gilt:
     \[
-        \norm{A U}_F = \norm{U A}_F = \norm{A}_F.
+        \norm{A U}_F = \norm{U A}_F = \norm{A}_F
     \]
+    gilt.
 \end{remark}
 
 Im Folgenden wird ähnlich wie in \cite[S. 205ff]{stoer1} der Begriff der Kondition
@@ -156,8 +156,8 @@ folgt für den relativen Fehler
         \end{vmatrix}.
     \]
     Die Entwicklung der Determinante nach der ersten Spalte mit Hilfe des
-    Laplace'schen Entwicklungssatzes und Ausnutzung der Multilinearität der
-    Determinante liefern nun die Behauptung:
+    Laplace'schen Entwicklungssatzes und unter Ausnutzung der Multilinearität
+    der Determinante liefern nun die Behauptung:
     \[
         \begin{split}
             \det{\Vand{z}}
@@ -177,6 +177,7 @@ folgt für den relativen Fehler
 \end{proof}
 
 \begin{corollary}
+    \label{cor:invertability_vandermonde_matrix}
     Die Vandermonde-Matrix $\Vand{z}$ mit
     $z = (z_0, \dots, z_{n-1}) \in \Cn$ ist genau dann invertierbar, wenn
     $z_k \neq z_j$ für alle $k \neq j$ gilt, d.h. wenn die $z_k$ paarweise
@@ -210,7 +211,7 @@ folgt für den relativen Fehler
         \tilde{V} = (\tilde{v}_{kj})_{k,j=0}^{n-1} \defeq \Vand{\alpha z}.
     \]
 
-    \noindent Dann gilt für $j,k = 0,\dots,n-1$
+    \noindent Dann gilt für $k,j = 0,\dots,n-1$
     \[
         \tilde{v}_{kj} = (\alpha z_j)^k = \alpha^k z_j^k = \alpha^k v_{kj},
     \]
@@ -221,7 +222,9 @@ folgt für den relativen Fehler
     schreiben.
     Mit $z_0, \dots, z_{n-1} \in \C$ sind auch
     $\alpha z_0, \dots, \alpha z_{n-1} \in \C$
-    paarweise verschieden, so dass $\tilde{V}$ invertierbar ist und es folgt
+    paarweise verschieden, so dass $\tilde{V}$ nach
+    Korollar \ref{cor:invertability_vandermonde_matrix}
+    invertierbar ist und es folgt
     \[
         \tilde{V}^{-1}
         = \left( \diag{\alpha^0, \dots, \alpha^{n-1}} \cdot V \right)^{-1}
