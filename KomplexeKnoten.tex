@@ -7,6 +7,8 @@ theoretische Betrachtungen verwendet.
 Anders verhält es sich, wenn man Knoten in der komplexen Ebene zulässt.
 Wählt man als Stützstellen die $n$-ten Einheitswurzeln, so erreicht die
 Vandermonde-Matrix sogar die perfekte Kondition $1$ bezüglich der Spektralnorm.
+Auch bezüglich der Frobenius- und der Zeilensummennorm wächst die Kondition
+dieser Vandermonde-Matrizen nur linear in $n$.
 
 In diesem Abschnitt untersuchen wir Vandermonde-Matrizen mit Knoten auf dem
 komplexen Einheitskreis, die jedoch von dem perfekten Fall der $n$-ten
@@ -17,8 +19,10 @@ her.
 
 \section{Vandermonde-Matrizen zu den \boldmath $n$-ten Einheitswurzeln}
 
-% TODO: Es ist \norm{I} = \sqrt{n}, aber \cond[F]{I} = n. Kann man zeigen, dass \cond[F]{A} \geq n für alle A \in \C^{n \times n} gilt?
+% TODO: Es ist \norm{I}_F = \sqrt{n}, aber \cond[F]{I} = n. Kann man zeigen, dass \cond[F]{A} \geq n für alle A \in \C^{n \times n} gilt?
 
+Wir beweisen zunächst die Aussagen über die Frobenius- und die Zeilensummennorm
+von Vandermonde-Matrizen zu den Knoten der $n$-ten Einheitswurzeln.
 \begin{lemma}
     \label{lemma:frobenius_norm_vandermonde_unit_circle}
     Für Knoten auf dem Einheitskreis
@@ -38,11 +42,10 @@ her.
     \]
 \end{proof}
 
-
 \begin{lemma}
-    Sei $n \in \N$ und $z = (z_0, \dots, z_{n-1}) \in \Cn$ der Vektor der
-    $n$-ten Einheitswurzeln, also $z_j = e^{\frac{2 \pi i j}{n}}$ für
-    $j = 0, \dots, n-1$.
+    \label{lemma:frobenius_condition_unit_roots}
+    Sei $n \in \N$ und $z = (\wn^0, \wn^1, \dots, \wn^{n-1})  \in \Cn$ der Vektor der
+    $n$-ten Einheitswurzeln, d.h. $\wn \defeq e^{\frac{2 \pi i}{n}}$.
     Dann gilt für die Kondition bzgl. der Frobeniusnorm
     \[
         \cond[F]{\Vand{z}} = n.
@@ -50,7 +53,7 @@ her.
 \end{lemma}
 \begin{proof}
     Wir setzen $W = (w_{jr})_{j,r=0}^{n-1} \in \C^{n\times n}$ mit
-    $w_{jr} \defeq \frac{1}{n} e^{- \frac{2 \pi i j r}{n}}$
+    $w_{jr} \defeq \frac{1}{n} \wn^{-jr}$
     und zeigen $V^{-1} = W$.
     Seien dazu $a_{kr} \in \C$ die Elemente des Matrixproduktes
     $A = V W \in \C^{n\times n}$.
@@ -59,9 +62,9 @@ her.
         \begin{split}
             a_{kr}
             &= \sum_{j=0}^{n-1} v_{kj} w_{jr}
-            = \sum_{j=0}^{n-1} \frac{1}{n} \exp \left( \frac{2 \pi i k j}{n} \right) \exp \left( -\frac{2 \pi i j r}{n} \right)\\
-            &= \frac{1}{n} \sum_{j=0}^{n-1} \exp \left( \frac{2 \pi i j (k - r)}{n} \right)
-            = \frac{1}{n} \sum_{j=0}^{n-1} \left( \exp \left( \frac{2 \pi i (k - r)}{n} \right) \right)^j\\
+            = \sum_{j=0}^{n-1} \frac{1}{n} \wn^{kj} \wn^{-jr} \\
+            &= \frac{1}{n} \sum_{j=0}^{n-1} \wn^{j (k-r)}
+            = \frac{1}{n} \sum_{j=0}^{n-1} \left( \wn^{k-r} \right)^j\\
             &= \frac{1}{n} \cdot \left\{
                 \begin{array}{ll}
                     n, \text{ falls } k-r \equiv 0 \mod n\\
@@ -77,9 +80,34 @@ her.
         \end{split}
     \]
     Damit ist $V^{-1} = W$ gezeigt.
-    Nach Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} gilt $\norm{V}_F = n$
-    und damit $\norm{V^{-1}}_F = \norm{W}_F = \frac{1}{n} \norm{\overline V}_F = 1$,
-    was die Behauptung zeigt.
+    Nach Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} gilt $\norm{V}_F = n$.
+    Komplexe Konjugation ändert nichts an der Frobeniusnorm einer Matrix, da
+    diese nur von den Beträgen der Matrixelemente abhängt.
+    Wir erhalten damit $\norm{V^{-1}}_F = \norm{W}_F = \frac{1}{n}
+    \norm{\overline V}_F = 1$, was die Behauptung zeigt.
+\end{proof}
+
+\begin{lemma}
+    Sei erneut $z = (\wn^0, \wn^1, \dots, \wn^{n-1}) \in \Cn$ mit
+    $\wn = e^{\frac{2 \pi i}{n}}$.
+    Dann gilt für die Kondition bzgl. der Zeilensummennorm
+    \[
+        \cond[\infty]{\Vand{z}} = n.
+    \]
+\end{lemma}
+\begin{proof}
+    Wie im Beweis von Lemma \ref{lemma:frobenius_condition_unit_roots} gezeigt, gilt
+    $ \Vand{z}^{-1} = \frac{1}{n} \overline{\Vand{z}} $.
+    Genau wie bei der Frobeniusnorm, ändert komplexe Konjugation
+    nichts an der Zeilensummennorm einer Matrix, da diese nur von den Beträgen
+    der Matrixelemente abhängt. Insbesondere ergibt
+    sich $\norm{\overline{\Vand{z}}}_\infty = \norm{\Vand{z}}_\infty$.
+    Mit Lemma \ref{lemma:infty_norm_vandermonde_unit_roots} folgt dann
+    \[
+        \cond[\infty]{\Vand{z}}
+        = \norm{\Vand{z}}_\infty \cdot \frac{1}{n} \cdot \norm{\overline{\Vand{z}}}_\infty
+        \overset{(\ref{eq:infty_norm_vandermonde_unit_roots})}= n.
+    \]
 \end{proof}
 
 
