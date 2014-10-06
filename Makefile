@@ -1,5 +1,5 @@
 BUILD_DIR=build
-LATEXMK_OPTIONS=--pdf --output-directory=${BUILD_DIR} --pdflatex="pdflatex -interaction=nonstopmode"
+LATEXMK_OPTIONS=--bibtex --pdf --output-directory=${BUILD_DIR} --pdflatex="pdflatex -interaction=nonstopmode"
 
 .PHONY: all main clean
 

@@ -2,6 +2,8 @@
 
 \usepackage[bookmarksopenlevel=section]{hyperref}
 
+\usepackage[numbers]{natbib}
+
 \usepackage{chngcntr}
 \counterwithout{equation}{chapter}
 
@@ -32,6 +34,11 @@
 
 \include{KomplexeKnoten}
 
-\include{Bibliography}
+%\include{Bibliography}
+
+\appendix
+\bibliographystyle{natdin}
+\bibliography{bibliography}
+
 
 \end{document}
