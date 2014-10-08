@@ -7,6 +7,8 @@
 \usepackage{chngcntr}
 \counterwithout{equation}{chapter}
 
+\usepackage{tikz}
+
 \usepackage{setspace}
 \onehalfspacing
 
@@ -34,13 +36,7 @@
 
 \include{Fazit}
 
-%\include{Bibliography}
-
 \appendix
-\bibliographystyle{dcugerman}
-\renewcommand{\harvardand}{und}
-\bibliography{bibliography}
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-
-
+\include{Bibliographie}
+\include{Eid}
 \end{document}
