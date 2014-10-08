@@ -220,20 +220,23 @@ Rotation noch unter Spiegelung der Knoten verändert.
 
 Im Folgenden untersuchen wir die Kondition einer Vandermonde-Matrix zu den
 Knoten der $n$-ten Einheitswurzeln, wobei einer der Knoten von seiner
-ursprünglichen Position um einen Winkel $\delta \in \left[0,\frac{2
-\pi}{n}\right)$ auf dem Einheitskreis ausgelenkt wird.
+ursprünglichen Position um einen Winkel
+$\varphi \in \left(-\frac{2\pi}{n},\frac{2 \pi}{n}\right)$
+auf dem Einheitskreis ausgelenkt wird.
 Wie bereits in Lemma \ref{lemma:vandermonde_rotation_invariance} gezeigt,
 ändern weder Drehungen noch Spiegelungen der Knoten die Kondition der
 Vandermonde-Matrix.
 Daher können wir, ohne das Problem zu beschränken, stets den Knoten auslenken,
 welcher der $n$-ten Einheitswurzel $1$ zugeordnet ist.
 
-Wir betrachten also den Vektor $z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \C^n$ mit
+Wir betrachten also für $\delta\!\in\!(-1, 1)$ den Knotenvektor
+$z(\delta) = (z_0(\delta), z_1, \dots, z_{n-1}) \in \C^n$
+mit
 $z_0(\delta) = e^{2 \pi i \delta / n}$
 und
-$z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$
-sowie die dazu gehörende Vandermonde-Matrix, die wir in diesem Abschnitt
-mit $\Vand{\delta} \defeq \Vand{z(\delta)}$ bezeichnen.
+$z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$.
+Die dazu gehörende Vandermonde-Matrix bezeichnen wir in diesem Abschnitt mit
+$\Vand{\delta} \defeq \Vand{z(\delta)}$.
 Häufig werden wir auf die explizite Angabe der Abhängigkeit von $\delta$
 verzichten, und beispielsweise nur kurz $z_0$ anstelle von $z_0(\delta)$
 schreiben.
@@ -314,8 +317,10 @@ erbracht werden. Numerische Untersuchungen konnten die Aussage jedoch nicht
 widerlegen.
 
 \begin{assumption}
+    \label{assumption:infty_outlier_condition}
     Es gilt
     \begin{equation}
+        \label{eq:infty_condition_assumption}
         \cond[\infty]{ \Vand{\delta} }
         = n^2 \prod_{j=1}^{n-1} \abs{ z_0(\delta) - z_j }^{-1}
         = n^2 \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
@@ -355,33 +360,78 @@ widerlegen.
     Satzes tatsächlich wahr ist, denn der Graph des Produktes ist stets für
     $j=0$ maximal.
 
+    \begin{figure}[H]
+        \centering
+        \input{images/pi_j.pgf}
+        \caption{Erster Faktor der Betragssumme der $j$-ten Zeile
+                 von $\Vand{\delta}^{-1}$ in Abhängigkeit der Auslenkung
+                 $\delta \in (-0.9, 0.9)$
+                für den Fall $n=5$.}
+        \label{fig:pi_j}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \input{images/sigma_row_sum.pgf}
+        \caption{Zweiter Faktor
+                der Betragssumme der $j$-ten Zeile
+                von $\Vand{\delta}^{-1}$ in
+                Abhängigkeit der Auslenkung $\delta \in (-0.9, 0.9)$
+                für den Fall $n=5$.}
+        \label{fig:sigma_row_sum}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \input{images/matrix_row_sum.pgf}
+        %\caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
+        \caption{Betragssumme der $j$-ten Zeile von $\Vand{\delta}^{-1}$
+        in Abhängigkeit der Auslenkung $\delta \in (-0.9, 0.9)$
+        für den Fall $n=5$.}
+        \label{fig:row_j}
+    \end{figure}
+
     \noindent Der Beweis kann also nur erbracht werden, indem das gesamte Produkt
     abgeschätzt wird:
     \[
         \Pi_j \sum_{r=0}^{n-1} \abs{\sigma_r^j} \leq \Pi_0 \sum_{r=0}^{n-1} \abs{\sigma_r^0} \text{ für } j=1, \dots, n-1.
     \]
-\end{remark}
 
-%\begin{figure}[htb]
-%    \centering
-%    \includegraphics[width=350pt]{images/pi_j}
-%    \caption{$ f_j(\delta) = \Pi_j(\delta) $}
-%    \label{fig:pi_j}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%    \centering
-%    \includegraphics[width=350pt]{images/sigma_row_sum}
-%    \caption{$ g_j(\delta) = \sum_{r=0}^{n-1} \abs{ \sigma_r^j(z(\delta)) } $}
-%    \label{fig:sigma_row_sum}
-%\end{figure}
-%
-%\begin{figure}[htb]
-%    \centering
-%    \includegraphics[width=350pt]{images/row_j}
-%    \caption{$ h_j(\delta) = \sum_{r=0}^{n-1} \abs{ u_{jr}(\delta) } $}
-%    \label{fig:row_j}
-%\end{figure}
+
+    \noindent In Tabelle \ref{tab:relative_error_assumption} sind für ausgewählte
+    $n \in \N$ die numerischen Fehler angegeben, welche durch Verwendung der
+    Formel aus der Vermutung entstehen.
+    Für $\delta \in \{ 0, 0.01, \dots, 0.99 \}$ wurde dabei jeweils die
+    Kondition der Vandermonde-Matrix $\Vand{\delta}$ direkt berechnet und die
+    Differenz mit der Formel aus Vermutung
+    \ref{assumption:infty_outlier_condition} gebildet.
+    Die Beträge dieser Differenzen wurden für alle $\delta$ aufaddiert und
+    durch $n$ dividiert.
+    Die resultierenden Werte sind in Tabelle
+    \ref{tab:relative_error_assumption} eingetragen.
+    Die entstandenen Fehler sind in der Größenordnung numerischer
+    Rechenungeauigkeiten bei der Verwendung von Gleitkommazahlen einzuordnen
+    und stützen damit Gleichung \eqref{eq:infty_condition_assumption}.
+    \begin{table}[h]
+        \centering
+        \begin{tabular}[c]{l|l}
+            $ n $ & Relativer Fehler \\
+            \hline
+            $ 2  $ & $ 3.499422973618493 \cdot 10^{-13} $ \\
+            $ 5  $ & $ 7.613465413669474 \cdot 10^{-13} $ \\
+            $ 10 $ & $ 1.033839680530946 \cdot 10^{-12} $ \\
+            $ 20 $ & $ 2.271782761908981 \cdot 10^{-12} $ \\
+            $ 30 $ & $ 2.729076224265251 \cdot 10^{-12} $ \\
+            $ 40 $ & $ 3.564437633940542 \cdot 10^{-12} $ \\
+            $ 50 $ & $ 3.976907692049281 \cdot 10^{-12} $
+        \end{tabular}
+        \caption{Relativer Fehler bei der Berechnung der Konditionszahlen
+                $\cond[\infty]{\Vand{\delta}}$ mit Hilfe von Gleichung
+                \eqref{eq:infty_condition_assumption} für verschiedene $n\in\N$.}
+        \label{tab:relative_error_assumption}
+    \end{table}
+
+\end{remark}
 
 \subsection{Kondition bezüglich der Frobeniusnorm}
 % FIXME: Next paragraph is crap.
@@ -389,7 +439,7 @@ Wir wollen nun eine explizite Formel für die Kondition der Vandermonde-Matrix
 $\Vand{\delta}$ bezüglich der Frobeniusnorm beweisen.
 Dazu sei an die Definition der Frobeniusnorm (\ref{eq:frobenius_norm}) erinnert.
 Bereits in Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} wurde
-gezeigt, dass die Norm einer Vandermonde-Matrix mit $n$ Knoten auf dem
+gezeigt, dass die Frobeniusnorm einer Vandermonde-Matrix mit $n$ Knoten auf dem
 Einheitskreis $n$ beträgt.
 Schwierigkeiten kann also nur die Norm der inversen Vandermonde-Matrix
 bereiten.  Wir betrachten im Folgenden die zwei Fälle $j=0$ und
