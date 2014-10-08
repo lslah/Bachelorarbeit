@@ -46,7 +46,7 @@ von Vandermonde-Matrizen zu den Knoten der $n$-ten Einheitswurzeln.
     \label{lemma:frobenius_condition_unit_roots}
     Sei $n \in \N$ und $z = (\wn^0, \wn^1, \dots, \wn^{n-1})  \in \Cn$ der Vektor der
     $n$-ten Einheitswurzeln, d.h. $\wn \defeq e^{\frac{2 \pi i}{n}}$.
-    Dann gilt für die Kondition bzgl. der Frobeniusnorm
+    Dann gilt für die Kondition bezüglich der Frobeniusnorm
     \[
         \cond[F]{\Vand{z}} = n.
     \]
@@ -90,7 +90,7 @@ von Vandermonde-Matrizen zu den Knoten der $n$-ten Einheitswurzeln.
 \begin{lemma}
     Sei erneut $z = (\wn^0, \wn^1, \dots, \wn^{n-1}) \in \Cn$ mit
     $\wn = e^{\frac{2 \pi i}{n}}$.
-    Dann gilt für die Kondition bzgl. der Zeilensummennorm
+    Dann gilt für die Kondition bezüglich der Zeilensummennorm
     \[
         \cond[\infty]{\Vand{z}} = n.
     \]
@@ -740,3 +740,14 @@ $\Vand{\delta}^{-1}$ explizit angeben und beweisen.
          \end{split}
      \]
 \end{proof}
+
+\noindent Mit Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} folgt nun sofort
+\begin{corollary}
+    Für die Kondition bezüglich der Frobeniusnorm von $\Vand{\delta}$ gilt
+    \begin{equation*}
+        \cond[F]{ \Vand{\delta} }^2
+        = n^3 \cdot \prod_{k=1}^{n-1} \frac{1}{4 \cdot \sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+          + n \cdot \sin^2 \left( \frac{\pi \delta}{n} \right) \cdot \sum_{k=1}^{n-1} \frac{1}{\sin^2 \left( \pi \frac{k-\delta}{n} \right)}
+          + n \cdot (n-1).
+    \end{equation*}
+\end{corollary}
