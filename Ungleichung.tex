@@ -65,7 +65,7 @@ genau den Einträgen der inversen Vandermonde-Matrix entsprechen.
     wie behauptet.
 \end{proof}
 
-Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
+\noindent Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
 elementarsymmetrischen Polynomen kann eine explizite Darstellung der
 inversen Vandermonde-Matrix angegeben werden.
 Dazu schreiben wir für $j = 0, \dots, n-1$
@@ -99,9 +99,57 @@ wir
 
 \section{Eine Abschätzung der Zeilensummennorm inverser Vandermonde-Matrizen}
 
-Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert, die wir im
-folgenden Lemma benötigen werden.
+Wir beginnen mit einer oberen Schranke der Zeilensummennorm inverser
+Vandermonde-Matrizen und orientieren uns dabei uns an der Beweisskizze aus
+\cite[S. 196-197]{gautschi1}.
 \begin{theorem}
+  \label{thm:inverse_vandermonde_upper_bound}
+  Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
+  Mit $V \defeq \Vand{z}$ gilt
+  \begin{equation}
+    \label{eq:inverse_vandermonde_inequality}
+    \norm{V^{-1}}_{\infty}
+    \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
+  \end{equation}
+  Gleichheit gilt, wenn $z_k = r_k \cdot e^{i \varphi}$
+  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$ mit $k = 0, \dots, n-1$ gilt.
+\end{theorem}
+\begin{proof}
+    Die obere Schranke von (\ref{eq:inverse_vandermonde_inequality}) sieht man
+    unter Verwendung der expliziten Darstellung von $V^{-1}$ aus
+    (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
+    elementarsymmetrische Polynome
+    (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
+    \ref{lemma:elementary_symmetric_polynomials_inequality} ein.
+    Es gilt
+    \begin{equation*}
+        \begin{split}
+            \norm{V^{-1}}_{\infty}
+            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}\\
+            &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
+              \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{(-1)^{n-1-r} \Pi_j \sigma_{n-1-r}^{j}}
+            = \max_{j=0, \dots, n-1} \abs{\Pi_j} \sum_{r=0}^{n-1} \abs{\sigma_{n-1-r}^{j}}\\
+            &\overset{(\ref{eq:elementary_symmetric_polynomials_inequality})}{\leq}
+              \max_{j=0, \dots, n-1} \abs{\Pi_j} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( 1 + \abs{z_k} \right)
+            \overset{(\ref{def:pi_j})}{=}
+              \max_{j=0, \dots, n-1} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}}.
+        \end{split}
+    \end{equation*}
+\end{proof}
+
+\noindent Für die Herleitung der unteren Schranke stützen wir uns auf \cite{gautschi2}.
+Anders als dort formuliert, kann die Aussage jedoch nur für
+Vandermonde-Matrizen mit Stützstellen $z_k \neq 0$ für alle $k = 0, \dots, n-1$
+bewiesen werden.
+Diese Einschränkung folgt aus Jensens Formel, die in \cite{gautschi2} zum
+Beweis verwendet wird.
+Jensens Formel liefert eine Aussage über analytische Funktionen $f$, die unter
+anderem $f(0) \neq 0$ erfüllen müssen.
+Diese Voraussetzung wird jedoch verletzt, wenn man $0$ als Stützstelle der
+Vandermonde-Matrix wählt.
+
+Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert.
+\begin{theorem}[\cite{lang}]
     \label{thm:jensens_formula}
     Sei $\rho \in \R_+$ und $F: \C \mapsto \C$ eine auf $\abs{x} \leq \rho$
     analytische Funktion mit $F(0) \neq 0$.
@@ -116,17 +164,21 @@ folgenden Lemma benötigen werden.
 \end{theorem}
 
 % TODO: a_0 /= 0 aus Jensen wird nicht beachtet.
+\noindent Unter Verwendung von Jensens Formel aus Satz \ref{thm:jensens_formula} beweisen
+wir einen Zusammenhang zwischen der Koeffizientensumme eines Polynoms vom Grad
+$n$ und dessen Nullstellen.
+Dieser Zusammenhang liefert uns im nächsten Satz schließlich die Abschätzung
+der Zeilensummennorm inverser Vandermonde-Matrizen.
 \begin{lemma}[\cite{gautschi2}]
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
     $a_j \in \C$ für $j = 0, \dots, n$, $a_n \neq 0$ und Nullstellen
-    $\zeta_j \in \C$ mit $j = 1, \dots, n$.
+    $\zeta_j \in \C\setminus\{0\}$ mit $j = 1, \dots, n$.
     Dann gilt
     \begin{equation}
         \label{eq:polynom_coefficient_sum_inequality}
         \sum_{j=0}^{n} \abs{a_j} \geq \abs{a_n} \prod_{j=1}^{n} \max \left(1, \abs{\zeta_j} \right).
     \end{equation}
-    Gleichheit gilt genau dann, wenn $p(z) = a_n z^n$.
 \end{lemma}
 
 % TODO: Beautify this proof.
@@ -134,12 +186,14 @@ folgenden Lemma benötigen werden.
     Ohne Einschränkung können wir annehmen, dass die Nullstellen sortiert
     vorliegen, so dass
     \[
-        \zeta_1 \leq \dots \leq \zeta_r \leq 1 < \zeta_{r+1} \leq \dots \leq \zeta_n
+        \abs{\zeta_1} \leq \dots \leq \abs{\zeta_r} \leq 1 < \abs{\zeta_{r+1}} \leq \dots \leq \abs{\zeta_n}
     \]
     gilt.
-    Wir identifizieren $p$ mit $F$ und wählen $\rho =1$ in Satz
-    \ref{thm:jensens_formula}.
-    Zusammen mit $\log \frac{1}{z} = -\log z$ liefert dieser dann
+    Wir identifizieren $p$ mit $F$ und wählen $\rho = 1$ in Satz \ref{thm:jensens_formula}.
+    Mit $\zeta_j \neq 0$ für $j = 1, \dots, n$ aus der Voraussetzung folgt sofort $p(0) \neq 0$.
+    Weiterhin ist $p$ als Polynom analytisch auf ganz $\C$ und somit insbesondere auch für $\abs{z} \leq 1$.
+    Tatsächlich kann also Satz \ref{thm:jensens_formula} angewendet werden.
+    Zusammen mit $\log \frac{1}{z} = -\log z$ liefert dieser
     \[
         \log \abs{a_0}
         = \log \abs{p(0)}
@@ -180,95 +234,23 @@ folgenden Lemma benötigen werden.
     \[
         \sum_{j=0}^n \abs{a_j} \geq \abs{a_n} \prod_{k=1}^n \max(1, \zeta_k).
     \]
-
-    \noindent Für den Fall $p(z) = a_n x^n$, ist
-    $ \sum_{j=0}^{n} \abs{a_j}
-      = \abs{a_n} \cdot \prod_{r=1}^n \max(1, \abs{\zeta_r})
-      = \abs{a_n} $
-    trivialerweise erfüllt.
-    Sei umgekehrt  ein beliebiges Polynom
-    $p(z) = \sum_{j=0}^n a_j x^j$, $a_n \neq 0$ gegeben, das
-    (\ref{eq:polynom_coefficient_sum_inequality}) mit
-    Gleichheit erfüllt.
-    Dies impliziert wegen (\ref{eq:jensen_integral_estimation}) insbesondere
-    \[
-        \exp\left( \frac{1}{2\pi} \int_{0}^{2\pi} \log \abs{p\left( e^{i\varphi} \right)} d\varphi \right)
-        = \max_{0 \leq \varphi \leq 2\pi} \abs{p\left( e^{i\varphi} \right) }
-        \eqdef M,
-    \]
-    und damit die Konstanz des Betrages $\abs{p(e^{i\varphi})} = M$ für
-    $0 \leq \varphi \leq 2 \pi$.
-    Wir betrachten das trigonometrische Polynom
-    \[
-        \abs{p\left( e^{i\varphi} \right)}^2
-        = \sum_{k,j=0}^n a_k \conj{a}_j e^{i(k-j)\varphi}
-        = \sum_{l=-n}^n c_l e^{i l \varphi}
-    \]
-    mit Koeffizienten\footnote{Hier sei $a_k = 0$ für $k<0$ und $k > n$.}
-    \[
-        c_l = \sum_{-\infty}^\infty a_k \conj{a}_{k-l} \text{ und } c_{-l} = \conj{c_l}.
-    \]
-    Wegen $\abs{p\left( e^{i\varphi} \right)}^2 \equiv M^2$ muss $c_j = 0$ für
-    $j > 0$ und $c_0 = M^2$ gelten.
-    Wir erhalten die Bedingungen
-    \begin{equation*}
-        \begin{split}
-            0 &= c_n = a_n \conj{a}_0\\
-            0 &= c_{n-1} = a_n \conj{a}_1 + a_{n-1} \conj{a}_0\\
-              &\;\;\vdots\\
-            0 &= c_1 = a_n \conj{a}_{n-1} + \dots + a_{1} \conj{a}_0\\
-            M^2 &= c_0 = a_n^2 + \dots + a_0^2.
-        \end{split}
-    \end{equation*}
-    Wegen $a_n \neq 0$ liefert die erste Bedingung $a_0 = 0$.
-    Einsetzen von $a_0 = 0$ in die zweite Bedingung liefert aus dem gleichen
-    Grund $a_1 = 0$ und induktiv folgen $a_j = 0$ für $j < n$.
-    Schließlich zeigt die letzte Gleichung $M^2 = a_n^2$, so dass $p$ wie
-    behauptet ein Polynom der Form $p(z) = a_n z^n$ ist.
 \end{proof}
 
-Nun können wir eine Abschätzung der Zeilensummennorm der inversen
+\noindent Nun können wir eine Abschätzung der Zeilensummennorm der inversen
 Vandermonde-Matrix angeben und beweisen:
 \begin{theorem}
-  \label{thm:inverse_vandermonde_inequality}
-  Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
+  \label{thm:inverse_vandermonde_lower_bound}
+  Seien $z_0, \dots, z_{n-1} \in \C\setminus\{0\}$ paarweise verschieden.
   Mit $V \defeq \Vand{z}$ gilt
   \begin{equation}
-    \label{eq:inverse_vandermonde_inequality}
-    \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{\max(1, \abs{z_k})}{\abs{z_j - z_k}} \right)
-    < \norm{V^{-1}}_{\infty}
-    \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
+    \label{eq:inverse_vandermonde_lower_bound}
+    \norm{V^{-1}}_{\infty}
+    \geq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{\max(1, \abs{z_k})}{\abs{z_j - z_k}} \right).
   \end{equation}
-  Gleichheit für die obere Grenze gilt, wenn $z_k = r_k \cdot e^{i \varphi}$
-  für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$ mit $k = 0, \dots, n-1$ gilt.
 \end{theorem}
-
 \begin{proof}
-    Der Beweis orientiert sich an der Beweisskizze aus
-    \cite[S. 196-197]{gautschi1}.
-    Die obere Schranke von (\ref{eq:inverse_vandermonde_inequality}) sieht man
-    unter Verwendung der expliziten Darstellung von $V^{-1}$ aus
-    (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
-    elementarsymmetrische Polynome
-    (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
-    \ref{lemma:elementary_symmetric_polynomials_inequality} ein.
-    Es gilt
-    \begin{equation*}
-        \begin{split}
-            \norm{V^{-1}}_{\infty}
-            &= \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}\\
-            &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
-              \max_{j=0, \dots, n-1} \sum_{r=0}^{n-1} \abs{(-1)^{n-1-r} \Pi_j \sigma_{n-1-r}^{j}}
-            = \max_{j=0, \dots, n-1} \abs{\Pi_j} \sum_{r=0}^{n-1} \abs{\sigma_{n-1-r}^{j}}\\
-            &\overset{(\ref{eq:elementary_symmetric_polynomials_inequality})}{\leq}
-              \max_{j=0, \dots, n-1} \abs{\Pi_j} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( 1 + \abs{z_k} \right)
-            \overset{(\ref{def:pi_j})}{=}
-              \max_{j=0, \dots, n-1} \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}}.
-        \end{split}
-    \end{equation*}
-
-    \noindent Für die untere Schranke wähle nun ein festes
-    $j \in \{0, \dots, n-1\}$ und betrachte das Polynom
+    \noindent Wir wählen ein festes
+    $j \in \{0, \dots, n-1\}$ und betrachten das Polynom
     \[
         p(z) = \sum_{k=0}^{n-1} a_k z^k
         \defeq \Pi_j \cdot \prod_{\substack{k=0\\ k \neq j}}^{n-1} \left( z - z_k \right)
@@ -280,19 +262,15 @@ Vandermonde-Matrix angeben und beweisen:
     \]
     Offensichtlich hat $p$ die $n-1$ Nullstellen
     $\zeta_r \defeq z_r$ für $r \in \{0,\dots,n-1\} \setminus \{j\}$.
-    Wegen $z_k \neq z_r$ für $k \neq r$ existieren für das Polynom $p$ Nullstellen ungleich $0$ und
-    es kann nicht $p(z) \equiv a_{n-1} z^{n-1}$ gelten.
-    Damit kann die strikte Ungleichung
-    (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
-    \ref{lemma:polynom_coefficient_sum_inequality} angewendet werden und es
-    folgt
+    Mit Ungleichung (\ref{eq:polynom_coefficient_sum_inequality}) aus Lemma
+    \ref{lemma:polynom_coefficient_sum_inequality} folgt
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{jr}}
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}{=}
             \sum_{r=0}^{n-1} \abs{(-1)^{n-1-r} \Pi_j \sigma_{n-1-r}^j}\\
             &= \sum_{k=0}^{n-1} \abs{a_k}
-            \overset{(\ref{eq:polynom_coefficient_sum_inequality})}{>}
+            \overset{(\ref{eq:polynom_coefficient_sum_inequality})}{\geq}
                 \abs{a_{n}} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \max \left(1, \abs{\zeta_r} \right)\\
             &= \abs{\Pi_j} \underbrace{\abs{\sigma_0^j}}_{=1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \max \left(1, \abs{z_r} \right)
             = \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
@@ -303,7 +281,6 @@ Vandermonde-Matrix angeben und beweisen:
     ist, folgt die Behauptung:
     \[
         \max_{j = 0, \dots, n-1} \sum_{r=0}^{n-1} \abs{u_{jr}}
-        > \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
+        \geq \max_{j = 0, \dots, n-1} \prod_{\substack{r=0\\ r \neq j}}^{n-1} \frac{\max \left(1, \abs{z_r} \right)}{\abs{z_j - z_r}}.
     \]
 \end{proof}
-
