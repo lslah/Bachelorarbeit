@@ -1,6 +1,6 @@
 
 \chapter{Vandermonde-Matrizen mit reellen Stützstellen}
-Als Anwendung von Satz \ref{thm:inverse_vandermonde_inequality} werden wir nun
+Als Anwendung von Satz \ref{thm:inverse_vandermonde_upper_bound} werden wir nun
 die Kondition einer Vandermonde-Matrix zu nicht-negativen harmonischen Stützstellen
 berechnen.
 Weitere Konditionen von Vander"-monde-Matrizen mit reellen Stützstellen werden
@@ -43,8 +43,8 @@ $x = (x_0, \dots, x_{n-1}) \in \Rn$ mit $\abs{x_j} \leq 1$ für $j=0, \dots, n-1
 Betrachte die Stützstellen $z_j = x_j \in \R_+$ für $j = 0, \dots, n-1$
 mit $x_k \neq x_j$ für $k \neq j$.
 Diese liegen auf einer Halbgeraden durch den Ursprung und erfüllen damit die
-Zusatzbedingung von Satz \ref{thm:inverse_vandermonde_inequality},
-so dass bei der oberen Schranke von (\ref{eq:inverse_vandermonde_inequality})
+Zusatzbedingung von Satz \ref{thm:inverse_vandermonde_upper_bound},
+so dass bei der oberen Schranke von (\ref{eq:inverse_vandermonde_upper_bound})
 Gleichheit gilt.
 Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechnen.
 \begin{lemma}
@@ -73,13 +73,13 @@ Mit Hilfe dieses Satzes können wir also $\norm{V^{-1}}_\infty$ explizit berechn
     \[
         \abs{p^{\prime}(x_k)} = \prod_{\substack{j=0\\ j\neq k}}^{n-1} \abs{ x_k - x_j }.
     \]
-    Insgesamt folgt mit Satz \ref{thm:inverse_vandermonde_inequality}
+    Insgesamt folgt mit Satz \ref{thm:inverse_vandermonde_upper_bound}
     \[
         \begin{split}
             \frac{ \abs{p(-1)}}{\min_{j=0, \dots, n-1} \{ (1+x_j) \abs{p^{\prime}(x_j)} \}}
             = \frac{\prod_{k=0}^{n-1} \left( 1 + x_k \right)}{\min_{j=0, \dots, n-1} \{ (1+x_j) \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{ x_j - x_k }\}}\\
             = \max_{j=0, \dots, n-1} \left( \prod_{\substack{k=0\\ k \neq j}}^{n-1} \frac{\left( 1 + x_k \right)}{\abs{ x_j - x_k }} \right)
-            \overset{(\ref{eq:inverse_vandermonde_inequality})}{=} \norm{\Vand{x}^{-1}}_{\infty}.
+            \overset{(\ref{eq:inverse_vandermonde_upper_bound})}{=} \norm{\Vand{x}^{-1}}_{\infty}.
         \end{split}
     \]
 \end{proof}
@@ -167,10 +167,9 @@ Die Kondition kann noch weiter verbessert werden, wenn die sogenannten
     Die Wachstumsrate beträgt hier $1 + \sqrt{2} = 2.4142..$.
 \end{example}
 
-In den vorangegangen Beispielen wurden im besten Fall exponentielle
-Wachstumsraten der Konditionszahl erreicht.
+In den vorangegangen Beispielen wurde im besten Fall eine exponentielle
+Wachstumsrate der Konditionszahl erreicht.
 Es wird vermutet, dass für
 Vandermonde-Matrizen zu $n$ reellen Stützstellen stets
 $\cond[\infty]{V} > 2^{\frac{n}{2}}$ gilt, wie in \cite[S. 199]{gautschi1}
 ausgeführt.
-
