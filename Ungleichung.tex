@@ -99,15 +99,18 @@ wir
 
 \section{Eine Abschätzung der Zeilensummennorm inverser Vandermonde-Matrizen}
 
-Wir beginnen mit einer oberen Schranke der Zeilensummennorm inverser
-Vandermonde-Matrizen und orientieren uns dabei uns an der Beweisskizze aus
-\cite[S. 196-197]{gautschi1}.
+Die Grundlage für eine obere Schranke von $\norm{V^{-1}}_\infty$
+haben wir bereits im Abschnitt über die elementarsymmetrischen Polynome geschaffen.
+Mit Hilfe der dort erbrachten Abschätzung der Betragssumme
+elementarsymmetrischer Polynome können wir den folgenden Satz beweisen.
+Die Aussage und die Idee des Beweises entstammen dabei der Beweisskizze
+aus \cite[S. 196-197]{gautschi1}.
 \begin{theorem}
   \label{thm:inverse_vandermonde_upper_bound}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
   Mit $V \defeq \Vand{z}$ gilt
   \begin{equation}
-    \label{eq:inverse_vandermonde_inequality}
+    \label{eq:inverse_vandermonde_upper_bound}
     \norm{V^{-1}}_{\infty}
     \leq \max_{j = 0, \dots, n-1} \left( \prod_{\substack{k = 0\\ k \neq j}}^{n-1} \frac{1 + \abs{z_k}}{\abs{z_j - z_k}} \right).
   \end{equation}
@@ -115,13 +118,12 @@ Vandermonde-Matrizen und orientieren uns dabei uns an der Beweisskizze aus
   für ein festes $\varphi \in \R$ und $r_k \in \R_{+}$ mit $k = 0, \dots, n-1$ gilt.
 \end{theorem}
 \begin{proof}
-    Die obere Schranke von (\ref{eq:inverse_vandermonde_inequality}) sieht man
-    unter Verwendung der expliziten Darstellung von $V^{-1}$ aus
-    (\ref{eq:explicit_inverse_vandermonde}) und der Ungleichung über
-    elementarsymmetrische Polynome
-    (\ref{eq:elementary_symmetric_polynomials_inequality}) aus Lemma
-    \ref{lemma:elementary_symmetric_polynomials_inequality} ein.
-    Es gilt
+    Die explizite Darstellung von $V^{-1}$ in Gleichung
+    (\ref{eq:explicit_inverse_vandermonde}) und die Ungleichung
+    über elementarsymmetrische Polynome
+    (\ref{eq:elementary_symmetric_polynomials_inequality})
+    aus Lemma \ref{lemma:elementary_symmetric_polynomials_inequality}
+    liefern die Behauptung:
     \begin{equation*}
         \begin{split}
             \norm{V^{-1}}_{\infty}
@@ -143,10 +145,10 @@ Vandermonde-Matrizen mit Stützstellen $z_k \neq 0$ für alle $k = 0, \dots, n-1
 bewiesen werden.
 Diese Einschränkung folgt aus Jensens Formel, die in \cite{gautschi2} zum
 Beweis verwendet wird.
-Jensens Formel liefert eine Aussage über analytische Funktionen $f$, die unter
+Jensens Formel liefert eine Aussage über analytische Funktionen $f$, welche unter
 anderem $f(0) \neq 0$ erfüllen müssen.
-Diese Voraussetzung wird jedoch verletzt, wenn man $0$ als Stützstelle der
-Vandermonde-Matrix wählt.
+Diese Voraussetzung ist verletzt, wenn $0$ als Stützstelle der
+Vandermonde-Matrix gewählt wird.
 
 Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert.
 \begin{theorem}[\cite{lang}]
@@ -164,7 +166,7 @@ Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert.
 \end{theorem}
 
 % TODO: a_0 /= 0 aus Jensen wird nicht beachtet.
-\noindent Unter Verwendung von Jensens Formel aus Satz \ref{thm:jensens_formula} beweisen
+\noindent Unter Verwendung von Satz \ref{thm:jensens_formula} beweisen
 wir einen Zusammenhang zwischen der Koeffizientensumme eines Polynoms vom Grad
 $n$ und dessen Nullstellen.
 Dieser Zusammenhang liefert uns im nächsten Satz schließlich die Abschätzung
