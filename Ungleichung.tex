@@ -38,16 +38,15 @@ inversen Vandermonde-Matrix herausstellen werden.
     l_j(z) = \sum_{r = 0}^{n-1} u_{jr} z^{r}
 \end{equation}
 mit den Koeffizienten $u_{jr} \in \C$ geschrieben werden.
-
-Im folgenden Lemma zeigt sich, dass die Koeffizienten der Lagrange-Polynome
-genau den Einträgen der inversen Vandermonde-Matrix entsprechen.
+Im folgenden Lemma zeigt sich, dass diese Koeffizienten genau den Einträgen der
+inversen Vandermonde-Matrix entsprechen.
 \begin{lemma}[\cite{gautschi3}]
     \label{lemma:vandermonde-inversion}
     Sei $z = (z_0, \dots, z_{n-1}) \in \Cn$ und seien
     $l_j$ die zugehörigen Lagrange-Polynome für $j = 0, \dots, n-1$
     mit den Koeffizienten $u_{jr}$ wie in (\ref{eq:lagrange}).
     Dann ist die Koeffizienten-Matrix $U = (u_{jr})_{j,r = 0}^{n-1}$ die
-    Inverse der Vandermonde-Matrix $V = \Vand{z} = (z_{j}^{k})_{k,j = 0}^{n-1}$.
+    Inverse der Vandermonde-Matrix $V \defeq (z_{j}^{k})_{k,j = 0}^{n-1}$.
 \end{lemma}
 \begin{proof}
     Wir betrachten das Gleichungssystem $V \alpha = y$ mit
@@ -90,11 +89,12 @@ wir
         \label{eq:explicit_inverse_vandermonde}
         \begin{split}
             u_{jr}
-            &= \Pi_j \sigma_{n-1-r}^{j}(-z_0, \dots, -z_{n-1})\\
+            &= \Pi_j \cdot \sigma_{n-1-r}^{j}(-z_0, \dots, -z_{n-1})\\
             &\overset{(\ref{eq:elementary_symmetric_polynomials_const_multiplication})}{=}
-                (-1)^{n-1-r} \Pi_j \sigma_{n-1-r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}).
+                (-1)^{n-1-r} \cdot \Pi_j \cdot \sigma_{n-1-r}(z_0, \dots, z_{j-1}, z_{j+1}, \dots, z_{n-1}),
         \end{split}
     \end{equation}
+    mit $\Pi_j \defeq \prod_{\substack{r=0\\ r \neq j}}^{n-1} \left( z_j - z_r \right)^{-1}$.
 \end{lemma}
 
 \section{Eine Abschätzung der Zeilensummennorm inverser Vandermonde-Matrizen}
@@ -103,8 +103,8 @@ Die Grundlage für eine obere Schranke von $\norm{V^{-1}}_\infty$
 haben wir bereits im Abschnitt über die elementarsymmetrischen Polynome geschaffen.
 Mit Hilfe der dort erbrachten Abschätzung der Betragssumme
 elementarsymmetrischer Polynome können wir den folgenden Satz beweisen.
-Die Aussage und die Idee des Beweises entstammen dabei der Beweisskizze
-aus \cite[S. 196-197]{gautschi1}.
+Die Aussage und die Idee des Beweises entstammen dabei aus
+\cite[S. 196-197]{gautschi1}.
 \begin{theorem}
   \label{thm:inverse_vandermonde_upper_bound}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
@@ -139,7 +139,7 @@ aus \cite[S. 196-197]{gautschi1}.
     \end{equation*}
 \end{proof}
 
-\noindent Für die Herleitung der unteren Schranke stützen wir uns auf \cite{gautschi2}.
+\noindent Für die Herleitung einer unteren Schranke stützen wir uns auf \cite{gautschi2}.
 Anders als dort formuliert, kann die Aussage jedoch nur für
 Vandermonde-Matrizen mit Stützstellen $z_k \neq 0$ für alle $k = 0, \dots, n-1$
 bewiesen werden.
@@ -155,9 +155,10 @@ Zunächst sei ohne Beweis an Jensens Formel in Integralform erinnert.
     \label{thm:jensens_formula}
     Sei $\rho \in \R_+$ und $F: \C \mapsto \C$ eine auf $\abs{x} \leq \rho$
     analytische Funktion mit $F(0) \neq 0$.
-    Bezeichne mit $\zeta_1, \dots, \zeta_n \in \C$ die Nullstellen von $F$ mit
-    $\abs{\zeta_j} \leq \rho$, wobei die Nullstellen entsprechend ihrer
-    Vielfachheit eventuell mehrfach vorkommen.
+    Bezeichne mit $\zeta_1, \dots, \zeta_n \in \C$ die Nullstellen von $F$, die
+    $\abs{\zeta_j} \leq \rho$ erfüllen.
+    Dabei kommen die Nullstellen entsprechend ihrer Vielfachheit eventuell mehrfach
+    vor.
     Jensens Formel in Integralform lautet dann
     \begin{equation}
         \frac{1}{2\pi} \int_{0}^{2 \pi} \log \abs{F\left( \rho e^{i\phi} \right)} d\phi

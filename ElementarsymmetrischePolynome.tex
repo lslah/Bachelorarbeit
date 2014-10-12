@@ -8,7 +8,7 @@ $\norm{V^{-1}}_\infty$.
 \section{Definition und Eigenschaften}
 
 \begin{mydef}[Elementarsymmetrische Polynome]
-    Für $x = (x_1, \dots, x_{n}) \in \Cn$ definieren wir die
+    Sei $x = (x_1, \dots, x_{n}) \in \Cn$. Wir definieren die
     \emph{r-ten elementarsymmetrischen Polynome
     $\sigma_{r}(x) = \sigma_{r}(x_1, \dots, x_{n})$ mit $r = 0, \dots, n$
     in den $n$ Variablen $x_j$ mit $j = 1, \dots, n$} durch die Koeffizienten
@@ -21,8 +21,8 @@ $\norm{V^{-1}}_\infty$.
 \end{mydef}
 
 \begin{notation}
-    Als abkürzende Schreibweise setzen wir für gegebenes
-    $x = (x_1, \dots, x_{n}) \in \Cn$
+    Als abkürzende Schreibweise setzen wir für
+    ${x = (x_1, \dots, x_{n}) \in \Cn}$
     \[
         \sigma_{r}^{j}(x) \defeq \sigma_{r}(x_1, \dots, x_{j-1}, x_{j+1}, \dots, x_{n}).
     \]
@@ -31,7 +31,7 @@ $\norm{V^{-1}}_\infty$.
 \end{notation}
 
 \begin{remark}
-    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern:
+    Ausmultiplizieren des Polynoms und Koeffizientenvergleich liefern
     \begin{equation}
         \label{eq:explicit_elementary_symmetric_polynomials}
         \sigma_{r}(x_1, \dots, x_{n})
@@ -47,7 +47,7 @@ $\norm{V^{-1}}_\infty$.
 
 \begin{lemma}
     \label{lemma:recursion_elementary_symmetric_polynomials}
-    Die elementarsymmetrischen Polynome erfüllen die Rekursionsformel:
+    Die elementarsymmetrischen Polynome erfüllen die Rekursionsformel
     \begin{equation}
         \label{eq:recursion_elementary_symmetric_polynomials}
         \sigma_r (x_1, \dots, x_{n}) = \sigma_r (x_1, \dots, x_{n-1}) + x_{n} \sigma_{r-1} (x_1, \dots, x_{n-1}).
@@ -60,10 +60,12 @@ $\norm{V^{-1}}_\infty$.
     \begin{equation*}
         \begin{split}
             \sigma_r (x_1, \dots, x_{n})
-            &= \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}\\
+            &\overset{\eqref{eq:explicit_elementary_symmetric_polynomials}}=
+                \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}\\
             &= \sum_{1 \leq j_1 < \dots < j_r \leq n-1} x_{j_1} \cdots x_{j_r}
             + \sum_{1 \leq j_1 < \dots < j_{r-1} \leq n-1} x_{j_1} \cdots x_{j_r} \cdot x_{n}\\
-            &= \sigma_r (x_1, \dots, x_{n-1}) + x_{n} \sigma_{r-1} (x_1, \dots, x_{n-1}).
+            &\overset{\eqref{eq:explicit_elementary_symmetric_polynomials}}=
+                \sigma_r (x_1, \dots, x_{n-1}) + x_{n} \cdot \sigma_{r-1} (x_1, \dots, x_{n-1}).
         \end{split}
     \end{equation*}
 \end{proof}
@@ -73,11 +75,11 @@ nützlich sind.
 
 \begin{lemma}
     \label{lemma:elementary_symmetric_polynomials_const_multiplication}
-    Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt:
+    Für $x = (x_1, \dots, x_n) \in \Cn$ und $\alpha \in \C$ gilt
     \begin{equation}
         \label{eq:elementary_symmetric_polynomials_const_multiplication}
         \sigma_{r}(\alpha x)
-        = \alpha^{r} \sigma_{r}(x).
+        = \alpha^{r} \cdot \sigma_{r}(x).
     \end{equation}
 \end{lemma}
 \begin{proof}
@@ -86,9 +88,11 @@ nützlich sind.
     erhalten wir
     \[
         \sigma_{r}(\alpha x)
-        = \sum_{1 \leq j_1 < \dots < j_r \leq n} \alpha x_{j_1} \cdots \alpha x_{j_r}
-        = \alpha^r \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}
-        = \alpha^r \sigma_{r}(x).
+        \overset{\eqref{eq:explicit_elementary_symmetric_polynomials}}=
+            \sum_{1 \leq j_1 < \dots < j_r \leq n} \alpha x_{j_1} \cdots \alpha x_{j_r}
+        = \alpha^r \cdot \sum_{1 \leq j_1 < \dots < j_r \leq n} x_{j_1} \cdots x_{j_r}
+        \overset{\eqref{eq:explicit_elementary_symmetric_polynomials}}=
+            \alpha^r \cdot \sigma_{r}(x).
     \]
 \end{proof}
 
@@ -155,7 +159,7 @@ Die folgende Abschätzung liefert uns im nächsten Abschnitt eine obere Schranke
 der Zeilensummennorm inverser Vandermonde-Matrizen.
 \begin{lemma}[\cite{gautschi4}]
     \label{lemma:elementary_symmetric_polynomials_inequality}
-    Sei $x = (x_1, \dots, x_n) \in \Cn$ wie zuvor.
+    Sei $x = (x_1, \dots, x_n) \in \Cn$.
     Dann gilt
     \begin{equation}
         \label{eq:elementary_symmetric_polynomials_inequality}
@@ -177,7 +181,7 @@ der Zeilensummennorm inverser Vandermonde-Matrizen.
 
 \begin{proof}[Beweis des Lemmas \ref{lemma:elementary_symmetric_polynomials_inequality}]
     Zum Beweis verwenden wir vollständige Induktion nach $n \in \N$ und
-    Lemma \ref{lemma:recursion_elementary_symmetric_polynomials} an.\\[0.5em]
+    Lemma \ref{lemma:recursion_elementary_symmetric_polynomials}.\\[0.5em]
     \textbf{Induktionsanfang (\boldmath$n=1$):}
     Es ist $ (z+x_0) = \sigma_0(x_0) \cdot z^1 + \sigma_1(x_0) \cdot z^0$,
     also $\sigma_0(x_0) = 1$ und $\sigma_1(x_0) = x_0$.
@@ -196,15 +200,15 @@ der Zeilensummennorm inverser Vandermonde-Matrizen.
         &\overset{IV}{\geq}  ( 1 + \abs{x_n} ) \cdot \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}\\
         &= \sum_{k=0}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}
         + \sum_{k=1}^{n} \abs{x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
-        &\geq \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})} + \abs{\sigma_{0}(x_1, \dots, x_{n-1})}\\
-        &+ \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})}\\
+        &\geq \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n-1}) + x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})}\\
+            &\;\;\;\;\;\;\;\; + \abs{\sigma_{0}(x_1, \dots, x_{n-1})} + \abs{x_n \cdot \sigma_{n-1}(x_1, \dots, x_{n-1})}\\
         &\overset{(\ref{eq:recursion_elementary_symmetric_polynomials})}{=}
         \sum_{k=1}^{n-1} \abs{\sigma_{k}(x_1, \dots, x_{n})} + \abs{\sigma_{0}(x_1, \dots, x_{n})} + \abs{\sigma_{n}(x_1, \dots, x_n)}\\
         &= \sum_{k=0}^{n} \abs{\sigma_{k}(x_1, \dots, x_{n-1})}.
       \end{split}
     \end{equation*}
 
-    Um den Spezialfall $x_k = r_k \cdot e^{i \varphi}$ der Behauptung zu beweisen,
+    \noindent Um den Spezialfall $x_k = r_k \cdot e^{i \varphi}$ der Behauptung zu beweisen,
     führen wir die Induktion analog durch, allerdings mit der neuen
     Induktionsbehauptung, dass Gleichheit gelte.  Es bleibt nur zu zeigen, dass
     die zweite obige Abschätzung zur Gleichheit wird, d.h. dass
@@ -228,17 +232,17 @@ der Zeilensummennorm inverser Vandermonde-Matrizen.
     \begin{equation*}
         \sigma_{k}(x_1, \dots, x_{n-1})
         = \sigma_k(e^{i \varphi} \cdot (r_1, \dots, r_{n-1}))
-        \overset{(\ref{eq:explicit_elementary_symmetric_polynomials})}{=}
+        \overset{\eqref{eq:elementary_symmetric_polynomials_const_multiplication}}{=}
             e^{k i \varphi} \cdot \underbrace{\sigma_k(r_1, \dots, r_{n-1})}_{> 0}
     \end{equation*}
     und
     \begin{equation*}
         x_n \cdot \sigma_{k-1}(x_1, \dots, x_{n-1})
         = x_n \cdot \sigma_{k-1}(e^{i \varphi} \cdot (r_1, \dots, r_{n-1}))
-        \overset{(\ref{eq:explicit_elementary_symmetric_polynomials})}{=}
-            e^{k i \varphi} \cdot \underbrace{r_n \sigma_{k-1}(r_1, \dots, r_{n-1})}_{> 0}
+        \overset{\eqref{eq:elementary_symmetric_polynomials_const_multiplication}}{=}
+            e^{k \cdot i \varphi} \cdot \underbrace{r_n \sigma_{k-1}(r_1, \dots, r_{n-1})}_{> 0}
     \end{equation*}
     \enlargethispage{2em}
-    in die gleiche Richtung $e^{k i\varphi}$ zeigen, also linear abhängig
+    in die gleiche Richtung $e^{k \cdot i\varphi}$ zeigen, also linear abhängig
     sind.
 \end{proof}

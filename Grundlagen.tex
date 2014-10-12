@@ -58,8 +58,10 @@ Mit $\Delta x \defeq A^{-1} \Delta b$ erhalten wir wegen der Linearität von $A^
 
 \noindent Gesucht ist nun ein Maß des relativen Fehlers der verfälschten Lösung
 $\tilde{x}$ in Abhängigkeit vom Eingangsfehler $\delta$.
-Wegen $ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
-und $ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
+Mit
+$ \norm{\Delta x} = \norm{A^{-1} \Delta b} \leq \norm{A^{-1}} \norm{\Delta b} $
+und
+$ \norm{b} = \norm{A x} \leq \norm{A} \norm{x} $,
 folgt für den relativen Fehler
 \[
     \frac{\norm{\Delta x}}{\norm{x}}
@@ -179,8 +181,8 @@ folgt für den relativen Fehler
     \label{cor:invertability_vandermonde_matrix}
     Die Vandermonde-Matrix $\Vand{z}$ mit
     $z = (z_0, \dots, z_{n-1}) \in \Cn$ ist genau dann invertierbar, wenn
-    $z_k \neq z_j$ für alle $k \neq j$ gilt, d.h. wenn die $z_k$ paarweise
-    verschieden sind.
+    $z_k \neq z_j$ für alle $k \neq j$ gilt, d.h. wenn die Stützstellen $z_k$
+    paarweise verschieden sind.
 \end{corollary}
 
 \noindent Das folgende Lemma benötigen wir im weiteren Verlauf der Arbeit:
@@ -206,7 +208,7 @@ folgt für den relativen Fehler
 \begin{proof}
     Wir setzen
     \[
-        V = (v_{kj})_{k,j=0}^{n-1} \defeq \Vand{z}, \;
+        V = (v_{kj})_{k,j=0}^{n-1} \defeq \Vand{z} \text{ und }
         \tilde{V} = (\tilde{v}_{kj})_{k,j=0}^{n-1} \defeq \Vand{\alpha z}.
     \]
 
