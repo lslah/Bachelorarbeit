@@ -1,14 +1,24 @@
 \chapter{Fazit}
 
-Mit Hilfe einer allgemeinen Ungleichung über die Kondition von
-Vandermonde-Matrizen konnte gezeigt werden, dass Vandermonde-Matrizen zu rein
-reellen Stützstellen bezüglich der Zeilensummennorm schlecht konditioniert
-sind.
+In der vorliegenden Arbeit wurden Vandermonde-Matrizen mit reellen und
+komplexen Knoten untersucht.
+Die Betrachtung von Konfigurationen mit Knoten auf der reellen Achse
+bestätigte den Ruf von Vandermonde-Matrizen, schlecht konditioniert zu sein.
+So konnten nur Anordnungen von $n$ Knoten gefunden werden, bei denen die Kondition
+bezüglich der Zeilensummennorm mindestens exponentiell in $n$ wächst.
 
-Weiter wurden komplexe Knotenverteilungen untersucht, bei denen ein Knoten von
-der optimalen Position als $n$-te Einheitswurzel abweicht.
-Theoretische Betrachtungen lieferten eine Vermutung für eine explizite Formel
-der Konditionszahl in Bezug auf die Zeilensummennorm dieser Konfiguration.
-Numerische Untersuchungen konnten diese Vermutung stützen.
-Schließlich konnte für die Kondition bezüglich der Frobeniusnorm eine
-explizite Formel aufgestellt und bewiesen werden.
+Im Gegensatz dazu konnte gezeigt werden, dass für die äquidistante Verteilung
+der Knoten auf dem komplexen Einheitskreis die Vandermonde-Matrix nahezu
+perfekt bezüglich Frobenius- und Zeilensummennorm konditioniert ist.  Die
+Konditionszahl wächst in diesem Fall nur linear in $n$.
+
+Abschließend wurden Verteilungen untersucht, bei denen ein Knoten von der
+Position als $n$-te Einheitswurzel abweicht.  Für diese Konfiguration
+lieferten theoretische Betrachtungen eine Vermutung über eine explizite Formel
+der Konditionszahl in Bezug auf die Zeilensummennorm.  Numerische
+Untersuchungen konnten diese Vermutung stützen.  Schließlich konnte für die
+Kondition bezüglich der Frobeniusnorm eine explizite Formel aufgestellt und
+bewiesen werden.
+
+Diese Ergebnisse können nun hilfreich in die Entwicklung effizienterer
+Algorithmen in der Prony-Methode eingebracht werden.
