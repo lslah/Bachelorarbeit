@@ -142,7 +142,8 @@ Rotation noch unter Spiegelung der Knoten verändert.
     aus Lemma \ref{lemma:vandermonde_const_multiplication}:
         $\Vand{\alpha z}^{-1}
         = \Vand{z}^{-1} \cdot \diag{\alpha^0, \alpha^{-1}, \dots, \alpha^{-n+1}}.$
-    Damit ist sofort ersichtlich, dass
+    Bezeichnen wir für $j, r = 0, \dots, n-1$ mit $u_{jr} \in \C$ erneut die
+    Einträge von $V^{-1}$, so ist sofort ersichtlich, dass
     \[
         \begin{split}
             \norm{\Vand{\alpha z}^{-1}}_\infty
@@ -238,7 +239,7 @@ $z_j = e^{2 \pi i j / n}$ für $j = 1, \dots, n-1$.
 Die dazu gehörende Vandermonde-Matrix bezeichnen wir in diesem Abschnitt mit
 $\Vand{\delta} \defeq \Vand{z(\delta)}$.
 Häufig werden wir auf die explizite Angabe der Abhängigkeit von $\delta$
-verzichten, und beispielsweise nur kurz $z_0$ anstelle von $z_0(\delta)$
+verzichten und beispielsweise nur kurz $z_0$ anstelle von $z_0(\delta)$
 schreiben.
 
 \subsection{Kondition bezüglich der Zeilensummennorm}
@@ -269,7 +270,7 @@ Vandermonde-Matrix $\Vand{\delta}^{-1}$ ermitteln müssen.
 \begin{proof}
     Nach Gleichung (\ref{eq:explicit_inverse_vandermonde}) gilt
     \[
-        u_{0r} = (-1)^{n-1-r} \cdot \Pi_0 \cdot \sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1})
+        u_{0r} = (-1)^{n-1-r} \cdot \Pi_0 \cdot \sigma_{n-1-r}^{0}(z)
     \]
     mit
     \[
@@ -331,7 +332,7 @@ widerlegen.
     Zum Beweis der Vermutung muss gezeigt werden, dass
     \[
         \norm{\Vand{\delta}^{-1}}_\infty
-        = n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}.
+        = n \cdot \prod_{j=1}^{n-1} \frac{1}{2 \cdot \sin \left(\frac{\pi (j - \delta)}{n} \right)}
     \]
     gilt.
     Bezeichnen wir erneut mit $u_{jr}$ für $j,r = 0, \dots, n-1$ die Elemente von $\Vand{\delta}^{-1}$,
@@ -441,8 +442,8 @@ Bereits in Lemma \ref{lemma:frobenius_norm_vandermonde_unit_circle} wurde
 gezeigt, dass die Frobeniusnorm einer Vandermonde-Matrix mit $n$ Knoten auf dem
 Einheitskreis $n$ beträgt.
 Schwierigkeiten kann also nur die Norm der inversen Vandermonde-Matrix
-bereiten.  Wir betrachten im Folgenden die zwei Fälle $j=0$ und
-$j \in \{1, \dots, n-1\}$ gesondert.
+bereiten.  Wir betrachten im Folgenden die $j$-te Zeile von
+$\Vand{\delta}^{-1}$ für $j=0$ und $j \in \{1, \dots, n-1\}$ gesondert.
 
 \begin{lemma}
     \label{lemma:inverse_outlier_zero_row_quadratic_sum}
@@ -455,12 +456,12 @@ $j \in \{1, \dots, n-1\}$ gesondert.
 \end{lemma}
 \begin{proof}
     Mit Lemma \ref{lemma:outlier_sigma_zero} und Gleichung (\ref{eq:pi_0}) aus
-    dem Beiweis von \lemmaref{inverse_outlier_vandermonde_first_row_abs_sum}
+    dem Beweis von \lemmaref{inverse_outlier_vandermonde_first_row_abs_sum}
     erhalten wir
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{0r}}^2
-            &= \sum_{r=0}^{n-1} \abs{\Pi_0}^2 \abs{\sigma_{n-1-r}^{0}(z_1, \dots, z_{n-1})}^2\\
+            &= \sum_{r=0}^{n-1} \abs{\Pi_0}^2 \abs{\sigma_{n-1-r}^{0}(z)}^2\\
             &\overset{(\ref{eq:outlier_sigma_zero})}=
                 \abs{\Pi_0}^2 \sum_{r=0}^{n-1} 1^2
             = n \cdot \abs{\Pi_0}^2\\
@@ -484,25 +485,23 @@ Hilfslemmata.
 \begin{proof}
     Wir zeigen $\abs{\uptau_j} = \abs{\uptau_0}$ für alle $j = 1, \dots, n-1$ und
     $\uptau_0 = n$.
-    Es gilt
+    Tatsächlich gilt für $j = 1, \dots, n-1$
     \[
         \begin{split}
             \abs{\uptau_j}
-            &= \abs{\uptau_j \cdot \w_n^{-j}}
+            &= \abs{\uptau_j \cdot \w_n^{-(n-1)\cdot j}}
             = \prod_{\substack{k=0\\ k\neq j}}^{n-1} \abs{\w_n^0 - \w_n^{k-j} }\\
             &\overset{k' = k-j}{=}
-            \prod_{\substack{k'=-j\\ k\neq 0}}^{n-1-j} \abs{1 - \wn^{k'}}
-            = \prod_{\substack{k'=0\\ k\neq 0}}^{n-1} \abs{1 - \wn^{k'}}
+            \prod_{\substack{k'=-j\\ k'\neq 0}}^{n-1-j} \abs{1 - \wn^{k'}}
+            = \prod_{\substack{k'=0\\ k'\neq 0}}^{n-1} \abs{1 - \wn^{k'}}
             = \abs{\uptau_0},
         \end{split}
     \]
     wobei wir im letzten Schritt nur die Reihenfolge der Faktoren verändern und
     die $2\pi$-Periodizität von $e^{i \varphi}$ ausnutzen.
 
-    \noindent Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - \wn^k)$ können wir $\uptau_0 = p(1)$
-    schreiben.
-
-    Bereits im Beweis von \lemmaref{outlier_sigma_zero} haben wir gesehen, dass
+    Mit $p(z) \defeq \prod_{k=1}^{n-1} (z - \wn^k)$ können wir $\uptau_0 = p(1)$
+    schreiben. Bereits im Beweis von \lemmaref{outlier_sigma_zero} haben wir gesehen, dass
     \[
         p(z) = \prod_{k=1}^{n-1} (z-\w_n^k) = \sum_{k=0}^{n-1} z^k
     \]
@@ -521,7 +520,7 @@ Hilfslemmata.
     \]
 \end{lemma}
 \begin{proof}
-    Mit $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - \wn^j)$ gilt
+    Mit $\wn \defeq e^{\frac{2 \pi i}{n}}$ und $p(z) \defeq \sum_{k=0}^{n-1} z^n = \prod_{j=1}^{n-1} (z - \wn^j)$ gilt
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \cos \left( \frac{2 \pi j r}{n} - \varphi \right)
@@ -532,7 +531,7 @@ Hilfslemmata.
             = 0,
         \end{split}
     \]
-    wobei $\Re(z)$ den Realteil von $z$ bezeichnet.
+    wobei $\Re(z)$ den Realteil von $z$ bezeichne.
 \end{proof}
 
 \begin{lemma}
@@ -661,13 +660,13 @@ Hilfslemmata.
     \noindent Damit gilt für alle $r=0, \dots, n-1$
     \[
         \begin{split}
-            u_{j,n-1-r}
+            \abs{u_{j,n-1-r}}
             &\overset{(\ref{eq:explicit_inverse_vandermonde})}=
-                \Pi_j \cdot \sigma_{r}^j(-z) \\
-            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j) \cdot \Pi_j}\\
-            &= \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \left((z_j - 1) (z_j - z_1) \dots (z_j - z_{n-1}) \right)}\\
-            &\eqdef \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \uptau_j }\\
-            &= \frac{1}{\uptau_j} \left( \frac{1 - z_0}{z_j-z_0} - z_j^r \right),
+                \abs{\Pi_j \cdot \sigma_{r}^j(-z)} \\
+            &= \abs{\Pi_j \cdot \left( \frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(1-z_j)} \right)} \\
+            &= \abs{\frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \left((z_j - 1) (z_j - z_1) \dots (z_j - z_{n-1}) \right)}}\\
+            &\eqdef \abs{\frac{(1 - z_0) + (z_0 - z_j) z_j^r}{(z_j-z_0) \cdot \uptau_j }}\\
+            &= \abs{\frac{1}{\uptau_j} \left( \frac{1 - z_0}{z_j-z_0} - z_j^r \right)},
         \end{split}
     \]
     mit
@@ -681,13 +680,13 @@ Hilfslemmata.
         \begin{split}
             \abs{u_{j,n-1-r}}^2
             &= \frac{1}{n^2} \abs{ \rho e^{i\varphi} - z_j^r }^2
-            = \frac{1}{n^2} \left( \rho^2 + 1 - \rho \left( e^{\varphi - \frac{2\pi j r}{n}} + e^{\frac{2 \pi j r } {n} - \varphi} \right) \right)\\
+            = \frac{1}{n^2} \left( \rho^2 + 1 - \rho \left( e^{i \cdot \left(\varphi - \frac{2\pi j r}{n}\right)} + e^{i \cdot \left(\frac{2 \pi j r } {n} - \varphi\right)} \right) \right)\\
             &= \frac{1}{n^2} \left( \rho^2 + 1 - 2 \rho \cos \left( \frac{2 \pi j r}{n} - \varphi \right) \right).
         \end{split}
     \]
 
     \noindent Mit Hilfe von \lemmaref{sum_shifted_unit_roots} folgt insgesamt
-    für die $j$-te Zeile
+    für die $j$-te Zeile von $V(\delta)^{-1}$
     \[
         \begin{split}
             \sum_{r=0}^{n-1} \abs{u_{j,n-1-r}}^2
@@ -699,12 +698,12 @@ Hilfslemmata.
 
     \noindent Nach Definition ist $\rho = \frac{\abs{ 1 - z_0}}{\abs{z_j - z_0}}$.
     Mit
-    $\abs{1-z_0} = 2 \cdot \sin \left( \pi \frac{\delta}{n} \right)$
+    $\abs{1-z_0} = 2 \cdot \abs{ \sin \left( \pi \frac{\delta}{n} \right) }$
     und
-    $\abs{z_j-z_0} = 2 \cdot \sin \left( \pi \frac{j - \delta}{n} \right)$
+    $\abs{z_j-z_0} = 2 \cdot \abs{ \sin \left( \pi \frac{j - \delta}{n} \right) } $
     folgt
     \[
-        \rho = \frac{\sin \left( \pi \frac{\delta}{n} \right)}{\sin \left( \pi \frac{j - \delta}{n} \right)},
+        \rho = \abs{ \frac{\sin \left( \pi \frac{\delta}{n} \right)}{\sin \left( \pi \frac{j - \delta}{n} \right)} },
     \]
     und damit die Behauptung.
 \end{proof}

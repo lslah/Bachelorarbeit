@@ -64,9 +64,9 @@ inversen Vandermonde-Matrix entsprechen.
     wie behauptet.
 \end{proof}
 
-\noindent Unter Verwendung von Gleichung (\ref{eq:lagrange}) und den
-elementarsymmetrischen Polynomen kann eine explizite Darstellung der
-inversen Vandermonde-Matrix angegeben werden.
+\noindent Unter Verwendung von Gleichung (\ref{eq:lagrange}) und mit Hilfe der
+elementarsymmetrischen Polynome kann eine explizite Darstellung der inversen
+Vandermonde-Matrix angegeben werden.
 Dazu schreiben wir für $j = 0, \dots, n-1$
 \begin{equation*}
     \sum_{r = 0}^{n-1} u_{jr} z^{r}
@@ -103,8 +103,8 @@ Die Grundlage für eine obere Schranke von $\norm{V^{-1}}_\infty$
 haben wir bereits im Abschnitt über die elementarsymmetrischen Polynome geschaffen.
 Mit Hilfe der dort erbrachten Abschätzung der Betragssumme
 elementarsymmetrischer Polynome können wir den folgenden Satz beweisen.
-Die Aussage und die Idee des Beweises entstammen dabei aus
-\cite[S. 196-197]{gautschi1}.
+Die Aussage und die Idee des Beweises sind dabei aus\linebreak
+\cite[S. 196-197]{gautschi1} entnommen.
 \begin{theorem}
   \label{thm:inverse_vandermonde_upper_bound}
   Seien $z_0, \dots, z_{n-1} \in \C$ paarweise verschieden.
@@ -143,10 +143,8 @@ Die Aussage und die Idee des Beweises entstammen dabei aus
 Anders als dort formuliert, kann die Aussage jedoch nur für
 Vandermonde-Matrizen mit Stützstellen $z_k \neq 0$ für alle $k = 0, \dots, n-1$
 bewiesen werden.
-Diese Einschränkung folgt aus Jensens Formel, die in \cite{gautschi2} zum
-Beweis verwendet wird.
-Jensens Formel liefert eine Aussage über analytische Funktionen $f$, welche unter
-anderem $f(0) \neq 0$ erfüllen müssen.
+Denn in \cite{gautschi2} wird Jensens Formel verwendet, welche eine Aussage
+über analytische Funktionen $f$ liefert für die $f(0) \neq 0$ gilt.
 Diese Voraussetzung ist verletzt, wenn $0$ als Stützstelle der
 Vandermonde-Matrix gewählt wird.
 
@@ -175,7 +173,7 @@ der Zeilensummennorm inverser Vandermonde-Matrizen.
 \begin{lemma}[\cite{gautschi2}]
     \label{lemma:polynom_coefficient_sum_inequality}
     Sei $p(z) = \sum_{j = 0}^{n} a_j z^j$ ein Polynom $n$-ten Grades mit
-    $a_j \in \C$ für $j = 0, \dots, n$, $a_n \neq 0$ und Nullstellen
+    $a_j \in \C$ für $j = 0, \dots, n$ und $a_n \neq 0$ sowie Nullstellen
     $\zeta_j \in \C\setminus\{0\}$ mit $j = 1, \dots, n$.
     Dann gilt
     \begin{equation}
@@ -240,7 +238,7 @@ der Zeilensummennorm inverser Vandermonde-Matrizen.
 \end{proof}
 
 \noindent Nun können wir eine Abschätzung der Zeilensummennorm der inversen
-Vandermonde-Matrix angeben und beweisen:
+Vandermonde-Matrix angeben und beweisen.
 \begin{theorem}
   \label{thm:inverse_vandermonde_lower_bound}
   Seien $z_0, \dots, z_{n-1} \in \C\setminus\{0\}$ paarweise verschieden.

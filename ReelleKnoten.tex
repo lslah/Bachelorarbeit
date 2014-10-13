@@ -1,11 +1,8 @@
 
 \chapter{Vandermonde-Matrizen mit reellen Stützstellen}
 Als Anwendung von Satz \ref{thm:inverse_vandermonde_upper_bound} werden wir nun
-die Kondition einer Vandermonde-Matrix zu nicht-negativen harmonischen Stützstellen
-berechnen.
-Weitere Konditionen von Vander"-monde-Matrizen mit reellen Stützstellen werden
-angegeben.
-Die Beispiele werden dabei aus \cite[S. 197-199]{gautschi1} entnommen.
+die Konditionen einiger Vandermonde-Matrizen zu reellen Stützstellen berechnen.
+Die Beispiele sind dabei aus \cite[S. 197-199]{gautschi1} entnommen.
 
 Zunächst beweisen wir ein allgemeines Lemma über die Zeilensummennorm
 von Vandermonde-Matrizen mit Stützstellen innerhalb des komplexen
@@ -134,8 +131,9 @@ Der Beweis kann in \cite[S. 341]{gautschi3} nachgelesen werden.
     Sei $x = (x_1, \dots, x_n) \in \Rn$ mit $x_j + x_{n+1-j} = 0$ für $j = 1, \dots, n$.
     Dann gilt mit $p(x) \defeq \prod_{k=1}^{n} (x - x_k)$
     \[
-        \norm{\Vand{x}^{-1}}_\infty = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} }.
+        \norm{\Vand{x}^{-1}}_\infty = \frac{\abs{p(i)}}{\min_{x_k \geq 0} \left\{ \frac{1 + x_k^2}{1 + x_k} \abs{p^{\prime}(x_k)} \right\} },
     \]
+    wobei hier mit $i$ die imaginäre Einheit bezeichnet sei.
 \end{lemma}
 
 \begin{example}[Äquidistante, symmetrische Stützstellen \cite{gautschi1}]
